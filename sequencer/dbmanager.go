@@ -2,9 +2,10 @@ package sequencer
 
 import (
 	"context"
-	"github.com/google/uuid"
 	"math/big"
 	"time"
+
+	"github.com/google/uuid"
 
 	"github.com/0xPolygonHermez/zkevm-node/log"
 	"github.com/0xPolygonHermez/zkevm-node/pool"
@@ -125,7 +126,10 @@ func (d *dbManager) loadFromPool() {
 		ts := time.Now()
 		traceID, _ := uuid.NewUUID()
 		poolTransactions, err := d.txPool.GetNonWIPPendingTxs(d.ctx, 0)
-		log.Infof("Elapsed: get pool transactions from pool : %v, uuid:%s", time.Since(ts).Milliseconds(), traceID.String())
+		if len(poolTransactions) > 0 {
+			log.Infof("Elapsed: get pool transactions from pool : %v, uuid:%s", time.Since(ts).Milliseconds(), traceID.String())
+		}
+
 		if err != nil && err != pool.ErrNotFound {
 			log.Errorf("load tx from pool: %v", err)
 		}
