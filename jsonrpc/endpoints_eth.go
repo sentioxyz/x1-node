@@ -5,9 +5,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/google/uuid"
 	"math/big"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/0xPolygonHermez/zkevm-node/hex"
 	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/client"
@@ -65,6 +67,13 @@ func (e *EthEndpoints) BlockNumber() (interface{}, types.Error) {
 // useful to execute view/pure methods and retrieve values.
 func (e *EthEndpoints) Call(arg *types.TxArgs, blockArg *types.BlockNumberOrHash) (interface{}, types.Error) {
 	return e.txMan.NewDbTxScope(e.state, func(ctx context.Context, dbTx pgx.Tx) (interface{}, types.Error) {
+		traceId, _ := uuid.NewUUID()
+		ts := time.Now()
+		log.Infof("Elapsed: RPC Call begin %v", traceId.String())
+		defer func() {
+			log.Infof("Elapsed: RPC Call End %v td %v", traceId.String(), time.Since(ts).Milliseconds())
+		}()
+
 		if arg == nil {
 			return rpcErrorResponse(types.InvalidParamsErrorCode, "missing value for required argument 0", nil)
 		} else if blockArg == nil {
@@ -102,10 +111,13 @@ func (e *EthEndpoints) Call(arg *types.TxArgs, blockArg *types.BlockNumberOrHash
 			return rpcErrorResponse(types.DefaultErrorCode, "failed to convert arguments into an unsigned transaction", err)
 		}
 
+		log.Infof("Elapsed: RPC Call ProcessUnsignedTransaction begin %vn", traceId.String())
+		tsp := time.Now()
 		result, err := e.state.ProcessUnsignedTransaction(ctx, tx, sender, blockToProcess, true, dbTx)
 		if err != nil {
 			return rpcErrorResponse(types.DefaultErrorCode, "failed to execute the unsigned transaction", err)
 		}
+		log.Infof("Elapsed: RPC Call ProcessUnsignedTransaction end %v n td %v", traceId.String(), time.Since(tsp).Milliseconds())
 
 		if result.Reverted() {
 			data := make([]byte, len(result.ReturnValue))
@@ -831,10 +843,13 @@ func (e *EthEndpoints) tryToAddTxToPool(input, ip string) (interface{}, types.Er
 	}
 
 	log.Infof("adding TX to the pool: %v", tx.Hash().Hex())
+	log.Infof("Elapsed: RPC adding TX to the pool: %v", tx.Hash().Hex())
+	ts := time.Now()
 	if err := e.pool.AddTx(context.Background(), *tx, ip); err != nil {
 		return rpcErrorResponse(types.DefaultErrorCode, err.Error(), nil)
 	}
 	log.Infof("TX added to the pool: %v", tx.Hash().Hex())
+	log.Infof("Elapsed: RPC TX added to the pool: %v td %vn", tx.Hash().Hex(), time.Since(ts).Milliseconds())
 
 	return tx.Hash().Hex(), nil
 }

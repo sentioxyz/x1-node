@@ -2,6 +2,7 @@ package sequencer
 
 import (
 	"context"
+	"github.com/google/uuid"
 	"math/big"
 	"time"
 
@@ -121,7 +122,10 @@ func (d *dbManager) loadFromPool() {
 	for {
 		time.Sleep(d.cfg.PoolRetrievalInterval.Duration)
 
+		ts := time.Now()
+		traceID, _ := uuid.NewUUID()
 		poolTransactions, err := d.txPool.GetNonWIPPendingTxs(d.ctx, 0)
+		log.Infof("Elapsed: get pool transactions from pool : %v, uuid:%s", time.Since(ts).Milliseconds(), traceID.String())
 		if err != nil && err != pool.ErrNotFound {
 			log.Errorf("load tx from pool: %v", err)
 		}
@@ -130,7 +134,7 @@ func (d *dbManager) loadFromPool() {
 			start := time.Now()
 			err := d.addTxToWorker(tx)
 			elapsed := time.Now().Sub(start).Milliseconds()
-			log.Infof("Elapsed: load tx from db to memory: %v, hash:%s", elapsed, tx.Hash().String())
+			log.Infof("Elapsed: load tx from db to memory: %v, hash:%s, uuid %s", elapsed, tx.Hash().String(), traceID.String())
 			if err != nil {
 				log.Errorf("error adding transaction to worker: %v", err)
 			}
