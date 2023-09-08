@@ -692,6 +692,7 @@ func (f *finalizer) processForcedBatch(ctx context.Context, lastBatchNumberInSta
 
 // openWIPBatch opens a new batch in the state and returns it as WipBatch
 func (f *finalizer) openWIPBatch(ctx context.Context, batchNum uint64, ger, stateRoot common.Hash) (*WipBatch, error) {
+	start := time.Now()
 	dbTx, err := f.dbManager.BeginStateTransaction(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("failed to begin state transaction to open batch, err: %w", err)
@@ -718,6 +719,9 @@ func (f *finalizer) openWIPBatch(ctx context.Context, batchNum uint64, ger, stat
 		time.Sleep(time.Second)
 	}
 
+	elapsed := time.Now().Sub(start).Milliseconds()
+	log.Infof("Elapsed: open wip batch: %v", elapsed)
+
 	return &WipBatch{
 		batchNumber:        batchNum,
 		coinbase:           f.sequencerAddress,
@@ -732,6 +736,7 @@ func (f *finalizer) openWIPBatch(ctx context.Context, batchNum uint64, ger, stat
 
 // closeBatch closes the current batch in the state
 func (f *finalizer) closeBatch(ctx context.Context) error {
+	start := time.Now()
 	transactions, err := f.dbManager.GetTransactionsByBatchNumber(ctx, f.batch.batchNumber)
 	if err != nil {
 		return fmt.Errorf("failed to get transactions from transactions, err: %w", err)
@@ -748,7 +753,11 @@ func (f *finalizer) closeBatch(ctx context.Context) error {
 		BatchResources: usedResources,
 		ClosingReason:  f.batch.closingReason,
 	}
-	return f.dbManager.CloseBatch(ctx, receipt)
+
+	err = f.dbManager.CloseBatch(ctx, receipt)
+	elapsed := time.Now().Sub(start).Milliseconds()
+	log.Infof("Elapsed: close batch: %v", elapsed)
+	return err
 }
 
 // openBatch opens a new batch in the state
