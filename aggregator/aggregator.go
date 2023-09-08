@@ -869,7 +869,7 @@ func (a *Aggregator) tryGenerateBatchProof(ctx context.Context, prover proverInt
 	start := time.Now()
 	genProofID, err = prover.BatchProof(inputProver)
 	elapsed := time.Now().Sub(start).Milliseconds()
-	log.Infof("Elapsed: tryGenerateBatchProof - batch proof %v, proof id:%s", elapsed, *proof.ProofID)
+	log.Infof("Elapsed: tryGenerateBatchProof - batch proof %v, proof id:%v", elapsed, *genProofID)
 	if err != nil {
 		err = fmt.Errorf("failed to get batch proof id, %w", err)
 		log.Error(FirstToUpper(err.Error()))
@@ -884,7 +884,7 @@ func (a *Aggregator) tryGenerateBatchProof(ctx context.Context, prover proverInt
 	start = time.Now()
 	resGetProof, err := prover.WaitRecursiveProof(ctx, *proof.ProofID)
 	elapsed = time.Now().Sub(start).Milliseconds()
-	log.Infof("Elapsed: tryGenerateBatchProof - wait recursive proof, %v, proof id:%s", elapsed, *proof.ProofID)
+	log.Infof("Elapsed: tryGenerateBatchProof - wait recursive proof, %v, proof id:%v", elapsed, *proof.ProofID)
 	if err != nil {
 		err = fmt.Errorf("failed to get proof from prover, %w", err)
 		log.Error(FirstToUpper(err.Error()))
