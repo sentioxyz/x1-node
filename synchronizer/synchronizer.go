@@ -4,10 +4,11 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/0xPolygon/cdk-data-availability/client"
 	"math/big"
 	"strings"
 	"time"
+
+	"github.com/0xPolygon/cdk-data-availability/client"
 
 	"github.com/0xPolygonHermez/zkevm-node/etherman"
 	"github.com/0xPolygonHermez/zkevm-node/hex"
@@ -718,10 +719,17 @@ func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.
 		return nil
 	}
 	for _, sbatch := range sequencedBatches {
-		batchL2Data, err := s.getBatchL2Data(sbatch.BatchNumber, sbatch.TransactionsHash)
-		if err != nil {
-			return err
+		var batchL2Data []byte
+		var err error
+		if len(sbatch.Transactions) > 0 {
+			batchL2Data = sbatch.Transactions
+		} else {
+			batchL2Data, err = s.getBatchL2Data(sbatch.BatchNumber, sbatch.TransactionsHash)
+			if err != nil {
+				return err
+			}
 		}
+
 		virtualBatch := state.VirtualBatch{
 			BatchNumber:   sbatch.BatchNumber,
 			TxHash:        sbatch.TxHash,
