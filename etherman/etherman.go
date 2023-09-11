@@ -122,6 +122,7 @@ type L1Config struct {
 	GlobalExitRootManagerAddr common.Address `json:"polygonZkEVMGlobalExitRootAddress"`
 	// Address of the data availability committee contract
 	DataCommitteeAddr common.Address `json:"dataCommitteeContract"`
+	UseDac            bool           `mapstructure:"useDac"`
 }
 
 type externalGasProviders struct {
@@ -136,6 +137,7 @@ type Client struct {
 	GlobalExitRootManager *polygonzkevmglobalexitroot.Polygonzkevmglobalexitroot
 	Matic                 *matic.Matic
 	DataCommittee         *datacommittee.Datacommittee
+	UseDac                bool
 	SCAddresses           []common.Address
 
 	GasProviders externalGasProviders
@@ -191,6 +193,7 @@ func NewClient(cfg Config, l1Config L1Config) (*Client, error) {
 		Matic:                 matic,
 		GlobalExitRootManager: globalExitRoot,
 		DataCommittee:         dataCommittee,
+		UseDac:                l1Config.UseDac,
 		SCAddresses:           scAddresses,
 		GasProviders: externalGasProviders{
 			MultiGasProvider: cfg.MultiGasProvider,
@@ -526,18 +529,39 @@ func (etherMan *Client) sequenceBatches(
 	committeeSignaturesAndAddrs []byte,
 ) (*types.Transaction, error) {
 	var batches []polygonzkevm.PolygonZkEVMBatchData
-	for _, seq := range sequences {
-		batch := polygonzkevm.PolygonZkEVMBatchData{
-			TransactionsHash:   crypto.Keccak256Hash(seq.BatchL2Data),
-			GlobalExitRoot:     seq.GlobalExitRoot,
-			Timestamp:          uint64(seq.Timestamp),
-			MinForcedTimestamp: uint64(seq.ForcedBatchTimestamp),
+
+	var tx *types.Transaction
+	var err error
+
+	if etherMan.UseDac {
+		for _, seq := range sequences {
+			batch := polygonzkevm.PolygonZkEVMBatchData{
+				TransactionsHash:   crypto.Keccak256Hash(seq.BatchL2Data),
+				GlobalExitRoot:     seq.GlobalExitRoot,
+				Timestamp:          uint64(seq.Timestamp),
+				MinForcedTimestamp: uint64(seq.ForcedBatchTimestamp),
+			}
+
+			batches = append(batches, batch)
 		}
 
-		batches = append(batches, batch)
+		log.Info("sequenceBatches， use dac hash and signatures len:%v", len(committeeSignaturesAndAddrs))
+		tx, err = etherMan.ZkEVM.SequenceBatches(&opts, batches, opts.From, committeeSignaturesAndAddrs)
+	} else {
+		for _, seq := range sequences {
+			batch := polygonzkevm.PolygonZkEVMBatchData{
+				Transactions:       seq.BatchL2Data,
+				GlobalExitRoot:     seq.GlobalExitRoot,
+				Timestamp:          uint64(seq.Timestamp),
+				MinForcedTimestamp: uint64(seq.ForcedBatchTimestamp),
+			}
+
+			batches = append(batches, batch)
+		}
+		log.Info("sequenceBatches， do not use dac")
+		tx, err = etherMan.ZkEVM.SequenceBatches(&opts, batches, opts.From, nil)
 	}
 
-	tx, err := etherMan.ZkEVM.SequenceBatches(&opts, batches, opts.From, committeeSignaturesAndAddrs)
 	if err != nil {
 		if parsedErr, ok := tryParseError(err); ok {
 			err = parsedErr

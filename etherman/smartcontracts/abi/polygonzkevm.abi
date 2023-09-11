@@ -39,303 +39,227 @@
 		"type": "constructor"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "BatchAlreadyVerified",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "BatchNotSequencedOrNotSequenceEnd",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
+		"name": "DacHasNoTransactions",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "DacHasTransactions",
+		"type": "error"
+	},
+	{
+		"inputs": [],
 		"name": "ExceedMaxVerifyBatches",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "FinalNumBatchBelowLastVerifiedBatch",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "FinalNumBatchDoesNotMatchPendingState",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "FinalPendingStateNumInvalid",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "ForceBatchNotAllowed",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "ForceBatchTimeoutNotExpired",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "ForceBatchesAlreadyActive",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "ForceBatchesOverflow",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "ForcedDataDoesNotMatch",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "GlobalExitRootNotExist",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "HaltTimeoutNotExpired",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "InitNumBatchAboveLastVerifiedBatch",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "InitNumBatchDoesNotMatchPendingState",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "InvalidProof",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "InvalidRangeBatchTimeTarget",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "InvalidRangeForceBatchTimeout",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "InvalidRangeMultiplierBatchFee",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "NewAccInputHashDoesNotExist",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "NewPendingStateTimeoutMustBeLower",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "NewStateRootNotInsidePrime",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "NewTrustedAggregatorTimeoutMustBeLower",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "NotEnoughMaticAmount",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "OldAccInputHashDoesNotExist",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "OldStateRootDoesNotExist",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "OnlyAdmin",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "OnlyEmergencyState",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "OnlyNotEmergencyState",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "OnlyPendingAdmin",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "OnlyTrustedAggregator",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "OnlyTrustedSequencer",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "PendingStateDoesNotExist",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "PendingStateInvalid",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "PendingStateNotConsolidable",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "PendingStateTimeoutExceedHaltAggregationTimeout",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "SequenceZeroBatches",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "SequencedTimestampBelowForcedTimestamp",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "SequencedTimestampInvalid",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "StoredRootMustBeDifferentThanNewRoot",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "TransactionsLengthAboveMax",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "TrustedAggregatorTimeoutExceedHaltAggregationTimeout",
 		"type": "error"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "TrustedAggregatorTimeoutNotExpired",
 		"type": "error"
 	},
@@ -352,9 +276,7 @@
 	},
 	{
 		"anonymous": false,
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "ActivateForceBatches",
 		"type": "event"
 	},
@@ -384,17 +306,13 @@
 	},
 	{
 		"anonymous": false,
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "EmergencyStateActivated",
 		"type": "event"
 	},
 	{
 		"anonymous": false,
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "EmergencyStateDeactivated",
 		"type": "event"
 	},
@@ -693,13 +611,9 @@
 		"type": "event"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "acceptAdminRole",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -710,27 +624,19 @@
 			"type": "uint64"
 		}],
 		"name": "activateEmergencyState",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "activateForceBatches",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "admin",
 		"outputs": [{
 			"internalType": "address",
@@ -741,9 +647,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "batchFee",
 		"outputs": [{
 			"internalType": "uint256",
@@ -769,9 +673,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "bridgeAddress",
 		"outputs": [{
 			"internalType": "contract IPolygonZkEVMBridge",
@@ -782,9 +684,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "calculateRewardPerBatch",
 		"outputs": [{
 			"internalType": "uint256",
@@ -795,9 +695,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "chainID",
 		"outputs": [{
 			"internalType": "uint64",
@@ -829,16 +727,12 @@
 			"type": "uint64"
 		}],
 		"name": "consolidatePendingState",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "dataCommitteeAddress",
 		"outputs": [{
 			"internalType": "contract IDataCommittee",
@@ -849,13 +743,9 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "deactivateEmergencyState",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -872,16 +762,12 @@
 			}
 		],
 		"name": "forceBatch",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "forceBatchTimeout",
 		"outputs": [{
 			"internalType": "uint64",
@@ -907,9 +793,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "forkID",
 		"outputs": [{
 			"internalType": "uint64",
@@ -920,9 +804,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "getForcedBatchFee",
 		"outputs": [{
 			"internalType": "uint256",
@@ -969,9 +851,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "getLastVerifiedBatch",
 		"outputs": [{
 			"internalType": "uint64",
@@ -982,9 +862,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "globalExitRootManager",
 		"outputs": [{
 			"internalType": "contract IPolygonZkEVMGlobalExitRoot",
@@ -1048,16 +926,12 @@
 			}
 		],
 		"name": "initialize",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "isEmergencyState",
 		"outputs": [{
 			"internalType": "bool",
@@ -1068,9 +942,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "isForcedBatchDisallowed",
 		"outputs": [{
 			"internalType": "bool",
@@ -1096,9 +968,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "lastBatchSequenced",
 		"outputs": [{
 			"internalType": "uint64",
@@ -1109,9 +979,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "lastForceBatch",
 		"outputs": [{
 			"internalType": "uint64",
@@ -1122,9 +990,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "lastForceBatchSequenced",
 		"outputs": [{
 			"internalType": "uint64",
@@ -1135,9 +1001,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "lastPendingState",
 		"outputs": [{
 			"internalType": "uint64",
@@ -1148,9 +1012,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "lastPendingStateConsolidated",
 		"outputs": [{
 			"internalType": "uint64",
@@ -1161,9 +1023,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "lastTimestamp",
 		"outputs": [{
 			"internalType": "uint64",
@@ -1174,9 +1034,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "lastVerifiedBatch",
 		"outputs": [{
 			"internalType": "uint64",
@@ -1187,9 +1045,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "matic",
 		"outputs": [{
 			"internalType": "contract IERC20Upgradeable",
@@ -1200,9 +1056,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "multiplierBatchFee",
 		"outputs": [{
 			"internalType": "uint16",
@@ -1213,9 +1067,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "networkName",
 		"outputs": [{
 			"internalType": "string",
@@ -1263,16 +1115,12 @@
 			}
 		],
 		"name": "overridePendingState",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "owner",
 		"outputs": [{
 			"internalType": "address",
@@ -1283,9 +1131,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "pendingAdmin",
 		"outputs": [{
 			"internalType": "address",
@@ -1296,9 +1142,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "pendingStateTimeout",
 		"outputs": [{
 			"internalType": "uint64",
@@ -1377,27 +1221,19 @@
 			}
 		],
 		"name": "proveNonDeterministicPendingState",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "renounceOwnership",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "rollupVerifier",
 		"outputs": [{
 			"internalType": "contract IVerifierRollup",
@@ -1410,6 +1246,11 @@
 	{
 		"inputs": [{
 				"components": [{
+						"internalType": "bytes",
+						"name": "transactions",
+						"type": "bytes"
+					},
+					{
 						"internalType": "bytes32",
 						"name": "transactionsHash",
 						"type": "bytes32"
@@ -1446,9 +1287,7 @@
 			}
 		],
 		"name": "sequenceBatches",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -1475,9 +1314,7 @@
 			"type": "tuple[]"
 		}],
 		"name": "sequenceForceBatches",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -1514,9 +1351,7 @@
 			"type": "uint64"
 		}],
 		"name": "setForceBatchTimeout",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -1527,9 +1362,7 @@
 			"type": "uint16"
 		}],
 		"name": "setMultiplierBatchFee",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -1540,9 +1373,7 @@
 			"type": "uint64"
 		}],
 		"name": "setPendingStateTimeout",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -1553,9 +1384,7 @@
 			"type": "address"
 		}],
 		"name": "setTrustedAggregator",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -1566,9 +1395,7 @@
 			"type": "uint64"
 		}],
 		"name": "setTrustedAggregatorTimeout",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -1579,9 +1406,7 @@
 			"type": "address"
 		}],
 		"name": "setTrustedSequencer",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -1592,9 +1417,7 @@
 			"type": "string"
 		}],
 		"name": "setTrustedSequencerURL",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -1605,9 +1428,7 @@
 			"type": "uint64"
 		}],
 		"name": "setVerifyBatchTimeTarget",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -1618,9 +1439,7 @@
 			"type": "address"
 		}],
 		"name": "transferAdminRole",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -1631,16 +1450,12 @@
 			"type": "address"
 		}],
 		"name": "transferOwnership",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "trustedAggregator",
 		"outputs": [{
 			"internalType": "address",
@@ -1651,9 +1466,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "trustedAggregatorTimeout",
 		"outputs": [{
 			"internalType": "uint64",
@@ -1664,9 +1477,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "trustedSequencer",
 		"outputs": [{
 			"internalType": "address",
@@ -1677,9 +1488,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "trustedSequencerURL",
 		"outputs": [{
 			"internalType": "string",
@@ -1690,9 +1499,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-
-		],
+		"inputs": [],
 		"name": "verifyBatchTimeTarget",
 		"outputs": [{
 			"internalType": "uint64",
@@ -1735,9 +1542,7 @@
 			}
 		],
 		"name": "verifyBatches",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -1774,9 +1579,7 @@
 			}
 		],
 		"name": "verifyBatchesTrustedAggregator",
-		"outputs": [
-
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	}
