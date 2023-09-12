@@ -3,6 +3,7 @@ package etherman
 import (
 	"context"
 	"crypto/ecdsa"
+	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -542,7 +543,7 @@ func (etherMan *Client) sequenceBatches(
 				MinForcedTimestamp: uint64(seq.ForcedBatchTimestamp),
 			}
 
-			log.Info("sequenceBatches， use dac,txs len: ", len(batch.Transactions), ",tx hash:", batch.TransactionsHash)
+			log.Infof("sequenceBatches， use dac, txs len:%d, tx hash:%s", len(batch.Transactions), hex.EncodeToString(batch.TransactionsHash[:]))
 			batches = append(batches, batch)
 		}
 
@@ -556,7 +557,7 @@ func (etherMan *Client) sequenceBatches(
 				MinForcedTimestamp: uint64(seq.ForcedBatchTimestamp),
 			}
 
-			log.Info("sequenceBatches， do not use dac, txs len: ", len(batch.Transactions), ",tx hash:", batch.TransactionsHash)
+			log.Infof("sequenceBatches， do not use dac, txs len:%d, tx hash:%s ", len(batch.Transactions), hex.EncodeToString(batch.TransactionsHash[:]))
 			batches = append(batches, batch)
 		}
 
