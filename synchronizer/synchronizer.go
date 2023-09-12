@@ -713,6 +713,15 @@ func (s *ClientSynchronizer) processForkID(forkID etherman.ForkID, blockNumber u
 	return fmt.Errorf("new ForkID detected, reseting synchronizarion")
 }
 
+func isZeroByteArray(bytesArray [32]byte) bool {
+	for _, b := range bytesArray {
+		if b != 0 {
+			return false
+		}
+	}
+	return true
+}
+
 func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.SequencedBatch, blockNumber uint64, dbTx pgx.Tx) error {
 	if len(sequencedBatches) == 0 {
 		log.Warn("Empty sequencedBatches array detected, ignoring...")
@@ -722,7 +731,7 @@ func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.
 		var batchL2Data []byte
 		log.Infof("sbatch.Transactions len:%d, txs hash:%s", len(sbatch.Transactions), hex.EncodeToString(sbatch.TransactionsHash[:]))
 		var err error
-		if len(sbatch.Transactions) > 0 {
+		if len(sbatch.Transactions) > 0 || (len(sbatch.Transactions) == 0 && isZeroByteArray(sbatch.TransactionsHash)) {
 			batchL2Data = sbatch.Transactions
 		} else {
 			batchL2Data, err = s.getBatchL2Data(sbatch.BatchNumber, sbatch.TransactionsHash)
