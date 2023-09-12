@@ -720,7 +720,7 @@ func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.
 	}
 	for _, sbatch := range sequencedBatches {
 		var batchL2Data []byte
-		log.Info("sbatch.Transactions len:", len(sbatch.Transactions), "hash:", sbatch.TransactionsHash)
+		log.Infof("sbatch.Transactions len:%d, txs hash:%s", len(sbatch.Transactions), hex.EncodeToString(sbatch.TransactionsHash[:]))
 		var err error
 		if len(sbatch.Transactions) > 0 {
 			batchL2Data = sbatch.Transactions
