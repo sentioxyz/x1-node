@@ -30,6 +30,10 @@ func (s *SequenceSender) getSignaturesAndAddrsFromDataCommittee(ctx context.Cont
 		return nil, err
 	}
 
+	if len(committee.Members) <= 0 {
+		return nil, nil
+	}
+
 	// Get last accInputHash
 	var accInputHash common.Hash
 	if sequences[0].BatchNumber != 0 {

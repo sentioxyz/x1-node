@@ -534,7 +534,7 @@ func (etherMan *Client) sequenceBatches(
 	var tx *types.Transaction
 	var err error
 
-	if etherMan.UseDac {
+	if etherMan.UseDac && len(committeeSignaturesAndAddrs) > 0 {
 		for _, seq := range sequences {
 			batch := polygonzkevm.PolygonZkEVMBatchData{
 				TransactionsHash:   crypto.Keccak256Hash(seq.BatchL2Data),
@@ -543,7 +543,7 @@ func (etherMan *Client) sequenceBatches(
 				MinForcedTimestamp: uint64(seq.ForcedBatchTimestamp),
 			}
 
-			log.Infof("sequenceBatches， use dac, txs len:%d, tx hash:%s", len(batch.Transactions), hex.EncodeToString(batch.TransactionsHash[:]))
+			log.Infof("sequenceBatches, use dac, txs len:%d, tx hash:%s", len(batch.Transactions), hex.EncodeToString(batch.TransactionsHash[:]))
 			batches = append(batches, batch)
 		}
 
@@ -557,7 +557,7 @@ func (etherMan *Client) sequenceBatches(
 				MinForcedTimestamp: uint64(seq.ForcedBatchTimestamp),
 			}
 
-			log.Infof("sequenceBatches， do not use dac, txs len:%d, tx hash:%s ", len(batch.Transactions), hex.EncodeToString(batch.TransactionsHash[:]))
+			log.Infof("sequenceBatches, do not use dac, txs len:%d, tx hash:%s ", len(batch.Transactions), hex.EncodeToString(batch.TransactionsHash[:]))
 			batches = append(batches, batch)
 		}
 
