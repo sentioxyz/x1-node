@@ -123,7 +123,7 @@ type L1Config struct {
 	GlobalExitRootManagerAddr common.Address `json:"polygonZkEVMGlobalExitRootAddress"`
 	// Address of the data availability committee contract
 	DataCommitteeAddr common.Address `json:"dataCommitteeContract"`
-	UseDac            bool           `mapstructure:"useDac"`
+	UseValidium       bool           `mapstructure:"useValidium"`
 }
 
 type externalGasProviders struct {
@@ -138,7 +138,7 @@ type Client struct {
 	GlobalExitRootManager *polygonzkevmglobalexitroot.Polygonzkevmglobalexitroot
 	Matic                 *matic.Matic
 	DataCommittee         *datacommittee.Datacommittee
-	UseDac                bool
+	UseValidium           bool
 	SCAddresses           []common.Address
 
 	GasProviders externalGasProviders
@@ -194,7 +194,7 @@ func NewClient(cfg Config, l1Config L1Config) (*Client, error) {
 		Matic:                 matic,
 		GlobalExitRootManager: globalExitRoot,
 		DataCommittee:         dataCommittee,
-		UseDac:                l1Config.UseDac,
+		UseValidium:           l1Config.UseValidium,
 		SCAddresses:           scAddresses,
 		GasProviders: externalGasProviders{
 			MultiGasProvider: cfg.MultiGasProvider,
@@ -534,7 +534,7 @@ func (etherMan *Client) sequenceBatches(
 	var tx *types.Transaction
 	var err error
 
-	if etherMan.UseDac && len(committeeSignaturesAndAddrs) > 0 {
+	if etherMan.UseValidium && len(committeeSignaturesAndAddrs) > 0 {
 		for _, seq := range sequences {
 			batch := polygonzkevm.PolygonZkEVMBatchData{
 				TransactionsHash:   crypto.Keccak256Hash(seq.BatchL2Data),
