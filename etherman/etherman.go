@@ -542,10 +542,10 @@ func (etherMan *Client) sequenceBatches(
 				MinForcedTimestamp: uint64(seq.ForcedBatchTimestamp),
 			}
 
+			log.Info("sequenceBatches， use dac,txs len: ", len(batch.Transactions), ",tx hash:", batch.TransactionsHash)
 			batches = append(batches, batch)
 		}
 
-		log.Info("sequenceBatches， use dac hash and signatures len:%v", len(committeeSignaturesAndAddrs))
 		tx, err = etherMan.ZkEVM.SequenceBatches(&opts, batches, opts.From, committeeSignaturesAndAddrs)
 	} else {
 		for _, seq := range sequences {
@@ -556,9 +556,10 @@ func (etherMan *Client) sequenceBatches(
 				MinForcedTimestamp: uint64(seq.ForcedBatchTimestamp),
 			}
 
+			log.Info("sequenceBatches， do not use dac, txs len: ", len(batch.Transactions), ",tx hash:", batch.TransactionsHash)
 			batches = append(batches, batch)
 		}
-		log.Info("sequenceBatches， do not use dac")
+
 		tx, err = etherMan.ZkEVM.SequenceBatches(&opts, batches, opts.From, nil)
 	}
 
@@ -789,6 +790,7 @@ func decodeSequences(txData []byte, lastBatchNumber uint64, sequencer common.Add
 			Coinbase:              coinbase,
 			PolygonZkEVMBatchData: seq,
 		}
+		log.Info("decodeSequences txs len:", len(seq.Transactions), ", tx hash:", seq.TransactionsHash)
 	}
 
 	return sequencedBatches, nil

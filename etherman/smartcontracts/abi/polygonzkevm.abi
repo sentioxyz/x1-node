@@ -50,16 +50,6 @@
 	},
 	{
 		"inputs": [],
-		"name": "DacHasNoTransactions",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "DacHasTransactions",
-		"type": "error"
-	},
-	{
-		"inputs": [],
 		"name": "ExceedMaxVerifyBatches",
 		"type": "error"
 	},
@@ -679,17 +669,6 @@
 			"internalType": "contract IPolygonZkEVMBridge",
 			"name": "",
 			"type": "address"
-		}],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "calculateRewardPerBatch",
-		"outputs": [{
-			"internalType": "uint256",
-			"name": "",
-			"type": "uint256"
 		}],
 		"stateMutability": "view",
 		"type": "function"
