@@ -107,6 +107,9 @@ func (s *ClientSynchronizer) Sync() error {
 		return err
 	}
 	lastEthBlockSynced, err := s.state.GetLastBlock(s.ctx, dbTx)
+	fmt.Println("lastEthBlockSynced", lastEthBlockSynced, err)
+	lastBatchNumber, err := s.state.GetLastBatchNumber(s.ctx, dbTx)
+	fmt.Println("lastBatchNumber", lastBatchNumber, err)
 	if err != nil {
 		if errors.Is(err, state.ErrStateNotSynchronized) {
 			log.Info("State is empty, verifying genesis block")
