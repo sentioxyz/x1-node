@@ -5,12 +5,12 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/pool"
-	"github.com/0xPolygonHermez/zkevm-node/state"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/jackc/pgx/v4"
+	"github.com/okx/zkevm-node/pool"
+	"github.com/okx/zkevm-node/state"
+	"github.com/okx/zkevm-node/state/runtime"
 )
 
 // PoolInterface contains the methods required to interact with the tx pool.

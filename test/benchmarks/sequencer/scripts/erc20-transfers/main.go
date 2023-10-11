@@ -3,14 +3,14 @@ package main
 import (
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/pool"
-	"github.com/0xPolygonHermez/zkevm-node/test/benchmarks/sequencer/common/params"
-	"github.com/0xPolygonHermez/zkevm-node/test/benchmarks/sequencer/common/transactions"
-	erc20transfers "github.com/0xPolygonHermez/zkevm-node/test/benchmarks/sequencer/erc20-transfers"
-	"github.com/0xPolygonHermez/zkevm-node/test/benchmarks/sequencer/scripts/common/environment"
-	"github.com/0xPolygonHermez/zkevm-node/test/benchmarks/sequencer/scripts/common/results"
-	"github.com/0xPolygonHermez/zkevm-node/test/contracts/bin/ERC20"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/okx/zkevm-node/pool"
+	"github.com/okx/zkevm-node/test/benchmarks/sequencer/common/params"
+	"github.com/okx/zkevm-node/test/benchmarks/sequencer/common/transactions"
+	erc20transfers "github.com/okx/zkevm-node/test/benchmarks/sequencer/erc20-transfers"
+	"github.com/okx/zkevm-node/test/benchmarks/sequencer/scripts/common/environment"
+	"github.com/okx/zkevm-node/test/benchmarks/sequencer/scripts/common/results"
+	"github.com/okx/zkevm-node/test/contracts/bin/ERC20"
 )
 
 func main() {

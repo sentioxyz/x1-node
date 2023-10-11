@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/executor"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/state/runtime/executor"
 )
 
 // EventLog is the main struct for the event log

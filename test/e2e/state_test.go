@@ -7,13 +7,13 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/0xPolygonHermez/zkevm-node/encoding"
-	"github.com/0xPolygonHermez/zkevm-node/state"
-	"github.com/0xPolygonHermez/zkevm-node/test/operations"
-	"github.com/0xPolygonHermez/zkevm-node/test/vectors"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/rlp"
+	"github.com/okx/zkevm-node/encoding"
+	"github.com/okx/zkevm-node/state"
+	"github.com/okx/zkevm-node/test/operations"
+	"github.com/okx/zkevm-node/test/vectors"
 	"github.com/stretchr/testify/require"
 )
 

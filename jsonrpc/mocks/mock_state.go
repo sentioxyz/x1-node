@@ -14,9 +14,9 @@ import (
 
 	pgx "github.com/jackc/pgx/v4"
 
-	runtime "github.com/0xPolygonHermez/zkevm-node/state/runtime"
+	runtime "github.com/okx/zkevm-node/state/runtime"
 
-	state "github.com/0xPolygonHermez/zkevm-node/state"
+	state "github.com/okx/zkevm-node/state"
 
 	time "time"
 )

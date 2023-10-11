@@ -7,11 +7,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/hex"
-	"github.com/0xPolygonHermez/zkevm-node/state"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/trie"
+	"github.com/okx/zkevm-node/hex"
+	"github.com/okx/zkevm-node/state"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

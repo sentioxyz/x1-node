@@ -7,11 +7,11 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/db"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/jackc/pgconn"
 	"github.com/jackc/pgx/v4"
 	"github.com/jackc/pgx/v4/pgxpool"
+	"github.com/okx/zkevm-node/db"
 )
 
 // PostgresStorage hold txs to be managed

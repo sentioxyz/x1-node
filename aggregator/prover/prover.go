@@ -7,9 +7,9 @@ import (
 	"net"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/aggregator/metrics"
-	"github.com/0xPolygonHermez/zkevm-node/config/types"
-	"github.com/0xPolygonHermez/zkevm-node/log"
+	"github.com/okx/zkevm-node/aggregator/metrics"
+	"github.com/okx/zkevm-node/config/types"
+	"github.com/okx/zkevm-node/log"
 )
 
 var (

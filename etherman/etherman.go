@@ -12,17 +12,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/encoding"
-	"github.com/0xPolygonHermez/zkevm-node/etherman/etherscan"
-	"github.com/0xPolygonHermez/zkevm-node/etherman/ethgasstation"
-	"github.com/0xPolygonHermez/zkevm-node/etherman/metrics"
-	"github.com/0xPolygonHermez/zkevm-node/etherman/smartcontracts/matic"
-	"github.com/0xPolygonHermez/zkevm-node/etherman/smartcontracts/polygonzkevm"
-	"github.com/0xPolygonHermez/zkevm-node/etherman/smartcontracts/polygonzkevmglobalexitroot"
-	ethmanTypes "github.com/0xPolygonHermez/zkevm-node/etherman/types"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/state"
-	"github.com/0xPolygonHermez/zkevm-node/test/operations"
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
@@ -33,6 +22,17 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/okx/zkevm-node/encoding"
+	"github.com/okx/zkevm-node/etherman/etherscan"
+	"github.com/okx/zkevm-node/etherman/ethgasstation"
+	"github.com/okx/zkevm-node/etherman/metrics"
+	"github.com/okx/zkevm-node/etherman/smartcontracts/matic"
+	"github.com/okx/zkevm-node/etherman/smartcontracts/xagonzkevm"
+	"github.com/okx/zkevm-node/etherman/smartcontracts/xagonzkevmglobalexitroot"
+	ethmanTypes "github.com/okx/zkevm-node/etherman/types"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/state"
+	"github.com/okx/zkevm-node/test/operations"
 	"golang.org/x/crypto/sha3"
 )
 
@@ -119,11 +119,11 @@ type L1Config struct {
 	// Chain ID of the L1 network
 	L1ChainID uint64 `json:"chainId"`
 	// Address of the L1 contract
-	ZkEVMAddr common.Address `json:"polygonZkEVMAddress"`
+	ZkEVMAddr common.Address `json:"xagonZkEVMAddress"`
 	// Address of the L1 Matic token Contract
 	MaticAddr common.Address `json:"maticTokenAddress"`
 	// Address of the L1 GlobalExitRootManager contract
-	GlobalExitRootManagerAddr common.Address `json:"polygonZkEVMGlobalExitRootAddress"`
+	GlobalExitRootManagerAddr common.Address `json:"xagonZkEVMGlobalExitRootAddress"`
 }
 
 type externalGasProviders struct {
@@ -134,8 +134,8 @@ type externalGasProviders struct {
 // Client is a simple implementation of EtherMan.
 type Client struct {
 	EthClient             ethereumClient
-	ZkEVM                 *polygonzkevm.Polygonzkevm
-	GlobalExitRootManager *polygonzkevmglobalexitroot.Polygonzkevmglobalexitroot
+	ZkEVM                 *xagonzkevm.Xagonzkevm
+	GlobalExitRootManager *xagonzkevmglobalexitroot.Xagonzkevmglobalexitroot
 	Matic                 *matic.Matic
 	SCAddresses           []common.Address
 
@@ -155,11 +155,11 @@ func NewClient(cfg Config, l1Config L1Config) (*Client, error) {
 		return nil, err
 	}
 	// Create smc clients
-	poe, err := polygonzkevm.NewPolygonzkevm(l1Config.ZkEVMAddr, ethClient)
+	poe, err := xagonzkevm.NewXagonzkevm(l1Config.ZkEVMAddr, ethClient)
 	if err != nil {
 		return nil, err
 	}
-	globalExitRoot, err := polygonzkevmglobalexitroot.NewPolygonzkevmglobalexitroot(l1Config.GlobalExitRootManagerAddr, ethClient)
+	globalExitRoot, err := xagonzkevmglobalexitroot.NewXagonzkevmglobalexitroot(l1Config.GlobalExitRootManagerAddr, ethClient)
 	if err != nil {
 		return nil, err
 	}
@@ -541,9 +541,9 @@ func (etherMan *Client) BuildSequenceBatchesTxData(sender common.Address, sequen
 }
 
 func (etherMan *Client) sequenceBatches(opts bind.TransactOpts, sequences []ethmanTypes.Sequence, l2Coinbase common.Address) (*types.Transaction, error) {
-	var batches []polygonzkevm.PolygonZkEVMBatchData
+	var batches []xagonzkevm.XagonZkEVMBatchData
 	for _, seq := range sequences {
-		batch := polygonzkevm.PolygonZkEVMBatchData{
+		batch := xagonzkevm.XagonZkEVMBatchData{
 			Transactions:       seq.BatchL2Data,
 			GlobalExitRoot:     seq.GlobalExitRoot,
 			Timestamp:          uint64(seq.Timestamp),
@@ -667,7 +667,7 @@ func (etherMan *Client) forcedBatchEvent(ctx context.Context, vLog types.Log, bl
 		txData := tx.Data()
 		// Extract coded txs.
 		// Load contract ABI
-		abi, err := abi.JSON(strings.NewReader(polygonzkevm.PolygonzkevmABI))
+		abi, err := abi.JSON(strings.NewReader(xagonzkevm.XagonzkevmABI))
 		if err != nil {
 			return err
 		}
@@ -760,7 +760,7 @@ func (etherMan *Client) sequencedBatchesEvent(ctx context.Context, vLog types.Lo
 func decodeSequences(txData []byte, lastBatchNumber uint64, sequencer common.Address, txHash common.Hash, nonce uint64) ([]SequencedBatch, error) {
 	// Extract coded txs.
 	// Load contract ABI
-	abi, err := abi.JSON(strings.NewReader(polygonzkevm.PolygonzkevmABI))
+	abi, err := abi.JSON(strings.NewReader(xagonzkevm.XagonzkevmABI))
 	if err != nil {
 		return nil, err
 	}
@@ -776,7 +776,7 @@ func decodeSequences(txData []byte, lastBatchNumber uint64, sequencer common.Add
 	if err != nil {
 		return nil, err
 	}
-	var sequences []polygonzkevm.PolygonZkEVMBatchData
+	var sequences []xagonzkevm.XagonZkEVMBatchData
 	bytedata, err := json.Marshal(data[0])
 	if err != nil {
 		return nil, err
@@ -790,12 +790,12 @@ func decodeSequences(txData []byte, lastBatchNumber uint64, sequencer common.Add
 	for i, seq := range sequences {
 		bn := lastBatchNumber - uint64(len(sequences)-(i+1))
 		sequencedBatches[i] = SequencedBatch{
-			BatchNumber:           bn,
-			SequencerAddr:         sequencer,
-			TxHash:                txHash,
-			Nonce:                 nonce,
-			Coinbase:              coinbase,
-			PolygonZkEVMBatchData: seq,
+			BatchNumber:         bn,
+			SequencerAddr:       sequencer,
+			TxHash:              txHash,
+			Nonce:               nonce,
+			Coinbase:            coinbase,
+			XagonZkEVMBatchData: seq,
 		}
 	}
 
@@ -886,7 +886,7 @@ func (etherMan *Client) forceSequencedBatchesEvent(ctx context.Context, vLog typ
 func decodeSequencedForceBatches(txData []byte, lastBatchNumber uint64, sequencer common.Address, txHash common.Hash, block *types.Block, nonce uint64) ([]SequencedForceBatch, error) {
 	// Extract coded txs.
 	// Load contract ABI
-	abi, err := abi.JSON(strings.NewReader(polygonzkevm.PolygonzkevmABI))
+	abi, err := abi.JSON(strings.NewReader(xagonzkevm.XagonzkevmABI))
 	if err != nil {
 		return nil, err
 	}
@@ -903,7 +903,7 @@ func decodeSequencedForceBatches(txData []byte, lastBatchNumber uint64, sequence
 		return nil, err
 	}
 
-	var forceBatches []polygonzkevm.PolygonZkEVMForcedBatchData
+	var forceBatches []xagonzkevm.XagonZkEVMForcedBatchData
 	bytedata, err := json.Marshal(data[0])
 	if err != nil {
 		return nil, err
@@ -917,12 +917,12 @@ func decodeSequencedForceBatches(txData []byte, lastBatchNumber uint64, sequence
 	for i, force := range forceBatches {
 		bn := lastBatchNumber - uint64(len(forceBatches)-(i+1))
 		sequencedForcedBatches[i] = SequencedForceBatch{
-			BatchNumber:                 bn,
-			Coinbase:                    sequencer,
-			TxHash:                      txHash,
-			Timestamp:                   time.Unix(int64(block.Time()), 0),
-			Nonce:                       nonce,
-			PolygonZkEVMForcedBatchData: force,
+			BatchNumber:               bn,
+			Coinbase:                  sequencer,
+			TxHash:                    txHash,
+			Timestamp:                 time.Unix(int64(block.Time()), 0),
+			Nonce:                     nonce,
+			XagonZkEVMForcedBatchData: force,
 		}
 	}
 	return sequencedForcedBatches, nil

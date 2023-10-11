@@ -22,9 +22,9 @@ import (
 	"strconv"
 	"sync/atomic"
 
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/fakevm"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/instrumentation/tracers"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/okx/zkevm-node/state/runtime/fakevm"
+	"github.com/okx/zkevm-node/state/runtime/instrumentation/tracers"
 )
 
 func init() {

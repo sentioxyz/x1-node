@@ -6,15 +6,15 @@ import (
 	"fmt"
 	"time"
 
-	ethman "github.com/0xPolygonHermez/zkevm-node/etherman"
-	"github.com/0xPolygonHermez/zkevm-node/etherman/types"
-	"github.com/0xPolygonHermez/zkevm-node/ethtxmanager"
-	"github.com/0xPolygonHermez/zkevm-node/event"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/sequencer/metrics"
-	"github.com/0xPolygonHermez/zkevm-node/state"
 	ethTypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/jackc/pgx/v4"
+	ethman "github.com/okx/zkevm-node/etherman"
+	"github.com/okx/zkevm-node/etherman/types"
+	"github.com/okx/zkevm-node/ethtxmanager"
+	"github.com/okx/zkevm-node/event"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/sequencer/metrics"
+	"github.com/okx/zkevm-node/state"
 )
 
 const (

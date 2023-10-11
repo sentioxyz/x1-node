@@ -5,8 +5,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/0xPolygonHermez/zkevm-node"
 	"github.com/hermeznetwork/tracerr"
+	"github.com/okx/zkevm-node"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )

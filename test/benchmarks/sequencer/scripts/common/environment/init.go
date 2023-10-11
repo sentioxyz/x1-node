@@ -6,14 +6,14 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/0xPolygonHermez/zkevm-node/db"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/pool/pgpoolstorage"
-	"github.com/0xPolygonHermez/zkevm-node/state"
-	"github.com/0xPolygonHermez/zkevm-node/test/benchmarks/sequencer/common/params"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/okx/zkevm-node/db"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/pool/pgpoolstorage"
+	"github.com/okx/zkevm-node/state"
+	"github.com/okx/zkevm-node/test/benchmarks/sequencer/common/params"
 )
 
 var (

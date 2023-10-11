@@ -8,14 +8,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/event"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/state"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/executor"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/math"
 	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/okx/zkevm-node/event"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/state"
+	"github.com/okx/zkevm-node/state/runtime"
+	"github.com/okx/zkevm-node/state/runtime/executor"
 )
 
 var (

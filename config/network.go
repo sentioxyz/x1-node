@@ -7,11 +7,11 @@ import (
 	"io"
 	"os"
 
-	"github.com/0xPolygonHermez/zkevm-node/etherman"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/merkletree"
-	"github.com/0xPolygonHermez/zkevm-node/state"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/okx/zkevm-node/etherman"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/merkletree"
+	"github.com/okx/zkevm-node/state"
 	"github.com/urfave/cli/v2"
 )
 
@@ -19,9 +19,9 @@ import (
 type NetworkConfig struct {
 	// L1: Configuration related to L1
 	L1Config etherman.L1Config `json:"l1Config"`
-	// DEPRECATED L2: address of the `PolygonZkEVMGlobalExitRootL2 proxy` smart contract
+	// DEPRECATED L2: address of the `XagonZkEVMGlobalExitRootL2 proxy` smart contract
 	L2GlobalExitRootManagerAddr common.Address
-	// L2: address of the `PolygonZkEVMBridge proxy` smart contract
+	// L2: address of the `XagonZkEVMBridge proxy` smart contract
 	L2BridgeAddr common.Address
 	// L1: Genesis of the rollup, first block number and root
 	Genesis state.Genesis
@@ -58,7 +58,7 @@ type genesisAccountFromJSON struct {
 	Bytecode string `json:"bytecode"`
 	// Initial storage of the contract
 	Storage map[string]string `json:"storage"`
-	// Name of the contract in L1 (e.g. "PolygonZkEVMDeployer", "PolygonZkEVMBridge",...)
+	// Name of the contract in L1 (e.g. "XagonZkEVMDeployer", "XagonZkEVMBridge",...)
 	ContractName string `json:"contractName"`
 }
 
@@ -128,8 +128,8 @@ func loadGenesisFromJSONString(jsonStr string) (NetworkConfig, error) {
 		GenesisActions:  []*state.GenesisAction{},
 	}
 
-	const l2GlobalExitRootManagerSCName = "PolygonZkEVMGlobalExitRootL2 proxy"
-	const l2BridgeSCName = "PolygonZkEVMBridge proxy"
+	const l2GlobalExitRootManagerSCName = "XagonZkEVMGlobalExitRootL2 proxy"
+	const l2BridgeSCName = "XagonZkEVMBridge proxy"
 
 	for _, account := range cfgJSON.Genesis {
 		if account.ContractName == l2GlobalExitRootManagerSCName {

@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/0xPolygonHermez/zkevm-node/hex"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/okx/zkevm-node/hex"
 )
 
 const (

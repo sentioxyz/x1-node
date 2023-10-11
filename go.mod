@@ -1,4 +1,4 @@
-module github.com/0xPolygonHermez/zkevm-node
+module github.com/okx/zkevm-node
 
 go 1.19
 

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/0xPolygonHermez/zkevm-node/config"
+	"github.com/okx/zkevm-node/config"
 	"github.com/urfave/cli/v2"
 )
 

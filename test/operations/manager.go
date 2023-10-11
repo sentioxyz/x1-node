@@ -11,20 +11,20 @@ import (
 	"strings"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/db"
-	"github.com/0xPolygonHermez/zkevm-node/event"
-	"github.com/0xPolygonHermez/zkevm-node/event/nileventstorage"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/merkletree"
-	"github.com/0xPolygonHermez/zkevm-node/state"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/executor"
-	"github.com/0xPolygonHermez/zkevm-node/test/constants"
-	"github.com/0xPolygonHermez/zkevm-node/test/dbutils"
-	"github.com/0xPolygonHermez/zkevm-node/test/testutils"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/okx/zkevm-node/db"
+	"github.com/okx/zkevm-node/event"
+	"github.com/okx/zkevm-node/event/nileventstorage"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/merkletree"
+	"github.com/okx/zkevm-node/state"
+	"github.com/okx/zkevm-node/state/runtime/executor"
+	"github.com/okx/zkevm-node/test/constants"
+	"github.com/okx/zkevm-node/test/dbutils"
+	"github.com/okx/zkevm-node/test/testutils"
 )
 
 const (
@@ -185,8 +185,8 @@ func (m *Manager) SetForkID(forkID uint64) error {
 	}
 
 	// Add initial forkID
-	fID := state.ForkIDInterval {
-		FromBatchNumber: 1, 
+	fID := state.ForkIDInterval{
+		FromBatchNumber: 1,
 		ToBatchNumber:   math.MaxUint64,
 		ForkId:          forkID,
 		Version:         "forkID",

@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/0xPolygonHermez/zkevm-node/log"
 	"github.com/jackc/pgx/v4"
+	"github.com/okx/zkevm-node/log"
 )
 
 // ForkIDInterval is a fork id interval

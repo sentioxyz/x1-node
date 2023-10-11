@@ -5,21 +5,21 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/0xPolygonHermez/zkevm-node/etherman/smartcontracts/matic"
-	"github.com/0xPolygonHermez/zkevm-node/etherman/smartcontracts/mockverifier"
-	"github.com/0xPolygonHermez/zkevm-node/etherman/smartcontracts/polygonzkevm"
-	"github.com/0xPolygonHermez/zkevm-node/etherman/smartcontracts/polygonzkevmbridge"
-	"github.com/0xPolygonHermez/zkevm-node/etherman/smartcontracts/polygonzkevmglobalexitroot"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core"
 	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/okx/zkevm-node/etherman/smartcontracts/matic"
+	"github.com/okx/zkevm-node/etherman/smartcontracts/mockverifier"
+	"github.com/okx/zkevm-node/etherman/smartcontracts/xagonzkevm"
+	"github.com/okx/zkevm-node/etherman/smartcontracts/xagonzkevmbridge"
+	"github.com/okx/zkevm-node/etherman/smartcontracts/xagonzkevmglobalexitroot"
 )
 
 // NewSimulatedEtherman creates an etherman that uses a simulated blockchain. It's important to notice that the ChainID of the auth
 // must be 1337. The address that holds the auth will have an initial balance of 10 ETH
-func NewSimulatedEtherman(cfg Config, auth *bind.TransactOpts) (etherman *Client, ethBackend *backends.SimulatedBackend, maticAddr common.Address, br *polygonzkevmbridge.Polygonzkevmbridge, err error) {
+func NewSimulatedEtherman(cfg Config, auth *bind.TransactOpts) (etherman *Client, ethBackend *backends.SimulatedBackend, maticAddr common.Address, br *xagonzkevmbridge.Xagonzkevmbridge, err error) {
 	if auth == nil {
 		// read only client
 		return &Client{}, nil, common.Address{}, nil, nil
@@ -55,15 +55,15 @@ func NewSimulatedEtherman(cfg Config, auth *bind.TransactOpts) (etherman *Client
 	const posPoE = 2
 	calculatedPoEAddr := crypto.CreateAddress(auth.From, nonce+posPoE)
 	genesis := common.HexToHash("0xfd3434cd8f67e59d73488a2b8da242dd1f02849ea5dd99f0ca22c836c3d5b4a9") // Random value. Needs to be different to 0x0
-	exitManagerAddr, _, globalExitRoot, err := polygonzkevmglobalexitroot.DeployPolygonzkevmglobalexitroot(auth, client, calculatedPoEAddr, calculatedBridgeAddr)
+	exitManagerAddr, _, globalExitRoot, err := xagonzkevmglobalexitroot.DeployXagonzkevmglobalexitroot(auth, client, calculatedPoEAddr, calculatedBridgeAddr)
 	if err != nil {
 		return nil, nil, common.Address{}, nil, err
 	}
-	bridgeAddr, _, br, err := polygonzkevmbridge.DeployPolygonzkevmbridge(auth, client)
+	bridgeAddr, _, br, err := xagonzkevmbridge.DeployXagonzkevmbridge(auth, client)
 	if err != nil {
 		return nil, nil, common.Address{}, nil, err
 	}
-	poeAddr, _, poe, err := polygonzkevm.DeployPolygonzkevm(auth, client, exitManagerAddr, maticAddr, rollupVerifierAddr, bridgeAddr, 1000, 1) //nolint
+	poeAddr, _, poe, err := xagonzkevm.DeployXagonzkevm(auth, client, exitManagerAddr, maticAddr, rollupVerifierAddr, bridgeAddr, 1000, 1) //nolint
 	if err != nil {
 		return nil, nil, common.Address{}, nil, err
 	}
@@ -72,7 +72,7 @@ func NewSimulatedEtherman(cfg Config, auth *bind.TransactOpts) (etherman *Client
 		return nil, nil, common.Address{}, nil, err
 	}
 
-	poeParams := polygonzkevm.PolygonZkEVMInitializePackedParameters{
+	poeParams := xagonzkevm.XagonZkEVMInitializePackedParameters{
 		Admin:                    auth.From,
 		TrustedSequencer:         auth.From,
 		PendingStateTimeout:      10000, //nolint:gomnd

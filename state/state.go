@@ -5,13 +5,13 @@ import (
 	"math/big"
 	"sync"
 
-	"github.com/0xPolygonHermez/zkevm-node/event"
-	"github.com/0xPolygonHermez/zkevm-node/merkletree"
-	"github.com/0xPolygonHermez/zkevm-node/state/metrics"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/executor"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/jackc/pgx/v4"
+	"github.com/okx/zkevm-node/event"
+	"github.com/okx/zkevm-node/merkletree"
+	"github.com/okx/zkevm-node/state/metrics"
+	"github.com/okx/zkevm-node/state/runtime/executor"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 

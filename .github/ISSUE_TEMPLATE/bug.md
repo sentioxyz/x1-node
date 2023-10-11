@@ -1,6 +1,6 @@
 ---
 name: Report a bug
-about: Something with Polygon zkEVM is not working as expected
+about: Something with Xagon zkEVM is not working as expected
 title: ''
 labels: 'type:bug'
 assignees: ''

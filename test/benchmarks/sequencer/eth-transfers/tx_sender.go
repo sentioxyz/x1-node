@@ -5,13 +5,13 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/state"
-	"github.com/0xPolygonHermez/zkevm-node/test/benchmarks/sequencer/common/params"
-	"github.com/0xPolygonHermez/zkevm-node/test/contracts/bin/ERC20"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/state"
+	"github.com/okx/zkevm-node/test/benchmarks/sequencer/common/params"
+	"github.com/okx/zkevm-node/test/contracts/bin/ERC20"
 )
 
 var (

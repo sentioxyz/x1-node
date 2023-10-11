@@ -6,11 +6,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/client"
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/mocks"
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/types"
-	"github.com/0xPolygonHermez/zkevm-node/state"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/okx/zkevm-node/jsonrpc/client"
+	"github.com/okx/zkevm-node/jsonrpc/mocks"
+	"github.com/okx/zkevm-node/jsonrpc/types"
+	"github.com/okx/zkevm-node/state"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 )

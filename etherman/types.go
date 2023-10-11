@@ -3,8 +3,8 @@ package etherman
 import (
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/etherman/smartcontracts/polygonzkevm"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/okx/zkevm-node/etherman/smartcontracts/xagonzkevm"
 )
 
 // Block struct
@@ -36,7 +36,7 @@ type SequencedBatch struct {
 	TxHash        common.Hash
 	Nonce         uint64
 	Coinbase      common.Address
-	polygonzkevm.PolygonZkEVMBatchData
+	xagonzkevm.XagonZkEVMBatchData
 }
 
 // ForcedBatch represents a ForcedBatch
@@ -65,7 +65,7 @@ type SequencedForceBatch struct {
 	TxHash      common.Hash
 	Timestamp   time.Time
 	Nonce       uint64
-	polygonzkevm.PolygonZkEVMForcedBatchData
+	xagonzkevm.XagonZkEVMForcedBatchData
 }
 
 // ForkID is a sturct to track the ForkID event.

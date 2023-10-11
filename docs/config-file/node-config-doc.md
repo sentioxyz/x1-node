@@ -8,7 +8,7 @@
 | Property                                             | Pattern | Type    | Deprecated | Definition | Title/Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | ---------------------------------------------------- | ------- | ------- | ---------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | - [IsTrustedSequencer](#IsTrustedSequencer )         | No      | boolean | No         | -          | This define is a trusted node (\`true\`) or a permission less (\`false\`). If you don't known<br />set to \`false\`                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| - [ForkUpgradeBatchNumber](#ForkUpgradeBatchNumber ) | No      | integer | No         | -          | Last batch number before  a forkid change (fork upgrade). That implies that<br />greater batch numbers are going to be trusted but no virtualized neither verified.<br />So after the batch number \`ForkUpgradeBatchNumber\` is virtualized and verified you could update<br />the system (SC,...) to new forkId and remove this value to allow the system to keep<br />Virtualizing and verifying the new batchs.<br />Check issue [#2236](https://github.com/0xPolygonHermez/zkevm-node/issues/2236) to known more<br />This value overwrite \`SequenceSender.ForkUpgradeBatchNumber\` |
+| - [ForkUpgradeBatchNumber](#ForkUpgradeBatchNumber ) | No      | integer | No         | -          | Last batch number before  a forkid change (fork upgrade). That implies that<br />greater batch numbers are going to be trusted but no virtualized neither verified.<br />So after the batch number \`ForkUpgradeBatchNumber\` is virtualized and verified you could update<br />the system (SC,...) to new forkId and remove this value to allow the system to keep<br />Virtualizing and verifying the new batchs.<br />Check issue [#2236](https://github.com/okx/zkevm-node/issues/2236) to known more<br />This value overwrite \`SequenceSender.ForkUpgradeBatchNumber\` |
 | - [ForkUpgradeNewForkId](#ForkUpgradeNewForkId )     | No      | integer | No         | -          | Which is the new forkId                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | - [Log](#Log )                                       | No      | object  | No         | -          | Configure Log level for all the services, allow also to store the logs in a file                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | - [Etherman](#Etherman )                             | No      | object  | No         | -          | Configuration of the etherman (client for access L1)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -53,7 +53,7 @@ greater batch numbers are going to be trusted but no virtualized neither verifie
 So after the batch number `ForkUpgradeBatchNumber` is virtualized and verified you could update
 the system (SC,...) to new forkId and remove this value to allow the system to keep
 Virtualizing and verifying the new batchs.
-Check issue [#2236](https://github.com/0xPolygonHermez/zkevm-node/issues/2236) to known more
+Check issue [#2236](https://github.com/okx/zkevm-node/issues/2236) to known more
 This value overwrite `SequenceSender.ForkUpgradeBatchNumber`
 
 **Example setting the default value** (0):
@@ -2147,8 +2147,8 @@ GeneratingProofCleanupThreshold="10m"
 | Property                                                                     | Pattern | Type             | Deprecated | Definition | Title/Description                                                                   |
 | ---------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------- | ----------------------------------------------------------------------------------- |
 | - [l1Config](#NetworkConfig_l1Config )                                       | No      | object           | No         | -          | L1: Configuration related to L1                                                     |
-| - [L2GlobalExitRootManagerAddr](#NetworkConfig_L2GlobalExitRootManagerAddr ) | No      | array of integer | No         | -          | DEPRECATED L2: address of the \`PolygonZkEVMGlobalExitRootL2 proxy\` smart contract |
-| - [L2BridgeAddr](#NetworkConfig_L2BridgeAddr )                               | No      | array of integer | No         | -          | L2: address of the \`PolygonZkEVMBridge proxy\` smart contract                      |
+| - [L2GlobalExitRootManagerAddr](#NetworkConfig_L2GlobalExitRootManagerAddr ) | No      | array of integer | No         | -          | DEPRECATED L2: address of the \`XagonZkEVMGlobalExitRootL2 proxy\` smart contract |
+| - [L2BridgeAddr](#NetworkConfig_L2BridgeAddr )                               | No      | array of integer | No         | -          | L2: address of the \`XagonZkEVMBridge proxy\` smart contract                      |
 | - [Genesis](#NetworkConfig_Genesis )                                         | No      | object           | No         | -          | L1: Genesis of the rollup, first block number and root                              |
 
 ### <a name="NetworkConfig_l1Config"></a>13.1. `[NetworkConfig.l1Config]`
@@ -2159,9 +2159,9 @@ GeneratingProofCleanupThreshold="10m"
 | Property                                                                                          | Pattern | Type             | Deprecated | Definition | Title/Description                                |
 | ------------------------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------- | ------------------------------------------------ |
 | - [chainId](#NetworkConfig_l1Config_chainId )                                                     | No      | integer          | No         | -          | Chain ID of the L1 network                       |
-| - [polygonZkEVMAddress](#NetworkConfig_l1Config_polygonZkEVMAddress )                             | No      | array of integer | No         | -          | Address of the L1 contract                       |
+| - [xagonZkEVMAddress](#NetworkConfig_l1Config_xagonZkEVMAddress )                             | No      | array of integer | No         | -          | Address of the L1 contract                       |
 | - [maticTokenAddress](#NetworkConfig_l1Config_maticTokenAddress )                                 | No      | array of integer | No         | -          | Address of the L1 Matic token Contract           |
-| - [polygonZkEVMGlobalExitRootAddress](#NetworkConfig_l1Config_polygonZkEVMGlobalExitRootAddress ) | No      | array of integer | No         | -          | Address of the L1 GlobalExitRootManager contract |
+| - [xagonZkEVMGlobalExitRootAddress](#NetworkConfig_l1Config_xagonZkEVMGlobalExitRootAddress ) | No      | array of integer | No         | -          | Address of the L1 GlobalExitRootManager contract |
 
 #### <a name="NetworkConfig_l1Config_chainId"></a>13.1.1. `NetworkConfig.l1Config.chainId`
 
@@ -2177,7 +2177,7 @@ GeneratingProofCleanupThreshold="10m"
 chainId=0
 ```
 
-#### <a name="NetworkConfig_l1Config_polygonZkEVMAddress"></a>13.1.2. `NetworkConfig.l1Config.polygonZkEVMAddress`
+#### <a name="NetworkConfig_l1Config_xagonZkEVMAddress"></a>13.1.2. `NetworkConfig.l1Config.xagonZkEVMAddress`
 
 **Type:** : `array of integer`
 **Description:** Address of the L1 contract
@@ -2187,7 +2187,7 @@ chainId=0
 **Type:** : `array of integer`
 **Description:** Address of the L1 Matic token Contract
 
-#### <a name="NetworkConfig_l1Config_polygonZkEVMGlobalExitRootAddress"></a>13.1.4. `NetworkConfig.l1Config.polygonZkEVMGlobalExitRootAddress`
+#### <a name="NetworkConfig_l1Config_xagonZkEVMGlobalExitRootAddress"></a>13.1.4. `NetworkConfig.l1Config.xagonZkEVMGlobalExitRootAddress`
 
 **Type:** : `array of integer`
 **Description:** Address of the L1 GlobalExitRootManager contract
@@ -2195,12 +2195,12 @@ chainId=0
 ### <a name="NetworkConfig_L2GlobalExitRootManagerAddr"></a>13.2. `NetworkConfig.L2GlobalExitRootManagerAddr`
 
 **Type:** : `array of integer`
-**Description:** DEPRECATED L2: address of the `PolygonZkEVMGlobalExitRootL2 proxy` smart contract
+**Description:** DEPRECATED L2: address of the `XagonZkEVMGlobalExitRootL2 proxy` smart contract
 
 ### <a name="NetworkConfig_L2BridgeAddr"></a>13.3. `NetworkConfig.L2BridgeAddr`
 
 **Type:** : `array of integer`
-**Description:** L2: address of the `PolygonZkEVMBridge proxy` smart contract
+**Description:** L2: address of the `XagonZkEVMBridge proxy` smart contract
 
 ### <a name="NetworkConfig_Genesis"></a>13.4. `[NetworkConfig.Genesis]`
 
@@ -2209,7 +2209,7 @@ chainId=0
 
 | Property                                                     | Pattern | Type             | Deprecated | Definition | Title/Description                                                                 |
 | ------------------------------------------------------------ | ------- | ---------------- | ---------- | ---------- | --------------------------------------------------------------------------------- |
-| - [GenesisBlockNum](#NetworkConfig_Genesis_GenesisBlockNum ) | No      | integer          | No         | -          | GenesisBlockNum is the block number where the polygonZKEVM smc was deployed on L1 |
+| - [GenesisBlockNum](#NetworkConfig_Genesis_GenesisBlockNum ) | No      | integer          | No         | -          | GenesisBlockNum is the block number where the xagonZKEVM smc was deployed on L1 |
 | - [Root](#NetworkConfig_Genesis_Root )                       | No      | array of integer | No         | -          | Root hash of the genesis block                                                    |
 | - [GenesisActions](#NetworkConfig_Genesis_GenesisActions )   | No      | array of object  | No         | -          | Contracts to be deployed to L2                                                    |
 
@@ -2219,7 +2219,7 @@ chainId=0
 
 **Default:** `0`
 
-**Description:** GenesisBlockNum is the block number where the polygonZKEVM smc was deployed on L1
+**Description:** GenesisBlockNum is the block number where the xagonZKEVM smc was deployed on L1
 
 **Example setting the default value** (0):
 ```

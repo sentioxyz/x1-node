@@ -8,17 +8,17 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/0xPolygonHermez/zkevm-node/hex"
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/client"
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/types"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/test/operations"
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	ethTypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/okx/zkevm-node/hex"
+	"github.com/okx/zkevm-node/jsonrpc/client"
+	"github.com/okx/zkevm-node/jsonrpc/types"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/test/operations"
 	"github.com/stretchr/testify/require"
 )
 

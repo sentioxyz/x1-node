@@ -8,11 +8,11 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/hex"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/jackc/pgx/v4"
 	"github.com/jackc/pgx/v4/pgxpool"
+	"github.com/okx/zkevm-node/hex"
 )
 
 const maxTopics = 4
@@ -474,7 +474,7 @@ func (p *PostgresStorage) GetLastNBatchesByL2BlockNumber(ctx context.Context, l2
 			l2BlockStateRoot = _l2BlockStateRoot
 		}
 		// if there is no corresponding l2_block, it will use the latest batch state_root
-		// it is related to https://github.com/0xPolygonHermez/zkevm-node/issues/1299
+		// it is related to https://github.com/okx/zkevm-node/issues/1299
 		if l2BlockStateRoot == nil && batch.StateRoot != emptyHash {
 			l2BlockStateRoot = &batch.StateRoot
 		}

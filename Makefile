@@ -15,10 +15,10 @@ GOENVVARS := GOBIN=$(GOBIN) CGO_ENABLED=0 GOOS=linux GOARCH=$(ARCH)
 GOBINARY := zkevm-node
 GOCMD := $(GOBASE)/cmd
 
-LDFLAGS += -X 'github.com/0xPolygonHermez/zkevm-node.Version=$(VERSION)'
-LDFLAGS += -X 'github.com/0xPolygonHermez/zkevm-node.GitRev=$(GITREV)'
-LDFLAGS += -X 'github.com/0xPolygonHermez/zkevm-node.GitBranch=$(GITBRANCH)'
-LDFLAGS += -X 'github.com/0xPolygonHermez/zkevm-node.BuildDate=$(DATE)'
+LDFLAGS += -X 'github.com/okx/zkevm-node.Version=$(VERSION)'
+LDFLAGS += -X 'github.com/okx/zkevm-node.GitRev=$(GITREV)'
+LDFLAGS += -X 'github.com/okx/zkevm-node.GitBranch=$(GITBRANCH)'
+LDFLAGS += -X 'github.com/okx/zkevm-node.BuildDate=$(DATE)'
 
 # Variables
 VENV           = .venv

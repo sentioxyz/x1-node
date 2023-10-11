@@ -4,9 +4,9 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/state"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/okx/zkevm-node/state"
 )
 
 // TxTracker is a struct that contains all the tx data needed to be managed by the worker

@@ -6,7 +6,7 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/0xPolygonHermez/zkevm-node/log"
+	"github.com/okx/zkevm-node/log"
 )
 
 const sampleNumber = 3 // Number of transactions sampled in a batch.

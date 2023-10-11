@@ -6,10 +6,10 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/state"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/state"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -5,22 +5,22 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/0xPolygonHermez/zkevm-node/aggregator"
-	"github.com/0xPolygonHermez/zkevm-node/db"
-	"github.com/0xPolygonHermez/zkevm-node/etherman"
-	"github.com/0xPolygonHermez/zkevm-node/ethtxmanager"
-	"github.com/0xPolygonHermez/zkevm-node/event"
-	"github.com/0xPolygonHermez/zkevm-node/gasprice"
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/merkletree"
-	"github.com/0xPolygonHermez/zkevm-node/metrics"
-	"github.com/0xPolygonHermez/zkevm-node/pool"
-	"github.com/0xPolygonHermez/zkevm-node/sequencer"
-	"github.com/0xPolygonHermez/zkevm-node/sequencesender"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/executor"
-	"github.com/0xPolygonHermez/zkevm-node/synchronizer"
 	"github.com/mitchellh/mapstructure"
+	"github.com/okx/zkevm-node/aggregator"
+	"github.com/okx/zkevm-node/db"
+	"github.com/okx/zkevm-node/etherman"
+	"github.com/okx/zkevm-node/ethtxmanager"
+	"github.com/okx/zkevm-node/event"
+	"github.com/okx/zkevm-node/gasprice"
+	"github.com/okx/zkevm-node/jsonrpc"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/merkletree"
+	"github.com/okx/zkevm-node/metrics"
+	"github.com/okx/zkevm-node/pool"
+	"github.com/okx/zkevm-node/sequencer"
+	"github.com/okx/zkevm-node/sequencesender"
+	"github.com/okx/zkevm-node/state/runtime/executor"
+	"github.com/okx/zkevm-node/synchronizer"
 	"github.com/spf13/viper"
 	"github.com/urfave/cli/v2"
 )
@@ -76,7 +76,7 @@ type Config struct {
 	// So after the batch number `ForkUpgradeBatchNumber` is virtualized and verified you could update
 	// the system (SC,...) to new forkId and remove this value to allow the system to keep
 	// Virtualizing and verifying the new batchs.
-	// Check issue [#2236](https://github.com/0xPolygonHermez/zkevm-node/issues/2236) to known more
+	// Check issue [#2236](https://github.com/okx/zkevm-node/issues/2236) to known more
 	// This value overwrite `SequenceSender.ForkUpgradeBatchNumber`
 	ForkUpgradeBatchNumber uint64 `mapstructure:"ForkUpgradeBatchNumber"`
 	// Which is the new forkId

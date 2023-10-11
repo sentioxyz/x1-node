@@ -4,13 +4,13 @@ import (
 	"os"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/etherman/smartcontracts/polygonzkevm"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/test/operations"
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/okx/zkevm-node/etherman/smartcontracts/xagonzkevm"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/test/operations"
 	"github.com/urfave/cli/v2"
 )
 
@@ -78,7 +78,7 @@ func sendForcedBatches(cliCtx *cli.Context) error {
 	}
 	// Create smc client
 	poeAddr := common.HexToAddress(cliCtx.String(flagSmcAddrName))
-	poe, err := polygonzkevm.NewPolygonzkevm(poeAddr, ethClient)
+	poe, err := xagonzkevm.NewXagonzkevm(poeAddr, ethClient)
 	if err != nil {
 		return err
 	}

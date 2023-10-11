@@ -9,11 +9,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/db"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/state"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/executor"
-	"github.com/0xPolygonHermez/zkevm-node/test/testutils"
+	"github.com/okx/zkevm-node/db"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/state"
+	"github.com/okx/zkevm-node/state/runtime/executor"
+	"github.com/okx/zkevm-node/test/testutils"
 )
 
 const (

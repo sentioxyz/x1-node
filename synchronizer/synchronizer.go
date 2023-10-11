@@ -9,17 +9,17 @@ import (
 	"strings"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/etherman"
-	"github.com/0xPolygonHermez/zkevm-node/event"
-	"github.com/0xPolygonHermez/zkevm-node/hex"
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/types"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/state"
-	stateMetrics "github.com/0xPolygonHermez/zkevm-node/state/metrics"
-	"github.com/0xPolygonHermez/zkevm-node/synchronizer/metrics"
 	"github.com/ethereum/go-ethereum/common"
 	ethTypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/jackc/pgx/v4"
+	"github.com/okx/zkevm-node/etherman"
+	"github.com/okx/zkevm-node/event"
+	"github.com/okx/zkevm-node/hex"
+	"github.com/okx/zkevm-node/jsonrpc/types"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/state"
+	stateMetrics "github.com/okx/zkevm-node/state/metrics"
+	"github.com/okx/zkevm-node/synchronizer/metrics"
 )
 
 const (
@@ -120,13 +120,13 @@ func (s *ClientSynchronizer) Sync() error {
 				}
 				return err
 			} else if !valid {
-				log.Error("genesis Block number configured is not valid. It is required the block number where the PolygonZkEVM smc was deployed")
+				log.Error("genesis Block number configured is not valid. It is required the block number where the XagonZkEVM smc was deployed")
 				rollbackErr := dbTx.Rollback(s.ctx)
 				if rollbackErr != nil {
 					log.Errorf("error rolling back state. RollbackErr: %v", rollbackErr)
 					return rollbackErr
 				}
-				return fmt.Errorf("genesis Block number configured is not valid. It is required the block number where the PolygonZkEVM smc was deployed")
+				return fmt.Errorf("genesis Block number configured is not valid. It is required the block number where the XagonZkEVM smc was deployed")
 			}
 			log.Info("Setting genesis block")
 			header, err := s.etherMan.HeaderByNumber(s.ctx, big.NewInt(0).SetUint64(s.genesis.GenesisBlockNum))

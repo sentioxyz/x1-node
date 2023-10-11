@@ -8,10 +8,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/state"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/state"
 )
 
 // Worker represents the worker component of the sequencer

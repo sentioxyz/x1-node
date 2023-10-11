@@ -6,13 +6,13 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/event"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/pool"
-	"github.com/0xPolygonHermez/zkevm-node/sequencer/metrics"
-	"github.com/0xPolygonHermez/zkevm-node/state"
-	stateMetrics "github.com/0xPolygonHermez/zkevm-node/state/metrics"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/okx/zkevm-node/event"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/pool"
+	"github.com/okx/zkevm-node/sequencer/metrics"
+	"github.com/okx/zkevm-node/state"
+	stateMetrics "github.com/okx/zkevm-node/state/metrics"
 )
 
 // Sequencer represents a sequencer

@@ -8,12 +8,12 @@ import (
 	"os"
 	"testing"
 
-	"github.com/0xPolygonHermez/zkevm-node/db"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/state"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/instrumentation"
-	"github.com/0xPolygonHermez/zkevm-node/state/tree"
-	"github.com/0xPolygonHermez/zkevm-node/test/dbutils"
+	"github.com/okx/zkevm-node/db"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/state"
+	"github.com/okx/zkevm-node/state/runtime/instrumentation"
+	"github.com/okx/zkevm-node/state/tree"
+	"github.com/okx/zkevm-node/test/dbutils"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/stretchr/testify/require"
 )

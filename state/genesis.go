@@ -5,20 +5,20 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/0xPolygonHermez/zkevm-node/encoding"
-	"github.com/0xPolygonHermez/zkevm-node/hex"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/merkletree"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/trie"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v4"
+	"github.com/okx/zkevm-node/encoding"
+	"github.com/okx/zkevm-node/hex"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/merkletree"
 )
 
 // Genesis contains the information to populate state on creation
 type Genesis struct {
-	// GenesisBlockNum is the block number where the polygonZKEVM smc was deployed on L1
+	// GenesisBlockNum is the block number where the xagonZKEVM smc was deployed on L1
 	GenesisBlockNum uint64
 	// Root hash of the genesis block
 	Root common.Hash

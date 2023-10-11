@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/event"
-	"github.com/0xPolygonHermez/zkevm-node/event/pgeventstorage"
-	"github.com/0xPolygonHermez/zkevm-node/test/dbutils"
+	"github.com/okx/zkevm-node/event"
+	"github.com/okx/zkevm-node/event/pgeventstorage"
+	"github.com/okx/zkevm-node/test/dbutils"
 	"github.com/stretchr/testify/require"
 	"golang.org/x/net/context"
 )

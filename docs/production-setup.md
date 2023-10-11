@@ -25,7 +25,7 @@ tl;dr:
 ZKEVM_NET=mainnet
 ZKEVM_DIR=./path/to/install # CHANGE THIS
 ZKEVM_CONFIG_DIR=./path/to/config  # CHANGE THIS
-curl -L https://github.com/0xPolygonHermez/zkevm-node/releases/latest/download/$ZKEVM_NET.zip > $ZKEVM_NET.zip && unzip -o $ZKEVM_NET.zip -d $ZKEVM_DIR && rm $ZKEVM_NET.zip
+curl -L https://github.com/okx/zkevm-node/releases/latest/download/$ZKEVM_NET.zip > $ZKEVM_NET.zip && unzip -o $ZKEVM_NET.zip -d $ZKEVM_DIR && rm $ZKEVM_NET.zip
 mkdir -p $ZKEVM_CONFIG_DIR && cp $ZKEVM_DIR/$ZKEVM_NET/example.env $ZKEVM_CONFIG_DIR/.env
 
 # EDIT THIS env file:
@@ -41,9 +41,9 @@ docker compose --env-file $ZKEVM_CONFIG_DIR/.env -f $ZKEVM_DIR/$ZKEVM_NET/docker
 2. Define installation path: `ZKEVM_DIR=./path/to/install`
 3. Define a config directory: `ZKEVM_CONFIG_DIR=./path/to/config`
 4. It's recommended to source this env vars in your `~/.bashrc`, `~/.zshrc` or whatever you're using
-5. Download and extract the artifacts: `curl -L https://github.com/0xPolygonHermez/zkevm-node/releases/latest/download/$ZKEVM_NET.zip > $ZKEVM_NET.zip && unzip -o $ZKEVM_NET.zip -d $ZKEVM_DIR && rm $ZKEVM_NET.zip`. Note you may need to install `unzip` for this command to work. 
+5. Download and extract the artifacts: `curl -L https://github.com/okx/zkevm-node/releases/latest/download/$ZKEVM_NET.zip > $ZKEVM_NET.zip && unzip -o $ZKEVM_NET.zip -d $ZKEVM_DIR && rm $ZKEVM_NET.zip`. Note you may need to install `unzip` for this command to work. 
 
-> **NOTE:** Take into account this works for the latest release (mainnet), in case you want to deploy a pre-release (testnet) you should get the artifacts directly for that release and not using the "latest" link depicted here. [Here](https://github.com/0xPolygonHermez) you can check the node release deployed for each network.
+> **NOTE:** Take into account this works for the latest release (mainnet), in case you want to deploy a pre-release (testnet) you should get the artifacts directly for that release and not using the "latest" link depicted here. [Here](https://github.com/okx) you can check the node release deployed for each network.
 
 6. Copy the file with the env parameters into config directory: `mkdir -p $ZKEVM_CONFIG_DIR && cp $ZKEVM_DIR/$ZKEVM_NET/example.env $ZKEVM_CONFIG_DIR/.env`
 7. Edit the env file, with your favourite editor. The example will use nano: `nano $ZKEVM_CONFIG_DIR/.env`. This file contains the configuration that anyone should modify. For advanced configuration:

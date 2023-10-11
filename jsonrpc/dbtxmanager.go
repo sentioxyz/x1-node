@@ -3,8 +3,8 @@ package jsonrpc
 import (
 	"context"
 
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/types"
 	"github.com/jackc/pgx/v4"
+	"github.com/okx/zkevm-node/jsonrpc/types"
 )
 
 // DBTxManager allows to do scopped DB txs

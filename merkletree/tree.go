@@ -6,9 +6,9 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/0xPolygonHermez/zkevm-node/hex"
-	"github.com/0xPolygonHermez/zkevm-node/merkletree/hashdb"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/okx/zkevm-node/hex"
+	"github.com/okx/zkevm-node/merkletree/hashdb"
 )
 
 // StateTree provides methods to access and modify state in merkletree

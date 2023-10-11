@@ -3,9 +3,9 @@ package pool
 import (
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/state"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/okx/zkevm-node/state"
 )
 
 const (

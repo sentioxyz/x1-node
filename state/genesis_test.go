@@ -11,9 +11,9 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/0xPolygonHermez/zkevm-node/state"
-	"github.com/0xPolygonHermez/zkevm-node/test/dbutils"
-	"github.com/0xPolygonHermez/zkevm-node/tools/genesis/genesisparser"
+	"github.com/okx/zkevm-node/state"
+	"github.com/okx/zkevm-node/test/dbutils"
+	"github.com/okx/zkevm-node/tools/genesis/genesisparser"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -7,17 +7,17 @@ import (
 	"testing"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/etherman/smartcontracts/polygonzkevm"
-	"github.com/0xPolygonHermez/zkevm-node/etherman/smartcontracts/polygonzkevmglobalexitroot"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/state"
-	"github.com/0xPolygonHermez/zkevm-node/test/constants"
-	"github.com/0xPolygonHermez/zkevm-node/test/operations"
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/okx/zkevm-node/etherman/smartcontracts/xagonzkevm"
+	"github.com/okx/zkevm-node/etherman/smartcontracts/xagonzkevmglobalexitroot"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/state"
+	"github.com/okx/zkevm-node/test/constants"
+	"github.com/okx/zkevm-node/test/operations"
 	"github.com/stretchr/testify/require"
 )
 
@@ -121,7 +121,7 @@ func sendForcedBatch(t *testing.T, txs []byte, opsman *operations.Manager) (*sta
 
 	// Create smc client
 	zkEvmAddr := common.HexToAddress(operations.DefaultL1ZkEVMSmartContract)
-	zkEvm, err := polygonzkevm.NewPolygonzkevm(zkEvmAddr, ethClient)
+	zkEvm, err := xagonzkevm.NewXagonzkevm(zkEvmAddr, ethClient)
 	require.NoError(t, err)
 
 	auth, err := operations.GetAuth(operations.DefaultSequencerPrivateKey, operations.DefaultL1ChainID)
@@ -141,7 +141,7 @@ func sendForcedBatch(t *testing.T, txs []byte, opsman *operations.Manager) (*sta
 	managerAddress, err := zkEvm.GlobalExitRootManager(&bind.CallOpts{Pending: false})
 	require.NoError(t, err)
 
-	manager, err := polygonzkevmglobalexitroot.NewPolygonzkevmglobalexitroot(managerAddress, ethClient)
+	manager, err := xagonzkevmglobalexitroot.NewXagonzkevmglobalexitroot(managerAddress, ethClient)
 	require.NoError(t, err)
 
 	rootInContract, err := manager.GetLastGlobalExitRoot(&bind.CallOpts{Pending: false})

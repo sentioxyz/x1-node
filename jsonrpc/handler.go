@@ -9,9 +9,9 @@ import (
 	"sync"
 	"unicode"
 
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/types"
-	"github.com/0xPolygonHermez/zkevm-node/log"
 	"github.com/gorilla/websocket"
+	"github.com/okx/zkevm-node/jsonrpc/types"
+	"github.com/okx/zkevm-node/log"
 )
 
 const (

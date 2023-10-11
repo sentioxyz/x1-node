@@ -5,15 +5,15 @@ import (
 	"math/big"
 	"time"
 
-	ethmanTypes "github.com/0xPolygonHermez/zkevm-node/etherman/types"
-	"github.com/0xPolygonHermez/zkevm-node/ethtxmanager"
-	"github.com/0xPolygonHermez/zkevm-node/pool"
-	"github.com/0xPolygonHermez/zkevm-node/state"
-	"github.com/0xPolygonHermez/zkevm-node/state/metrics"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/executor"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/jackc/pgx/v4"
+	ethmanTypes "github.com/okx/zkevm-node/etherman/types"
+	"github.com/okx/zkevm-node/ethtxmanager"
+	"github.com/okx/zkevm-node/pool"
+	"github.com/okx/zkevm-node/state"
+	"github.com/okx/zkevm-node/state/metrics"
+	"github.com/okx/zkevm-node/state/runtime/executor"
 )
 
 // Consumer interfaces required by the package.

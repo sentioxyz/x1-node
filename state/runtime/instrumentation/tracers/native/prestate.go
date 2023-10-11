@@ -22,11 +22,11 @@ import (
 	"math/big"
 	"sync/atomic"
 
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/fakevm"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/instrumentation/tracers"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/okx/zkevm-node/state/runtime/fakevm"
+	"github.com/okx/zkevm-node/state/runtime/instrumentation/tracers"
 )
 
 //go:generate go run github.com/fjl/gencodec -type account -field-override accountMarshaling -out gen_account_json.go

@@ -3,10 +3,10 @@ package pgeventstorage
 import (
 	"context"
 
-	"github.com/0xPolygonHermez/zkevm-node/db"
-	"github.com/0xPolygonHermez/zkevm-node/event"
-	"github.com/0xPolygonHermez/zkevm-node/event/nileventstorage"
 	"github.com/jackc/pgx/v4/pgxpool"
+	"github.com/okx/zkevm-node/db"
+	"github.com/okx/zkevm-node/event"
+	"github.com/okx/zkevm-node/event/nileventstorage"
 )
 
 // PostgresEventStorage is an implementation of the event storage interface

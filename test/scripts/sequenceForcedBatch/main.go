@@ -4,13 +4,13 @@ import (
 	"os"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/etherman/smartcontracts/polygonzkevm"
-	"github.com/0xPolygonHermez/zkevm-node/hex"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/test/operations"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/okx/zkevm-node/etherman/smartcontracts/xagonzkevm"
+	"github.com/okx/zkevm-node/hex"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/test/operations"
 	"github.com/urfave/cli/v2"
 )
 
@@ -99,7 +99,7 @@ func sendForcedBatches(cliCtx *cli.Context) error {
 	}
 	// Create smc client
 	poeAddr := common.HexToAddress(cliCtx.String(flagSmcAddrName))
-	poe, err := polygonzkevm.NewPolygonzkevm(poeAddr, ethClient)
+	poe, err := xagonzkevm.NewXagonzkevm(poeAddr, ethClient)
 	if err != nil {
 		return err
 	}
@@ -130,7 +130,7 @@ func sendForcedBatches(cliCtx *cli.Context) error {
 		log.Error("error decoding txs. Error: ", err)
 		return err
 	}
-	fbData := []polygonzkevm.PolygonZkEVMForcedBatchData{{
+	fbData := []xagonzkevm.XagonZkEVMForcedBatchData{{
 		Transactions:       transactions,
 		GlobalExitRoot:     common.HexToHash(cliCtx.String(flagGerName)),
 		MinForcedTimestamp: cliCtx.Uint64(flagTimestampName),

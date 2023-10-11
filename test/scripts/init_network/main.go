@@ -5,7 +5,7 @@ package main
 // 	"log"
 // 	"time"
 
-// 	NW "github.com/0xPolygonHermez/zkevm-node/tools/network"
+// 	NW "github.com/okx/zkevm-node/tools/network"
 // )
 
 // func main() {

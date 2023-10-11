@@ -9,19 +9,19 @@ import (
 	"testing"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/encoding"
-	"github.com/0xPolygonHermez/zkevm-node/etherman/smartcontracts/polygonzkevm"
-	"github.com/0xPolygonHermez/zkevm-node/etherman/smartcontracts/polygonzkevmbridge"
-	ethmanTypes "github.com/0xPolygonHermez/zkevm-node/etherman/types"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/state"
-	"github.com/0xPolygonHermez/zkevm-node/test/constants"
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/okx/zkevm-node/encoding"
+	"github.com/okx/zkevm-node/etherman/smartcontracts/xagonzkevm"
+	"github.com/okx/zkevm-node/etherman/smartcontracts/xagonzkevmbridge"
+	ethmanTypes "github.com/okx/zkevm-node/etherman/types"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/state"
+	"github.com/okx/zkevm-node/test/constants"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -38,7 +38,7 @@ func init() {
 }
 
 // This function prepare the blockchain, the wallet with funds and deploy the smc
-func newTestingEnv() (ethman *Client, ethBackend *backends.SimulatedBackend, auth *bind.TransactOpts, maticAddr common.Address, br *polygonzkevmbridge.Polygonzkevmbridge) {
+func newTestingEnv() (ethman *Client, ethBackend *backends.SimulatedBackend, auth *bind.TransactOpts, maticAddr common.Address, br *xagonzkevmbridge.Xagonzkevmbridge) {
 	privateKey, err := crypto.GenerateKey()
 	if err != nil {
 		log.Fatal(err)
@@ -160,14 +160,14 @@ func TestSequencedBatchesEvent(t *testing.T) {
 	blocks, _, err := etherman.GetRollupInfoByBlockRange(ctx, initBlock.NumberU64(), &currentBlockNumber)
 	require.NoError(t, err)
 	t.Log("Blocks: ", blocks)
-	var sequences []polygonzkevm.PolygonZkEVMBatchData
-	sequences = append(sequences, polygonzkevm.PolygonZkEVMBatchData{
+	var sequences []xagonzkevm.XagonZkEVMBatchData
+	sequences = append(sequences, xagonzkevm.XagonZkEVMBatchData{
 		GlobalExitRoot:     ger,
 		Timestamp:          currentBlock.Time(),
 		MinForcedTimestamp: uint64(blocks[2].ForcedBatches[0].ForcedAt.Unix()),
 		Transactions:       common.Hex2Bytes(rawTxs),
 	})
-	sequences = append(sequences, polygonzkevm.PolygonZkEVMBatchData{
+	sequences = append(sequences, xagonzkevm.XagonZkEVMBatchData{
 		GlobalExitRoot:     ger,
 		Timestamp:          currentBlock.Time() + 1,
 		MinForcedTimestamp: 0,
@@ -208,13 +208,13 @@ func TestVerifyBatchEvent(t *testing.T) {
 	require.NoError(t, err)
 
 	rawTxs := "f84901843b9aca00827b0c945fbdb2315678afecb367f032d93f642f64180aa380a46057361d00000000000000000000000000000000000000000000000000000000000000048203e9808073efe1fa2d3e27f26f32208550ea9b0274d49050b816cadab05a771f4275d0242fd5d92b3fb89575c070e6c930587c520ee65a3aa8cfe382fcad20421bf51d621c"
-	tx := polygonzkevm.PolygonZkEVMBatchData{
+	tx := xagonzkevm.XagonZkEVMBatchData{
 		GlobalExitRoot:     common.Hash{},
 		Timestamp:          initBlock.Time(),
 		MinForcedTimestamp: 0,
 		Transactions:       common.Hex2Bytes(rawTxs),
 	}
-	_, err = etherman.ZkEVM.SequenceBatches(auth, []polygonzkevm.PolygonZkEVMBatchData{tx}, auth.From)
+	_, err = etherman.ZkEVM.SequenceBatches(auth, []xagonzkevm.XagonZkEVMBatchData{tx}, auth.From)
 	require.NoError(t, err)
 
 	// Mine the tx in a block
@@ -273,12 +273,12 @@ func TestSequenceForceBatchesEvent(t *testing.T) {
 	require.NoError(t, err)
 	t.Log("Blocks: ", blocks)
 
-	forceBatchData := polygonzkevm.PolygonZkEVMForcedBatchData{
+	forceBatchData := xagonzkevm.XagonZkEVMForcedBatchData{
 		Transactions:       blocks[1].ForcedBatches[0].RawTxsData,
 		GlobalExitRoot:     blocks[1].ForcedBatches[0].GlobalExitRoot,
 		MinForcedTimestamp: uint64(blocks[1].ForcedBatches[0].ForcedAt.Unix()),
 	}
-	_, err = etherman.ZkEVM.SequenceForceBatches(auth, []polygonzkevm.PolygonZkEVMForcedBatchData{forceBatchData})
+	_, err = etherman.ZkEVM.SequenceForceBatches(auth, []xagonzkevm.XagonZkEVMForcedBatchData{forceBatchData})
 	require.NoError(t, err)
 	ethBackend.Commit()
 

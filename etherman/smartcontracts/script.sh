@@ -8,8 +8,8 @@ gen() {
     abigen --bin bin/${package}.bin --abi abi/${package}.abi --pkg=${package} --out=${package}/${package}.go
 }
 
-gen polygonzkevm
-gen polygonzkevmbridge
+gen xagonzkevm
+gen xagonzkevmbridge
 gen matic
-gen polygonzkevmglobalexitroot
+gen xagonzkevmglobalexitroot
 gen mockverifier

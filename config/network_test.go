@@ -5,10 +5,10 @@ import (
 	"os"
 	"testing"
 
-	"github.com/0xPolygonHermez/zkevm-node/etherman"
-	"github.com/0xPolygonHermez/zkevm-node/merkletree"
-	"github.com/0xPolygonHermez/zkevm-node/state"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/okx/zkevm-node/etherman"
+	"github.com/okx/zkevm-node/merkletree"
+	"github.com/okx/zkevm-node/state"
 	"github.com/stretchr/testify/require"
 	"github.com/urfave/cli/v2"
 )
@@ -27,9 +27,9 @@ func TestLoadCustomNetworkConfig(t *testing.T) {
 				"genesisBlockNumber": 69,
 				"l1Config" : {
 					"chainId": 420,
-					"polygonZkEVMAddress": "0xc949254d682d8c9ad5682521675b8f43b102aec4",
+					"xagonZkEVMAddress": "0xc949254d682d8c9ad5682521675b8f43b102aec4",
 					"maticTokenAddress": "0xc949254d682d8c9ad5682521675b8f43b102aec4",
-					"polygonZkEVMGlobalExitRootAddress": "0xc949254d682d8c9ad5682521675b8f43b102aec4"
+					"xagonZkEVMGlobalExitRootAddress": "0xc949254d682d8c9ad5682521675b8f43b102aec4"
 				},
 				"genesis": [
 					{
@@ -45,7 +45,7 @@ func TestLoadCustomNetworkConfig(t *testing.T) {
 						"storage": {
 							"0x0000000000000000000000000000000000000000000000000000000000000002": "0x9d98deabc42dd696deb9e40b4f1cab7ddbf55988"
 						},
-						"contractName": "PolygonZkEVMGlobalExitRootL2 proxy"
+						"contractName": "XagonZkEVMGlobalExitRootL2 proxy"
 					},
 					{
 						"balance": "100000000000000000000000",
@@ -55,7 +55,7 @@ func TestLoadCustomNetworkConfig(t *testing.T) {
 						"storage": {
 							"0x0000000000000000000000000000000000000000000000000000000000000000": "0xc949254d682d8c9ad5682521675b8f43b102aec4"
 						},
-						"contractName": "PolygonZkEVMBridge proxy"
+						"contractName": "XagonZkEVMBridge proxy"
 					},
 					{
 						"balance": "0",

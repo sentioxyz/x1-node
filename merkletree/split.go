@@ -6,8 +6,8 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/0xPolygonHermez/zkevm-node/hex"
 	poseidon "github.com/iden3/go-iden3-crypto/goldenposeidon"
+	"github.com/okx/zkevm-node/hex"
 )
 
 // maxBigIntLen is 256 bits (32 bytes)

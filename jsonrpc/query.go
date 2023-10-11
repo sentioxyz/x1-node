@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/hex"
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/gorilla/websocket"
+	"github.com/okx/zkevm-node/hex"
+	"github.com/okx/zkevm-node/jsonrpc/types"
 )
 
 const (

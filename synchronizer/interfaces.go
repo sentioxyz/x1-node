@@ -4,14 +4,14 @@ import (
 	"context"
 	"math/big"
 
-	"github.com/0xPolygonHermez/zkevm-node/etherman"
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/types"
-	"github.com/0xPolygonHermez/zkevm-node/state"
-	"github.com/0xPolygonHermez/zkevm-node/state/metrics"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/executor"
 	"github.com/ethereum/go-ethereum/common"
 	ethTypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/jackc/pgx/v4"
+	"github.com/okx/zkevm-node/etherman"
+	"github.com/okx/zkevm-node/jsonrpc/types"
+	"github.com/okx/zkevm-node/state"
+	"github.com/okx/zkevm-node/state/metrics"
+	"github.com/okx/zkevm-node/state/runtime/executor"
 )
 
 // ethermanInterface contains the methods required to interact with ethereum.

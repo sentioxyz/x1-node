@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/0xPolygonHermez/zkevm-node/encoding"
-	"github.com/0xPolygonHermez/zkevm-node/hex"
-	"github.com/0xPolygonHermez/zkevm-node/state"
 	"github.com/jackc/pgx/v4"
+	"github.com/okx/zkevm-node/encoding"
+	"github.com/okx/zkevm-node/hex"
+	"github.com/okx/zkevm-node/state"
 )
 
 const (

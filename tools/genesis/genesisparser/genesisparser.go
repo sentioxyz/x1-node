@@ -1,8 +1,8 @@
 package genesisparser
 
 import (
-	"github.com/0xPolygonHermez/zkevm-node/merkletree"
-	"github.com/0xPolygonHermez/zkevm-node/state"
+	"github.com/okx/zkevm-node/merkletree"
+	"github.com/okx/zkevm-node/state"
 )
 
 // GenesisAccountTest struct

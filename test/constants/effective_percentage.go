@@ -1,6 +1,6 @@
 package constants
 
-import "github.com/0xPolygonHermez/zkevm-node/state"
+import "github.com/okx/zkevm-node/state"
 
 var (
 	EffectivePercentage     = []uint8{state.MaxEffectivePercentage}

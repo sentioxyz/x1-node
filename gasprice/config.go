@@ -3,7 +3,7 @@ package gasprice
 import (
 	"math/big"
 
-	"github.com/0xPolygonHermez/zkevm-node/config/types"
+	"github.com/okx/zkevm-node/config/types"
 )
 
 // EstimatorType different gas estimator types.

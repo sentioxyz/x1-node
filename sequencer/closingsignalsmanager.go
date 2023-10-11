@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/log"
+	"github.com/okx/zkevm-node/log"
 )
 
 type closingSignalsManager struct {

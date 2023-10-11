@@ -6,14 +6,14 @@ import (
 	"errors"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/db"
-	"github.com/0xPolygonHermez/zkevm-node/hex"
-	"github.com/0xPolygonHermez/zkevm-node/pool"
-	"github.com/0xPolygonHermez/zkevm-node/state"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/jackc/pgx/v4"
 	"github.com/jackc/pgx/v4/pgxpool"
+	"github.com/okx/zkevm-node/db"
+	"github.com/okx/zkevm-node/hex"
+	"github.com/okx/zkevm-node/pool"
+	"github.com/okx/zkevm-node/state"
 )
 
 // PostgresPoolStorage is an implementation of the Pool interface

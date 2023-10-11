@@ -3,9 +3,9 @@ package dbutils
 import (
 	"fmt"
 
-	"github.com/0xPolygonHermez/zkevm-node/db"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/test/testutils"
+	"github.com/okx/zkevm-node/db"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/test/testutils"
 )
 
 // InitOrResetState will initializes the State db running the migrations or

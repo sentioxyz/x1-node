@@ -6,8 +6,8 @@ import (
 	"math/big"
 	"strconv"
 
-	"github.com/0xPolygonHermez/zkevm-node/encoding"
-	"github.com/0xPolygonHermez/zkevm-node/log"
+	"github.com/okx/zkevm-node/encoding"
+	"github.com/okx/zkevm-node/log"
 )
 
 // FollowerGasPrice struct.

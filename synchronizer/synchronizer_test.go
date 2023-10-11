@@ -6,16 +6,16 @@ import (
 	"testing"
 	"time"
 
-	cfgTypes "github.com/0xPolygonHermez/zkevm-node/config/types"
-	"github.com/0xPolygonHermez/zkevm-node/etherman"
-	"github.com/0xPolygonHermez/zkevm-node/etherman/smartcontracts/polygonzkevm"
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/types"
-	"github.com/0xPolygonHermez/zkevm-node/state"
-	"github.com/0xPolygonHermez/zkevm-node/state/metrics"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/executor"
 	"github.com/ethereum/go-ethereum/common"
 	ethTypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/jackc/pgx/v4"
+	cfgTypes "github.com/okx/zkevm-node/config/types"
+	"github.com/okx/zkevm-node/etherman"
+	"github.com/okx/zkevm-node/etherman/smartcontracts/xagonzkevm"
+	"github.com/okx/zkevm-node/jsonrpc/types"
+	"github.com/okx/zkevm-node/state"
+	"github.com/okx/zkevm-node/state/metrics"
+	"github.com/okx/zkevm-node/state/runtime/executor"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
@@ -171,7 +171,7 @@ func TestForcedBatch(t *testing.T) {
 				Coinbase:      common.HexToAddress("0x222"),
 				SequencerAddr: common.HexToAddress("0x00"),
 				TxHash:        common.HexToHash("0x333"),
-				PolygonZkEVMBatchData: polygonzkevm.PolygonZkEVMBatchData{
+				XagonZkEVMBatchData: xagonzkevm.XagonZkEVMBatchData{
 					Transactions:       []byte{},
 					GlobalExitRoot:     [32]byte{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32},
 					Timestamp:          uint64(t.Unix()),
@@ -413,7 +413,7 @@ func TestSequenceForcedBatch(t *testing.T) {
 				BatchNumber: uint64(2),
 				Coinbase:    common.HexToAddress("0x222"),
 				TxHash:      common.HexToHash("0x333"),
-				PolygonZkEVMForcedBatchData: polygonzkevm.PolygonZkEVMForcedBatchData{
+				XagonZkEVMForcedBatchData: xagonzkevm.XagonZkEVMForcedBatchData{
 					Transactions:       []byte{},
 					GlobalExitRoot:     [32]byte{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32},
 					MinForcedTimestamp: 1000, //ForcedBatch

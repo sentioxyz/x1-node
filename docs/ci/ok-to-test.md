@@ -31,7 +31,7 @@ with the value of a personal access token with repo access scope.
 ## How to add the ok-to-test functionality to an existing workflow
 In order to transform an existing wokflow into one that use the ok-to-test
 functionality it should be changed like this:
-* Add the `repository_dispatch` entry like here https://github.com/0xPolygonHermez/zkevm-bridge-service/pull/148/files#diff-107e910e9f2ebfb9a741fa10b2aa7100cc1fc4f5f3aca2dfe78b905cbd73c0d2R9-R10
+* Add the `repository_dispatch` entry like here https://github.com/okx/zkevm-bridge-service/pull/148/files#diff-107e910e9f2ebfb9a741fa10b2aa7100cc1fc4f5f3aca2dfe78b905cbd73c0d2R9-R10
 * Duplicate the job, if it is called `build`, copy it to `from-fork-build` and
 rename `build` to `trusted-build`.
 * In `trusted-build` add this `if` as the first item:
@@ -53,6 +53,6 @@ if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.f
     with:
       ref: 'refs/pull/${{ github.event.client_payload.pull_request.number }}/merge'
   ```
-  * Add this code as the last step https://github.com/0xPolygonHermez/zkevm-bridge-service/pull/148/files#diff-107e910e9f2ebfb9a741fa10b2aa7100cc1fc4f5f3aca2dfe78b905cbd73c0d2R60-R88
+  * Add this code as the last step https://github.com/okx/zkevm-bridge-service/pull/148/files#diff-107e910e9f2ebfb9a741fa10b2aa7100cc1fc4f5f3aca2dfe78b905cbd73c0d2R60-R88
 
 [ok-to-test workflow]: https://github.com/imjohnbo/ok-to-test

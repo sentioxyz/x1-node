@@ -6,12 +6,12 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/test/operations"
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/test/operations"
 	"github.com/urfave/cli/v2"
 )
 

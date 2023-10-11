@@ -264,7 +264,7 @@ services:
       - 4001:4000
     environment:
       - NETWORK=POE
-      - SUBNETWORK=Polygon Hermez
+      - SUBNETWORK=Xagon Hermez
       - COIN=ETH
       - ETHEREUM_JSONRPC_VARIANT=geth
       - ETHEREUM_JSONRPC_HTTP_URL=http://zkevm-explorer-json-rpc:8124

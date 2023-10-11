@@ -6,10 +6,10 @@ import (
 	"sort"
 	"strconv"
 
-	"github.com/0xPolygonHermez/zkevm-node/hex"
-	"github.com/0xPolygonHermez/zkevm-node/log"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/rlp"
+	"github.com/okx/zkevm-node/hex"
+	"github.com/okx/zkevm-node/log"
 )
 
 const (

@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/0xPolygonHermez/zkevm-node/db"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/test/dbutils"
 	"github.com/gobuffalo/packr/v2"
 	"github.com/jackc/pgx/v4"
 	"github.com/jackc/pgx/v4/stdlib"
+	"github.com/okx/zkevm-node/db"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/test/dbutils"
 	migrate "github.com/rubenv/sql-migrate"
 	"github.com/stretchr/testify/require"
 )

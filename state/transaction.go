@@ -9,17 +9,6 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/encoding"
-	"github.com/0xPolygonHermez/zkevm-node/event"
-	"github.com/0xPolygonHermez/zkevm-node/hex"
-	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/executor"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/fakevm"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/instrumentation"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/instrumentation/js"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/instrumentation/tracers"
-	"github.com/0xPolygonHermez/zkevm-node/state/runtime/instrumentation/tracers/native"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core"
 	"github.com/ethereum/go-ethereum/core/types"
@@ -27,6 +16,17 @@ import (
 	"github.com/ethereum/go-ethereum/trie"
 	"github.com/holiman/uint256"
 	"github.com/jackc/pgx/v4"
+	"github.com/okx/zkevm-node/encoding"
+	"github.com/okx/zkevm-node/event"
+	"github.com/okx/zkevm-node/hex"
+	"github.com/okx/zkevm-node/log"
+	"github.com/okx/zkevm-node/state/runtime"
+	"github.com/okx/zkevm-node/state/runtime/executor"
+	"github.com/okx/zkevm-node/state/runtime/fakevm"
+	"github.com/okx/zkevm-node/state/runtime/instrumentation"
+	"github.com/okx/zkevm-node/state/runtime/instrumentation/js"
+	"github.com/okx/zkevm-node/state/runtime/instrumentation/tracers"
+	"github.com/okx/zkevm-node/state/runtime/instrumentation/tracers/native"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -321,7 +321,7 @@ func (s *State) DebugTransaction(ctx context.Context, transactionHash common.Has
 		return nil, fmt.Errorf("tx hash not found in executor response")
 	}
 
-	// const path = "/Users/thiago/github.com/0xPolygonHermez/zkevm-node/dist/%v.json"
+	// const path = "/Users/thiago/github.com/okx/zkevm-node/dist/%v.json"
 	// filePath := fmt.Sprintf(path, "EXECUTOR_processBatchResponse")
 	// c, _ := json.MarshalIndent(processBatchResponse, "", "    ")
 	// os.WriteFile(filePath, c, 0644)

@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/log"
 	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/okx/zkevm-node/log"
 )
 
 // NewL2BlockEventHandler represent a func that will be called by the

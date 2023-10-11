@@ -12,11 +12,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/metrics"
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/types"
-	"github.com/0xPolygonHermez/zkevm-node/log"
 	"github.com/didip/tollbooth/v6"
 	"github.com/gorilla/websocket"
+	"github.com/okx/zkevm-node/jsonrpc/metrics"
+	"github.com/okx/zkevm-node/jsonrpc/types"
+	"github.com/okx/zkevm-node/log"
 )
 
 const (

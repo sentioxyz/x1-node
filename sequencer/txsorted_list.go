@@ -5,7 +5,7 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/0xPolygonHermez/zkevm-node/log"
+	"github.com/okx/zkevm-node/log"
 )
 
 // txSortedList represents a list of tx sorted by gasPrice

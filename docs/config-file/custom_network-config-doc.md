@@ -93,16 +93,16 @@ must respect the following conditions
 | Property                                                                            | Pattern | Type             | Deprecated | Definition | Title/Description                                |
 | ----------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------- | ------------------------------------------------ |
 | - [chainId](#L1Config_chainId )                                                     | No      | integer          | No         | -          | Chain ID of the L1 network                       |
-| - [polygonZkEVMAddress](#L1Config_polygonZkEVMAddress )                             | No      | array of integer | No         | -          | Address of the L1 contract                       |
+| - [xagonZkEVMAddress](#L1Config_xagonZkEVMAddress )                             | No      | array of integer | No         | -          | Address of the L1 contract                       |
 | - [maticTokenAddress](#L1Config_maticTokenAddress )                                 | No      | array of integer | No         | -          | Address of the L1 Matic token Contract           |
-| - [polygonZkEVMGlobalExitRootAddress](#L1Config_polygonZkEVMGlobalExitRootAddress ) | No      | array of integer | No         | -          | Address of the L1 GlobalExitRootManager contract |
+| - [xagonZkEVMGlobalExitRootAddress](#L1Config_xagonZkEVMGlobalExitRootAddress ) | No      | array of integer | No         | -          | Address of the L1 GlobalExitRootManager contract |
 
 ### <a name="L1Config_chainId"></a>4.1. `L1Config.chainId`
 
 **Type:** : `integer`
 **Description:** Chain ID of the L1 network
 
-### <a name="L1Config_polygonZkEVMAddress"></a>4.2. `L1Config.polygonZkEVMAddress`
+### <a name="L1Config_xagonZkEVMAddress"></a>4.2. `L1Config.xagonZkEVMAddress`
 
 **Type:** : `array of integer`
 **Description:** Address of the L1 contract
@@ -112,7 +112,7 @@ must respect the following conditions
 **Type:** : `array of integer`
 **Description:** Address of the L1 Matic token Contract
 
-### <a name="L1Config_polygonZkEVMGlobalExitRootAddress"></a>4.4. `L1Config.polygonZkEVMGlobalExitRootAddress`
+### <a name="L1Config_xagonZkEVMGlobalExitRootAddress"></a>4.4. `L1Config.xagonZkEVMGlobalExitRootAddress`
 
 **Type:** : `array of integer`
 **Description:** Address of the L1 GlobalExitRootManager contract
