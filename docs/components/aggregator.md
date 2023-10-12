@@ -15,19 +15,19 @@ The XAGON Aggregator is an optional module responsible for receiving connections
 The preferred way to run the XAGON Aggregator component is via Docker and Docker Compose.
 
 ```bash
-docker pull hermeznetwork/Xagon-node
+docker pull okx/xagon-node
 ```
 
 To orchestrate multiple deployments of the different XAGON Node components, a `docker-compose.yaml` file for Docker Compose can be used:
 
 ```yaml
-  Xagon-aggregator:
-    container_name: Xagon-aggregator
-    image: Xagon-node
+  xagon-aggregator:
+    container_name: xagon-aggregator
+    image: xagon-node
     command:
         - "/bin/sh"
         - "-c"
-        - "/app/Xagon-node run --genesis /app/genesis.json --cfg /app/config.toml --components aggregator"
+        - "/app/xagon-node run --genesis /app/genesis.json --cfg /app/config.toml --components aggregator"
 ```
 
 The container alone needs some parameters configured, access to certain configuration files and the appropriate ports exposed.

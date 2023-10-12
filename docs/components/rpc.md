@@ -16,19 +16,19 @@ The XAGON RPC relays transactions to the Trusted sequencer.
 The preferred way to run the XAGON RPC component is via Docker and Docker Compose.
 
 ```bash
-docker pull okx/Xagon-node
+docker pull okx/xagon-node
 ```
 
 To orchestrate multiple deployments of the different XAGON Node components, a `docker-compose.yaml` file for Docker Compose can be used:
 
 ```yaml
-  Xagon-rpc:
-    container_name: Xagon-rpc
-    image: Xagon-node
+  xagon-rpc:
+    container_name: xagon-rpc
+    image: xagon-node
     command:
         - "/bin/sh"
         - "-c"
-        - "/app/Xagon-node run --genesis /app/genesis.json --cfg /app/config.toml --components rpc"
+        - "/app/xagon-node run --genesis /app/genesis.json --cfg /app/config.toml --components rpc"
 ```
 
 The container alone needs some parameters configured, access to certain configuration files and the appropriate ports exposed.

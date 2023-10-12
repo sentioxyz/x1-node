@@ -1,6 +1,6 @@
 # Component: Prover
 
-NOTE: The Prover is not considered part of the XAGON Node and all issues and suggestions should be sent to the [Prover repo](https://github.com/okx/Xagon-prover/).
+NOTE: The Prover is not considered part of the XAGON Node and all issues and suggestions should be sent to the [Prover repo](https://github.com/okx/xagon-prover/).
 
 ## XAGON Prover:
 
@@ -15,15 +15,15 @@ The XAGON Prover image hosts different components, *Merkle Tree*, *Executor* and
 The preferred way to run the XAGON Prover component is via Docker and Docker Compose.
 
 ```bash
-docker pull hermeznetwork/Xagon-prover
+docker pull hermeznetwork/xagon-prover
 ```
 
 To orchestrate multiple deployments of the different XAGON Node components, a `docker-compose.yaml` file for Docker Compose can be used:
 
 ```yaml
-  Xagon-prover:
-    container_name: Xagon-prover
-    image: Xagon-prover
+  xagon-prover:
+    container_name: xagon-prover
+    image: xagon-prover
     volumes:
       - ./prover-config.json:/usr/src/app/config.json
     command: >

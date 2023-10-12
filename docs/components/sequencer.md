@@ -9,19 +9,19 @@ The Xagon Sequencer is an optional but ancillary module that proposes new batche
 The preferred way to run the Xagon Sequencer component is via Docker and Docker Compose.
 
 ```bash
-docker pull okx/Xagon-node
+docker pull okx/xagon-node
 ```
 
 To orchestrate multiple deployments of the different Xagon Node components, a `docker-compose.yaml` file for Docker Compose can be used:
 
 ```yaml
-  Xagon-sequencer:
-    container_name: Xagon-sequencer
-    image: Xagon-node
+  xagon-sequencer:
+    container_name: xagon-sequencer
+    image: xagon-node
     command:
         - "/bin/sh"
         - "-c"
-        - "/app/Xagon-node run --genesis /app/genesis.json --cfg /app/config.toml --components sequencer"
+        - "/app/xagon-node run --genesis /app/genesis.json --cfg /app/config.toml --components sequencer"
 ```
 
 The container alone needs some parameters configured, access to certain configuration files and the appropriate ports exposed.

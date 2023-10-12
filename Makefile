@@ -12,7 +12,7 @@ endif
 GOBASE := $(shell pwd)
 GOBIN := $(GOBASE)/dist
 GOENVVARS := GOBIN=$(GOBIN) CGO_ENABLED=0 GOOS=linux GOARCH=$(ARCH)
-GOBINARY := Xagon-node
+GOBINARY := xagon-node
 GOCMD := $(GOBASE)/cmd
 
 LDFLAGS += -X 'github.com/0xPolygonHermez/zkevm-node.Version=$(VERSION)'
@@ -35,21 +35,21 @@ build: ## Builds the binary locally into ./dist
 
 .PHONY: build-docker
 build-docker: ## Builds a docker image with the node binary
-	docker build -t Xagon-node -f ./Dockerfile .
+	docker build -t xagon-node -f ./Dockerfile .
 
 .PHONY: build-docker-nc
 build-docker-nc: ## Builds a docker image with the node binary - but without build cache
-	docker build --no-cache=true -t Xagon-node -f ./Dockerfile .
+	docker build --no-cache=true -t xagon-node -f ./Dockerfile .
 
 .PHONY: run-rpc
 run-rpc: ## Runs all the services need to run a local zkEMV RPC node
-	docker-compose up -d Xagon-state-db Xagon-pool-db
+	docker-compose up -d xagon-state-db xagon-pool-db
 	sleep 2
-	docker-compose up -d Xagon-prover
+	docker-compose up -d xagon-prover
 	sleep 5
-	docker-compose up -d Xagon-sync
+	docker-compose up -d xagon-sync
 	sleep 2
-	docker-compose up -d Xagon-rpc
+	docker-compose up -d xagon-rpc
 
 .PHONY: stop
 stop: ## Stops all services

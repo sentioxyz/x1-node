@@ -11,10 +11,10 @@ This feature creates a dump of entire database
 
 ```
 NAME:
-   Xagon-node snapshot - Snapshot the state db
+   xagon-node snapshot - Snapshot the state db
 
 USAGE:
-   Xagon-node snapshot [command options] [arguments...]
+   xagon-node snapshot [command options] [arguments...]
 
 OPTIONS:
    --cfg FILE, -c FILE  Configuration FILE
@@ -27,7 +27,7 @@ OPTIONS:
 User = "prover_user"
 Password = "prover_pass"
 Name = "prover_db"
-Host = "Xagon-state-db"
+Host = "xagon-state-db"
 Port = "5432"
 EnableLog = false
 MaxConns = 200
@@ -39,7 +39,7 @@ This generates two files in the current working path:
 
 #### Example of invocation: 
 ```
-# cd /tmp/ && /app/Xagon-node snap -c /app/config.toml
+# cd /tmp/ && /app/xagon-node snap -c /app/config.toml
 (...)
 # ls -1
 prover_db_1689925019_v0.2.0-RC9-15-gd39e7f1e_d39e7f1e.sql.tar.gz
@@ -56,10 +56,10 @@ It populates state, and hash databases with the previous backup
 
 ```
 NAME:
-   Xagon-node restore - Restore snapshot of the state db
+   xagon-node restore - Restore snapshot of the state db
 
 USAGE:
-   Xagon-node restore [command options] [arguments...]
+   xagon-node restore [command options] [arguments...]
 
 OPTIONS:
    --inputfilestate value, --is value  Input file stateDB
@@ -70,16 +70,16 @@ OPTIONS:
 
 #### Example of invocation: 
 ```
-/app/Xagon-node restore -c /app/config.toml  --is /tmp/state_db_1689925019_v0.2.0-RC9-15-gd39e7f1e_d39e7f1e.sql.tar.gz  --ih /tmp/prover_db_1689925019_v0.2.0-RC9-15-gd39e7f1e_d39e7f1e.sql.tar
+/app/xagon-node restore -c /app/config.toml  --is /tmp/state_db_1689925019_v0.2.0-RC9-15-gd39e7f1e_d39e7f1e.sql.tar.gz  --ih /tmp/prover_db_1689925019_v0.2.0-RC9-15-gd39e7f1e_d39e7f1e.sql.tar
 .gz 
 ```
 
 # How to test
-You could use `test/docker-compose.yml` to interact with `Xagon-node`:
+You could use `test/docker-compose.yml` to interact with `xagon-node`:
 * Run the containers: `make run`
 * Launch a interactive container:
 ```
-docker-compose up -d Xagon-sh
-docker-compose exec Xagon-sh /bin/sh
+docker-compose up -d xagon-sh
+docker-compose exec xagon-sh /bin/sh
 ```
 * Inside this shell you can execute the examples of invocation

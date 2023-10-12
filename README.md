@@ -22,7 +22,7 @@ Glossary:
 - Consolidated state: state that is proven on-chain by submitting a ZKP (Zero Knowledge Proof) that proves the execution of a sequence of the last virtual batch.
 - Invalid transaction: a transaction that can't be processed and doesn't affect the state. Note that such a transaction could be included in a virtual batch. The reason for a transaction to be invalid could be related to the Ethereum protocol (invalid nonce, not enough balance, ...) or due to limitations introduced by the Xagon (each batch can make use of a limited amount of resources such as the total amount of keccak hashes that can be computed)
 - Reverted transaction: a transaction that is executed, but is reverted (because of smart contract logic). The main difference with *invalid transaction* is that this transaction modifies the state, at least to increment nonce of the sender.
-- Proof of Efficiency (PoE): name of the protocol used by the network, it's enforced by the [smart contracts](https://github.com/okx/Xagon-contracts)
+- Proof of Efficiency (PoE): name of the protocol used by the network, it's enforced by the [smart contracts](https://github.com/okx/xagon-contracts)
 
 ## Architecture
 
@@ -41,10 +41,10 @@ The diagram represents the main components of the software and how they interact
 - State: Responsible for managing the state data (batches, blocks, transactions, ...) that is stored on the `state SB`. It also handles the integration with the `executor` and the `Merkletree` service
 - State DB: persistence layer for the state data (except the Merkletree that is handled by the `Merkletree` service)
 - Aggregator: consolidates batches by generating ZKPs (Zero Knowledge proofs). To do so it gathers the necessary data that the `prover` needs as input through the `state` and sends a request to it. Once the proof is generated it's sent to Ethereum through the `etherman`
-- Prover/Executor: service that generates ZK proofs. Note that this component is not implemented in this repository, and it's treated as a "black box" from the perspective of the node. The prover/executor has two implementations: [JS reference implementation](https://github.com/0xPolygonHermez/zkevm-proverjs) and [C production-ready implementation](https://github.com/okx/Xagon-prover). Although it's the same software/service, it has two very different purposes:
+- Prover/Executor: service that generates ZK proofs. Note that this component is not implemented in this repository, and it's treated as a "black box" from the perspective of the node. The prover/executor has two implementations: [JS reference implementation](https://github.com/0xPolygonHermez/zkevm-proverjs) and [C production-ready implementation](https://github.com/okx/xagon-prover). Although it's the same software/service, it has two very different purposes:
   - Provide an EVM implementation that allows processing transactions and getting all needed results metadata (state root, receipts, logs, ...)
   - Generate ZKPs
-- Merkletree: service that stores the Merkletree, containing all the account information (balances, nonces, smart contract code, and smart contract storage). This component is also not implemented in this repo and is consumed as an external service by the node. The implementation can be found [here](https://github.com/okx/Xagon-prover)
+- Merkletree: service that stores the Merkletree, containing all the account information (balances, nonces, smart contract code, and smart contract storage). This component is also not implemented in this repo and is consumed as an external service by the node. The implementation can be found [here](https://github.com/okx/xagon-prover)
 
 ## Roles of the network
 
@@ -63,8 +63,8 @@ Required services and components:
 
 There must be only one synchronizer, and it's recommended that it has exclusive access to an executor instance, although it's not necessary. This role can perfectly be run in a single instance, however, the JSON RPC and executor services can benefit from running in multiple instances, if the performance decreases due to the number of requests received
 
-- [`zkEVM RPC endpoints`](./docs/json-rpc-endpoints.md)
-- [`zkEVM RPC Custom endpoints documentation`](./docs/zkEVM-custom-endpoints.md)
+- [`Xagon RPC endpoints`](./docs/json-rpc-endpoints.md)
+- [`Xagon RPC Custom endpoints documentation`](./docs/zkEVM-custom-endpoints.md)
 
 ### Trusted sequencer
 

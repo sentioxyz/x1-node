@@ -11,7 +11,7 @@ This module syncs data between the Layer 1 Ethereum network and XAGON L2 network
 The preferred way to run the XAGON Synchronizer component is via Docker and Docker Compose.
 
 ```bash
-docker pull hermeznetwork/Xagon-node
+docker pull hermeznetwork/xagon-node
 ```
 
 To orchestrate multiple deployments of the different XAGON Node components, a `docker-compose.yaml` file for Docker Compose can be used:
@@ -19,13 +19,13 @@ To orchestrate multiple deployments of the different XAGON Node components, a `d
 **THIS STEP IS MANDATORY ON ALL DEPLOYMENT MODES**
 
 ```yaml
-  Xagon-sync:
-    container_name: Xagon-sync
-    image: Xagon-node
+  xagon-sync:
+    container_name: xagon-sync
+    image: xagon-node
     command:
         - "/bin/sh"
         - "-c"
-        - "/app/Xagon-node run --genesis /app/genesis.json --cfg /app/config.toml --components synchronizer"
+        - "/app/xagon-node run --genesis /app/genesis.json --cfg /app/config.toml --components synchronizer"
 ```
 
 The container alone needs some parameters configured, access to certain configuration files and the appropriate ports exposed.

@@ -60,7 +60,7 @@ PR opened and pushing changes to PRs. There are two variants, `trusted` and
 
 ## updatedeps
 
-The `Xagon-node` repo requires some external resources for working. We call
+The `xagon-node` repo requires some external resources for working. We call
 these resources custom dependencies (as opposed to the golang packages required
 by the code).
 
@@ -80,7 +80,7 @@ for changes the client/server golang code is generated from them.
 
 With all the potential changes we create a new PR and the tests are run on it,
 so that we can review and eventually approve the changes to be included in the
-`Xagon-node` repo.
+`xagon-node` repo.
 
 ### When is executed
 
@@ -93,5 +93,5 @@ It runs as an scheduled action, every 3 hours.
 [dependencies package]: ../../scripts/cmd/dependencies
 [three types of custom dependencies]: ../../scripts/cmd/dependencies.go
 [docker compose file]: ../../docker-compose.yml
-[comms protocol repo]: https://github.com/okx/zkevm-comms-protocol/
+[comms protocol repo]: https://github.com/0xPolygonHermez/zkevm-comms-protocol/
 [test vectors repo]: https://github.com/0xPolygonHermez/zkevm-testvectors

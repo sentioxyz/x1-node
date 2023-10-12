@@ -25,7 +25,7 @@ tl;dr:
 ZKEVM_NET=mainnet
 ZKEVM_DIR=./path/to/install # CHANGE THIS
 ZKEVM_CONFIG_DIR=./path/to/config  # CHANGE THIS
-curl -L https://github.com/okx/Xagon-node/releases/latest/download/$ZKEVM_NET.zip > $ZKEVM_NET.zip && unzip -o $ZKEVM_DIR.zip -d $ZKEVM_DIR && rm $ZKEVM_DIR.zip
+curl -L https://github.com/okx/xagon-node/releases/latest/download/$ZKEVM_NET.zip > $ZKEVM_NET.zip && unzip -o $ZKEVM_DIR.zip -d $ZKEVM_DIR && rm $ZKEVM_DIR.zip
 mkdir -p $ZKEVM_CONFIG_DIR && cp $ZKEVM_DIR/$ZKEVM_NET/example.env $ZKEVM_CONFIG_DIR/.env
 
 # EDIT THIS env file:
@@ -41,7 +41,7 @@ docker compose --env-file $ZKEVM_CONFIG_DIR/.env -f $ZKEVM_DIR/$ZKEVM_NET/docker
 2. Define installation path: `ZKEVM_DIR=./path/to/install`
 3. Define a config directory: `ZKEVM_CONFIG_DIR=./path/to/config`
 4. It's recommended to source this env vars in your `~/.bashrc`, `~/.zshrc` or whatever you're using
-5. Download and extract the artifacts: `curl -L https://github.com/okx/Xagon-node/releases/latest/download/$XAGON_NET.zip > $XAGON_NET.zip && unzip -o $XAGON_NET.zip -d $XAGON_DIR && rm $XAGON_NET.zip`. Note you may need to install `unzip` for this command to work. 
+5. Download and extract the artifacts: `curl -L https://github.com/okx/xagon-node/releases/latest/download/$XAGON_NET.zip > $XAGON_NET.zip && unzip -o $XAGON_NET.zip -d $XAGON_DIR && rm $XAGON_NET.zip`. Note you may need to install `unzip` for this command to work. 
 
 > **NOTE:** Take into account this works for the latest release (mainnet), in case you want to deploy a pre-release (testnet) you should get the artifacts directly for that release and not using the "latest" link depicted here. [Here](https://github.com/okx) you can check the node release deployed for each network.
 
@@ -52,11 +52,11 @@ docker compose --env-file $ZKEVM_CONFIG_DIR/.env -f $ZKEVM_DIR/$ZKEVM_NET/docker
    3. Edit the different configuration files in the $ZKEVM_CONFIG_DIR directory and make the necessary changes
 8. Run the node: `docker compose --env-file $ZKEVM_CONFIG_DIR/.env -f $ZKEVM_DIR/$ZKEVM_NET/docker-compose.yml up -d`. You may need to run this command using `sudo` depending on your Docker setup.
 9. Make sure that all components are running: `docker compose --env-file $ZKEVM_CONFIG_DIR/.env -f $ZKEVM_DIR/$ZKEVM_NET/docker-compose.yml ps`. You should see the following containers:
-   1. Xagon-rpc
-   2. Xagon-sync
-   3. Xagon-state-db
-   4. Xagon-pool-db
-   5. Xagon-prover
+   1. xagon-rpc
+   2. xagon-sync
+   3. xagon-state-db
+   4. xagon-pool-db
+   5. xagon-prover
 
 If everything has gone as expected you should be able to run queries to the JSON RPC at `http://localhost:8545`. For instance you can run the following query that fetches the latest synchronized L2 block, if you call this every few seconds, you should see the number increasing:
 
@@ -88,7 +88,7 @@ There are some fundamental changes that can be done towards the basic setup, in 
 In the basic setup, there are Postgres being instanciated as Docker containers. For better performance is recommended to:
 
 - Run dedicated instances for Postgres. To achieve this you will need to:
-  - Remove the Postgres services (`Xagon-pool-db` and `Xagon-state-db`) from the `docker-compose.yml`
+  - Remove the Postgres services (`xagon-pool-db` and `xagon-state-db`) from the `docker-compose.yml`
   - Instantiate Postgres elsewhere (note that you will have to create credentials and run some queries to make this work, following the config files and docker-compose should give a clear idea of what to do)
   - Update the `node.config.toml` to use the correct URI for both DBs
   - Update `prover.config.json` to use the correct URI for the state DB
@@ -101,5 +101,5 @@ Unlike the synchronizer, that needs to have only one instance running (having mo
 There can be as many instances of it as needed, but in order to not introduce other bottlenecks, it's important to consider the following:
 
 - Read replicas of the State DB should be used
-- Synchronizer should have an exclusive instance of `Xagon-prover`
-- JSON RPCs should scale in correlation with instances of `Xagon-prover`. The most obvious way to do so is by having a dedicated `Xagon-prover` for each `Xagon-rpc`. But depending on the payload of your solution it could be worth to have `1 Xagon-rpc : many Xagon-prover` or `many Xagon-rpc : 1 Xagon-prover`, ... For reference, the `Xagon-prover` implements the EVM, and therefore will be heavily used when calling endpoints such as `eth_call`. On the other hand, there are other endpoints that relay on the `Xagon-state-db`
+- Synchronizer should have an exclusive instance of `xagon-prover`
+- JSON RPCs should scale in correlation with instances of `xagon-prover`. The most obvious way to do so is by having a dedicated `xagon-prover` for each `xagon-rpc`. But depending on the payload of your solution it could be worth to have `1 xagon-rpc : many xagon-prover` or `many xagon-rpc : 1 xagon-prover`, ... For reference, the `xagon-prover` implements the EVM, and therefore will be heavily used when calling endpoints such as `eth_call`. On the other hand, there are other endpoints that relay on the `xagon-state-db`
