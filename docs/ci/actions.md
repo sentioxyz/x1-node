@@ -93,5 +93,5 @@ It runs as an scheduled action, every 3 hours.
 [dependencies package]: ../../scripts/cmd/dependencies
 [three types of custom dependencies]: ../../scripts/cmd/dependencies.go
 [docker compose file]: ../../docker-compose.yml
-[comms protocol repo]: https://github.com/0xPolygonHermez/zkevm-comms-protocol/
+[comms protocol repo]: https://github.com/okx/zkevm-comms-protocol/
 [test vectors repo]: https://github.com/0xPolygonHermez/zkevm-testvectors

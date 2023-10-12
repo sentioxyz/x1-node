@@ -1,6 +1,6 @@
 # Component: Prover
 
-NOTE: The Prover is not considered part of the XAGON Node and all issues and suggestions should be sent to the [Prover repo](https://github.com/0xPolygonHermez/Xagon-prover/).
+NOTE: The Prover is not considered part of the XAGON Node and all issues and suggestions should be sent to the [Prover repo](https://github.com/okx/Xagon-prover/).
 
 ## XAGON Prover:
 
