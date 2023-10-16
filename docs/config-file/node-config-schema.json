@@ -209,7 +209,7 @@
 						"Host": {
 							"type": "string",
 							"description": "Host address of database",
-							"default": "zkevm-pool-db"
+							"default": "xgon-pool-db"
 						},
 						"Port": {
 							"type": "string",
@@ -1010,7 +1010,7 @@
 			"properties": {
 				"URI": {
 					"type": "string",
-					"default": "zkevm-prover:50071"
+					"default": "xgon-prover:50071"
 				},
 				"MaxResourceExhaustedAttempts": {
 					"type": "integer",
@@ -1041,7 +1041,7 @@
 				"URI": {
 					"type": "string",
 					"description": "URI is the server URI.",
-					"default": "zkevm-prover:50061"
+					"default": "xgon-prover:50061"
 				}
 			},
 			"additionalProperties": false,
@@ -1068,7 +1068,7 @@
 				"Host": {
 					"type": "string",
 					"description": "Host address of database",
-					"default": "zkevm-state-db"
+					"default": "xgon-state-db"
 				},
 				"Port": {
 					"type": "string",
@@ -1196,7 +1196,7 @@
 				"Host": {
 					"type": "string",
 					"description": "Host address of database",
-					"default": "zkevm-state-db"
+					"default": "xgon-state-db"
 				},
 				"Port": {
 					"type": "string",

@@ -67,8 +67,8 @@ services:
     container_name: xgon-sequence-sender
     image: xgon-node
     environment:
-      - ZKEVM_NODE_STATEDB_HOST=zkevm-state-db
-      - ZKEVM_NODE_POOL_DB_HOST=zkevm-pool-db
+      - ZKEVM_NODE_STATEDB_HOST=xgon-state-db
+      - ZKEVM_NODE_POOL_DB_HOST=xgon-pool-db
       - ZKEVM_NODE_SEQUENCER_SENDER_ADDRESS=0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
     volumes:
       - ./sequencer.keystore:/pk/sequencer.keystore

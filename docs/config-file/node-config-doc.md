@@ -567,14 +567,14 @@ Password="pool_password"
 
 **Type:** : `string`
 
-**Default:** `"zkevm-pool-db"`
+**Default:** `"xgon-pool-db"`
 
 **Description:** Host address of database
 
-**Example setting the default value** ("zkevm-pool-db"):
+**Example setting the default value** ("xgon-pool-db"):
 ```
 [Pool.DB]
-Host="zkevm-pool-db"
+Host="xgon-pool-db"
 ```
 
 #### <a name="Pool_DB_Port"></a>7.5.5. `Pool.DB.Port`
@@ -2483,12 +2483,12 @@ Factor=0.15
 
 **Type:** : `string`
 
-**Default:** `"zkevm-prover:50071"`
+**Default:** `"xgon-prover:50071"`
 
-**Example setting the default value** ("zkevm-prover:50071"):
+**Example setting the default value** ("xgon-prover:50071"):
 ```
 [Executor]
-URI="zkevm-prover:50071"
+URI="xgon-prover:50071"
 ```
 
 ### <a name="Executor_MaxResourceExhaustedAttempts"></a>15.2. `Executor.MaxResourceExhaustedAttempts`
@@ -2556,14 +2556,14 @@ MaxGRPCMessageSize=100000000
 
 **Type:** : `string`
 
-**Default:** `"zkevm-prover:50061"`
+**Default:** `"xgon-prover:50061"`
 
 **Description:** URI is the server URI.
 
-**Example setting the default value** ("zkevm-prover:50061"):
+**Example setting the default value** ("xgon-prover:50061"):
 ```
 [MTClient]
-URI="zkevm-prover:50061"
+URI="xgon-prover:50061"
 ```
 
 ## <a name="StateDB"></a>17. `[StateDB]`
@@ -2627,14 +2627,14 @@ Password="state_password"
 
 **Type:** : `string`
 
-**Default:** `"zkevm-state-db"`
+**Default:** `"xgon-state-db"`
 
 **Description:** Host address of database
 
-**Example setting the default value** ("zkevm-state-db"):
+**Example setting the default value** ("xgon-state-db"):
 ```
 [StateDB]
-Host="zkevm-state-db"
+Host="xgon-state-db"
 ```
 
 ### <a name="StateDB_Port"></a>17.5. `StateDB.Port`
@@ -2960,14 +2960,14 @@ Password="prover_pass"
 
 **Type:** : `string`
 
-**Default:** `"zkevm-state-db"`
+**Default:** `"xgon-state-db"`
 
 **Description:** Host address of database
 
-**Example setting the default value** ("zkevm-state-db"):
+**Example setting the default value** ("xgon-state-db"):
 ```
 [HashDB]
-Host="zkevm-state-db"
+Host="xgon-state-db"
 ```
 
 ### <a name="HashDB_Port"></a>20.5. `HashDB.Port`
