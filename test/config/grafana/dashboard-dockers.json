@@ -573,14 +573,14 @@
         "current": {
           "selected": true,
           "text": [
-            "zkevm-json-rpc",
-            "zkevm-pool-db",
-            "zkevm-sequencer"
+            "xgon-json-rpc",
+            "xgon-pool-db",
+            "xgon-sequencer"
           ],
           "value": [
-            "zkevm-json-rpc",
-            "zkevm-pool-db",
-            "zkevm-sequencer"
+            "xgon-json-rpc",
+            "xgon-pool-db",
+            "xgon-sequencer"
           ]
         },
         "datasource": {
