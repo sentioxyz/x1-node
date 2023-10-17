@@ -1,4 +1,4 @@
- [
+[
     {
       "inputs": [
         {
@@ -1461,6 +1461,19 @@
         }
       ],
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint16",
+          "name": "newBatchFee",
+          "type": "uint16"
+        }
+      ],
+      "name": "setBatchFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
