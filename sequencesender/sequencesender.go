@@ -72,6 +72,7 @@ func (s *SequenceSender) tryToSendSequence(ctx context.Context, ticker *time.Tic
 	}, nil)
 
 	if retry {
+		waitTick(ctx, ticker)
 		return
 	}
 
@@ -98,6 +99,7 @@ func (s *SequenceSender) tryToSendSequence(ctx context.Context, ticker *time.Tic
 	lastVirtualBatchNum, err := s.state.GetLastVirtualBatchNum(ctx, nil)
 	if err != nil {
 		log.Errorf("failed to get last virtual batch num, err: %v", err)
+		waitTick(ctx, ticker)
 		return
 	}
 
@@ -113,11 +115,13 @@ func (s *SequenceSender) tryToSendSequence(ctx context.Context, ticker *time.Tic
 	signaturesAndAddrs, err := s.getSignaturesAndAddrsFromDataCommittee(ctx, sequences)
 	if err != nil {
 		log.Error("error getting signatures and addresses from the data committee: ", err)
+		waitTick(ctx, ticker)
 		return
 	}
 	to, data, err := s.etherman.BuildSequenceBatchesTxData(s.cfg.SenderAddress, sequences, s.cfg.L2Coinbase, signaturesAndAddrs)
 	if err != nil {
 		log.Error("error estimating new sequenceBatches to add to eth tx manager: ", err)
+		waitTick(ctx, ticker)
 		return
 	}
 	firstSequence := sequences[0]
@@ -126,6 +130,7 @@ func (s *SequenceSender) tryToSendSequence(ctx context.Context, ticker *time.Tic
 	err = s.ethTxManager.Add(ctx, ethTxManagerOwner, monitoredTxID, s.cfg.SenderAddress, to, nil, data, nil)
 	if err != nil {
 		log.Error("error to add sequences tx to eth tx manager: ", err)
+		waitTick(ctx, ticker)
 		return
 	}
 }
