@@ -1,6 +1,7 @@
 package synchronizer
 
 import (
+	"bytes"
 	"context"
 	"errors"
 	"fmt"
@@ -799,12 +800,8 @@ func (s *ClientSynchronizer) processForkID(forkID etherman.ForkID, blockNumber u
 }
 
 func isZeroByteArray(bytesArray [32]byte) bool {
-	for _, b := range bytesArray {
-		if b != 0 {
-			return false
-		}
-	}
-	return true
+	var zero = [32]byte{}
+	return bytes.Equal(bytesArray[:], zero[:])
 }
 
 func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.SequencedBatch, blockNumber uint64, dbTx pgx.Tx) error {
