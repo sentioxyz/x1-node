@@ -118,6 +118,10 @@ func (s *SequenceSender) tryToSendSequence(ctx context.Context, ticker *time.Tic
 		waitTick(ctx, ticker)
 		return
 	}
+	if !s.isValidium() {
+		signaturesAndAddrs = nil
+	}
+
 	to, data, err := s.etherman.BuildSequenceBatchesTxData(s.cfg.SenderAddress, sequences, s.cfg.L2Coinbase, signaturesAndAddrs)
 	if err != nil {
 		log.Error("error estimating new sequenceBatches to add to eth tx manager: ", err)
@@ -323,7 +327,7 @@ func isDataForEthTxTooBig(err error) bool {
 }
 
 func (s *SequenceSender) isValidium() bool {
-	if !s.etherman.GetConfigUseValidium() {
+	if !s.cfg.UseValidium {
 		return false
 	}
 

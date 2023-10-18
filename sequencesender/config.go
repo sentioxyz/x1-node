@@ -31,4 +31,7 @@ type Config struct {
 	PrivateKey types.KeystoreFileConfig `mapstructure:"PrivateKey"`
 	// Batch number where there is a forkid change (fork upgrade)
 	ForkUpgradeBatchNumber uint64
+
+	// UseValidium is a flag to enable/disable the use of validium
+	UseValidium bool `mapstructure:"UseValidium"`
 }

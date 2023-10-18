@@ -24,7 +24,6 @@ type etherman interface {
 	GetLatestBlockTimestamp(ctx context.Context) (uint64, error)
 	GetLatestBatchNumber() (uint64, error)
 	GetCurrentDataCommittee() (*theEtherman.DataCommittee, error)
-	GetConfigUseValidium() bool
 }
 
 // stateInterface gathers the methods required to interact with the state.
