@@ -567,10 +567,10 @@ func (etherMan *Client) sequenceBatches(opts bind.TransactOpts, sequences []ethm
 				MinForcedTimestamp: uint64(seq.ForcedBatchTimestamp),
 			}
 
-			log.Infof("sequenceBatches with validium, txs len:%d, tx hash:%s", len(batch.Transactions), hex.EncodeToString(batch.TransactionsHash[:]))
 			batches = append(batches, batch)
 		}
 
+		log.Infof("Sequence batches with validium.")
 		tx, err = etherMan.ZkEVM.SequenceBatches(&opts, batches, l2Coinbase, committeeSignaturesAndAddrs)
 	} else {
 		for _, seq := range sequences {
@@ -581,10 +581,10 @@ func (etherMan *Client) sequenceBatches(opts bind.TransactOpts, sequences []ethm
 				MinForcedTimestamp: uint64(seq.ForcedBatchTimestamp),
 			}
 
-			log.Infof("sequenceBatches with rollup, txs len:%d, tx hash:%s ", len(batch.Transactions), hex.EncodeToString(batch.TransactionsHash[:]))
 			batches = append(batches, batch)
 		}
 
+		log.Infof("Sequence batches with rollup.")
 		tx, err = etherMan.ZkEVM.SequenceBatches(&opts, batches, l2Coinbase, nil)
 	}
 
