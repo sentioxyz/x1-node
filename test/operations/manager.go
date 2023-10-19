@@ -37,12 +37,11 @@ const (
 	DefaultSequencerPrivateKey          = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
 	DefaultSequencerBalance             = 400000
 	DefaultMaxCumulativeGasUsed         = 800000
-	DefaultL1ZkEVMSmartContract         = "0x610178dA211FEF7D417bC0e6FeD39F05609AD788"
+	DefaultL1CDKValidiumSmartContract        = "0x0D9088C72Cd4F08e9dDe474D8F5394147f64b22C"
+	DefaultL1DataCommitteeContract           = "0x6Ae5b0863dBF3477335c0102DBF432aFf04ceb22"
 	DefaultL1NetworkURL                 = "http://localhost:8545"
 	DefaultL1NetworkWebSocketURL        = "ws://localhost:8546"
 	DefaultL1ChainID             uint64 = 1337
-
-	DefaultL1DataCommitteeContract = "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6"
 
 	DefaultL2NetworkURL                 = "http://localhost:8123"
 	PermissionlessL2NetworkURL          = "http://localhost:8125"
@@ -70,7 +69,7 @@ var (
 type SequenceSenderConfig struct {
 	WaitPeriodSendSequence                   string
 	LastBatchVirtualizationTimeMaxWaitPeriod string
-	MaxTxSizeForL1                           uint64
+	MaxBatchesForL1                          uint64
 	SenderAddress                            string
 	PrivateKey                               string
 }
@@ -187,8 +186,8 @@ func (m *Manager) SetForkID(forkID uint64) error {
 	}
 
 	// Add initial forkID
-	fID := state.ForkIDInterval{
-		FromBatchNumber: 1,
+	fID := state.ForkIDInterval {
+		FromBatchNumber: 1, 
 		ToBatchNumber:   math.MaxUint64,
 		ForkId:          forkID,
 		Version:         "forkID",
@@ -624,7 +623,7 @@ func GetDefaultOperationsConfig() *Config {
 		SequenceSender: &SequenceSenderConfig{
 			WaitPeriodSendSequence:                   DefaultWaitPeriodSendSequence,
 			LastBatchVirtualizationTimeMaxWaitPeriod: DefaultWaitPeriodSendSequence,
-			MaxTxSizeForL1:                           MaxBatchesForL1,
+			MaxBatchesForL1:                          MaxBatchesForL1,
 			SenderAddress:                            DefaultSequencerAddress,
 			PrivateKey:                               DefaultSequencerPrivateKey},
 	}
