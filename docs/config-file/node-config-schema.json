@@ -997,6 +997,38 @@
 						"300ms"
 					]
 				},
+				"KafkaURL": {
+					"type": "string",
+					"default": "127.0.0.1:9092"
+				},
+				"Topic": {
+					"type": "string",
+					"default": "topic"
+				},
+				"GroupID": {
+					"type": "string",
+					"default": "groupid"
+				},
+				"Username": {
+					"type": "string",
+					"default": "username"
+				},
+				"Password": {
+					"type": "string",
+					"default": "password"
+				},
+				"L2CoinId": {
+					"type": "integer",
+					"default": 1001
+				},
+				"DefaultL2CoinPrice": {
+					"type": "number",
+					"default": 1.1
+				},
+				"GasPriceUsdt": {
+					"type": "number",
+					"default": 1.1
+				},
 				"Factor": {
 					"type": "number",
 					"default": 0.15
