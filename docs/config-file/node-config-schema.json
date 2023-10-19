@@ -159,6 +159,11 @@
 		},
 		"Pool": {
 			"properties": {
+				"FreeClaimGasLimit": {
+					"type": "integer",
+					"description": "FreeClaimGasLimit is the max gas allowed use to do a free claim",
+					"default": 150000
+				},
 				"IntervalToRefreshBlockedAddresses": {
 					"type": "string",
 					"title": "Duration",
@@ -265,6 +270,11 @@
 					"type": "integer",
 					"description": "GlobalQueue represents the maximum number of non-executable transaction slots for all accounts",
 					"default": 1024
+				},
+				"FreeGasAddress": {
+					"type": "string",
+					"description": "FreeGasAddress is the default free gas address",
+					"default": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
 				}
 			},
 			"additionalProperties": false,
@@ -349,6 +359,11 @@
 					"type": "boolean",
 					"description": "TraceBatchUseHTTPS enables, in the debug_traceBatchByNum endpoint, the use of the HTTPS protocol (instead of HTTP)\nto do the parallel requests to RPC.debug_traceTransaction endpoint",
 					"default": true
+				},
+				"EnablePendingTransactionFilter": {
+					"type": "boolean",
+					"description": "EnablePendingTransactionFilter enables pending transaction filter that can support query L2 pending transaction",
+					"default": false
 				}
 			},
 			"additionalProperties": false,
@@ -674,6 +689,11 @@
 					"type": "integer",
 					"description": "MaxTxSizeForL1 is the maximum size a single transaction can have. This field has\nnon-trivial consequences: larger transactions than 128KB are significantly harder and\nmore expensive to propagate; larger transactions also take more resources\nto validate whether they fit into the pool or not.",
 					"default": 131072
+				},
+				"MaxBatchesForL1": {
+					"type": "integer",
+					"description": "MaxBatchesForL1 is the maximum amount of batches to be sequenced in a single L1 tx.",
+					"default": 10
 				},
 				"SenderAddress": {
 					"items": {
@@ -1016,6 +1036,10 @@
 				"Password": {
 					"type": "string",
 					"default": "password"
+				},
+				"RootCAPath": {
+					"type": "string",
+					"default": "root ca path"
 				},
 				"L2CoinId": {
 					"type": "integer",
