@@ -688,7 +688,7 @@
 				"MaxBatchesForL1": {
 					"type": "integer",
 					"description": "MaxBatchesForL1 is the maximum amount of batches to be sequenced in a single L1 tx",
-					"default": 10
+					"default": 0
 				},
 				"SenderAddress": {
 					"items": {
@@ -1023,39 +1023,40 @@
 				},
 				"KafkaURL": {
 					"type": "string",
-					"default": "127.0.0.1:9092"
+					"default": ""
 				},
 				"Topic": {
 					"type": "string",
-					"default": "topic"
+					"default": ""
 				},
 				"GroupID": {
 					"type": "string",
-					"default": "groupid"
+					"default": ""
 				},
 				"Username": {
 					"type": "string",
-					"default": "username"
+					"default": ""
 				},
 				"Password": {
 					"type": "string",
-					"default": "password"
+					"default": ""
 				},
 				"RootCAPath": {
 					"type": "string",
-					"default": "root ca path"
+					"default": ""
 				},
 				"L2CoinId": {
 					"type": "integer",
-					"default": 1001
+					"default": 0
 				},
 				"DefaultL2CoinPrice": {
 					"type": "number",
-					"default": 1.1
+					"description": "DefaultL2CoinPrice is the native token's coin price",
+					"default": 0
 				},
 				"GasPriceUsdt": {
 					"type": "number",
-					"default": 1.1
+					"default": 0
 				},
 				"Factor": {
 					"type": "number",
