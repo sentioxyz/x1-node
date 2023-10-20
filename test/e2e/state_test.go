@@ -43,7 +43,7 @@ func TestStateTransition(t *testing.T) {
 					SenderAddress:                            testCase.SequencerAddress,
 					LastBatchVirtualizationTimeMaxWaitPeriod: "5s",
 					WaitPeriodSendSequence:                   "5s",
-					MaxBatchesForL1:                          1,
+					MaxBatchesForL1:                          10,
 					PrivateKey:                               testCase.SequencerPrivateKey,
 				},
 			}

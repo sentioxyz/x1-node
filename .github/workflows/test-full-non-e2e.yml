@@ -34,6 +34,6 @@ jobs:
 
     - name: Test
       env:
-        ZKPROVER_URI: xgon-prover
+        ZKPROVER_URI: 127.0.0.1
       run: make test-full-non-e2e
       working-directory: test

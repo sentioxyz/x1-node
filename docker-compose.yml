@@ -1,7 +1,7 @@
 version: "3.5"
 networks:
   default:
-    name: Xgon
+    name: xgon
 services:
   xgon-rpc:
     container_name: xgon-rpc

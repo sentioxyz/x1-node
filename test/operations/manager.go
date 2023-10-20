@@ -52,7 +52,7 @@ const (
 
 	DefaultWaitPeriodSendSequence                          = "15s"
 	DefaultLastBatchVirtualizationTimeMaxWaitPeriod        = "10s"
-	MaxBatchesForL1                                 uint64 = 1
+	MaxBatchesForL1                                 uint64 = 10
 )
 
 var (
