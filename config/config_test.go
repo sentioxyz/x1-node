@@ -181,8 +181,8 @@ func Test_Defaults(t *testing.T) {
 			expectedValue: types.NewDuration(5 * time.Second),
 		},
 		{
-			path:          "SequenceSender.MaxTxSizeForL1",
-			expectedValue: uint64(131072),
+			path:          "SequenceSender.MaxBatchesForL1",
+			expectedValue: uint64(10),
 		},
 		{
 			path:          "Etherman.URL",

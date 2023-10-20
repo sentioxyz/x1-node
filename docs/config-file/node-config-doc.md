@@ -1838,14 +1838,14 @@ LastBatchVirtualizationTimeMaxWaitPeriod="5s"
 
 **Type:** : `integer`
 
-**Default:** `0`
+**Default:** `10`
 
 **Description:** MaxBatchesForL1 is the maximum amount of batches to be sequenced in a single L1 tx
 
-**Example setting the default value** (0):
+**Example setting the default value** (10):
 ```
 [SequenceSender]
-MaxBatchesForL1=0
+MaxBatchesForL1=10
 ```
 
 ### <a name="SequenceSender_SenderAddress"></a>11.4. `SequenceSender.SenderAddress`

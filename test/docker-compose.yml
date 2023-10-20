@@ -400,7 +400,7 @@ services:
 
   xgon-permissionless-node-forced-DAC:
     container_name: xgon-permissionless-node-forced-DAC
-    image: cdk-validium-node
+    image: xgon-node
     ports:
       - 8125:8125
     environment:
@@ -408,23 +408,23 @@ services:
       - ZKEVM_NODE_STATEDB_USER=test_user
       - ZKEVM_NODE_STATEDB_PASSWORD=test_password
       - ZKEVM_NODE_STATEDB_NAME=state_db
-      - ZKEVM_NODE_STATEDB_HOST=cdk-validium-permissionless-db
+      - ZKEVM_NODE_STATEDB_HOST=xgon-permissionless-db
       - ZKEVM_NODE_POOL_DB_USER=test_user
       - ZKEVM_NODE_POOL_DB_PASSWORD=test_password
       - ZKEVM_NODE_POOL_DB_NAME=pool_db
-      - ZKEVM_NODE_POOL_DB_HOST=cdk-validium-permissionless-db
+      - ZKEVM_NODE_POOL_DB_HOST=xgon-permissionless-db
       - ZKEVM_NODE_RPC_PORT=8125
-      - ZKEVM_NODE_RPC_SEQUENCERNODEURI=http://cdk-validium-json-rpc:8123
+      - ZKEVM_NODE_RPC_SEQUENCERNODEURI=http://xgon-json-rpc:8123
       - ZKEVM_NODE_SYNCHRONIZER_TRUSTEDSEQUENCERURL=http://you-cant-touch-this:8123
-      - ZKEVM_NODE_MTCLIENT_URI=cdk-validium-permissionless-prover:50061
-      - ZKEVM_NODE_EXECUTOR_URI=cdk-validium-permissionless-prover:50071
+      - ZKEVM_NODE_MTCLIENT_URI=xgon-permissionless-prover:50061
+      - ZKEVM_NODE_EXECUTOR_URI=xgon-permissionless-prover:50071
     volumes:
       - ./config/test.node.config.toml:/app/config.toml
       - ./config/test.genesis.config.json:/app/genesis.json
     command:
       - "/bin/sh"
       - "-c"
-      - "/app/cdk-validium-node run --network custom --custom-network-file /app/genesis.json --cfg /app/config.toml --components \"rpc,synchronizer\""
+      - "/app/xgon-node run --network custom --custom-network-file /app/genesis.json --cfg /app/config.toml --components \"rpc,synchronizer\""
   xgon-permissionless-node:
     container_name: xgon-permissionless-node
     image: xgon-node

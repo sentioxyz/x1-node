@@ -688,7 +688,7 @@
 				"MaxBatchesForL1": {
 					"type": "integer",
 					"description": "MaxBatchesForL1 is the maximum amount of batches to be sequenced in a single L1 tx",
-					"default": 0
+					"default": 10
 				},
 				"SenderAddress": {
 					"items": {
