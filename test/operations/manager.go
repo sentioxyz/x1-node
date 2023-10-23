@@ -37,11 +37,13 @@ const (
 	DefaultSequencerPrivateKey            = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
 	DefaultSequencerBalance               = 400000
 	DefaultMaxCumulativeGasUsed           = 800000
-	DefaultL1DataCommitteeContract        = "0x0D9088C72Cd4F08e9dDe474D8F5394147f64b22C"
-	DefaultL1ZkEVMSmartContract           = "0x6Ae5b0863dBF3477335c0102DBF432aFf04ceb22"
+	DefaultL1DataCommitteeContract        = "0x6Ae5b0863dBF3477335c0102DBF432aFf04ceb22"
+	DefaultL1ZkEVMSmartContract           = "0x0D9088C72Cd4F08e9dDe474D8F5394147f64b22C"
 	DefaultL1NetworkURL                   = "http://localhost:8545"
 	DefaultL1NetworkWebSocketURL          = "ws://localhost:8546"
 	DefaultL1ChainID               uint64 = 1337
+	DefaultL1AdminAddress                 = "0x2ecf31ece36ccac2d3222a303b1409233ecbb225"
+	DefaultL1AdminPrivateKey              = "0xde3ca643a52f5543e84ba984c4419ff40dbabd0e483c31c1d09fee8168d68e38"
 
 	DefaultL2NetworkURL                 = "http://localhost:8123"
 	PermissionlessL2NetworkURL          = "http://localhost:8125"

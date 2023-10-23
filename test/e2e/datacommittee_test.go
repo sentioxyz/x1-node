@@ -66,7 +66,7 @@ func TestDataCommittee(t *testing.T) {
 	time.Sleep(5 * time.Second)
 	authL2, err := operations.GetAuth(operations.DefaultSequencerPrivateKey, operations.DefaultL2ChainID)
 	require.NoError(t, err)
-	authL1, err := operations.GetAuth(operations.DefaultSequencerPrivateKey, operations.DefaultL1ChainID)
+	authL1, err := operations.GetAuth(operations.DefaultL1AdminPrivateKey, operations.DefaultL1ChainID)
 	require.NoError(t, err)
 	clientL2, err := ethclient.Dial(operations.DefaultL2NetworkURL)
 	require.NoError(t, err)
@@ -111,11 +111,11 @@ func TestDataCommittee(t *testing.T) {
 	dacNodeConfig := config.Config{
 		L1: config.L1Config{
 			RpcURL:               "http://xgon-mock-l1-network:8545",
-			WsURL:              "ws://xgon-mock-l1-network:8546",
-			CDKValidiumAddress: "0x0D9088C72Cd4F08e9dDe474D8F5394147f64b22C",
+			WsURL:                "ws://xgon-mock-l1-network:8546",
+			CDKValidiumAddress:   "0x0D9088C72Cd4F08e9dDe474D8F5394147f64b22C",
 			DataCommitteeAddress: "0x6Ae5b0863dBF3477335c0102DBF432aFf04ceb22",
-			Timeout:            cTypes.NewDuration(time.Minute * 3),
-			RetryPeriod:        cTypes.NewDuration(time.Second * 5),
+			Timeout:              cTypes.NewDuration(time.Minute * 3),
+			RetryPeriod:          cTypes.NewDuration(time.Second * 5),
 		},
 		PrivateKey: cTypes.KeystoreFileConfig{
 			Path:     ksFile,
