@@ -64,6 +64,9 @@ type Config struct {
 	EnableHttpLog bool `mapstructure:"EnableHttpLog"`
 	// EnablePendingTransactionFilter enables pending transaction filter that can support query L2 pending transaction
 	EnablePendingTransactionFilter bool `mapstructure:"EnablePendingTransactionFilter"`
+
+	// Nacos configuration
+	Nacos NacosConfig `mspstructure:"Nacos"`
 }
 
 // WebSocketsConfig has parameters to config the rpc websocket support
@@ -79,4 +82,18 @@ type WebSocketsConfig struct {
 
 	// ReadLimit defines the maximum size of a message read from the client (in bytes)
 	ReadLimit int64 `mapstructure:"ReadLimit"`
+}
+
+type NacosConfig struct {
+	// URLs nacos server urls for discovery service of rest api, url is separated by ","
+	URLs string `mapstructure:"URLs"`
+
+	// NamespaceId nacos namepace id for discovery service of rest api
+	NamespaceId string `mapstructure:"NamespaceId"`
+
+	// ApplicationName rest application name in  nacos
+	ApplicationName string `mapstructure:"ApplicationName"`
+
+	// ExternalListenAddr Set the rest-server external ip and port, when it is launched by Docker
+	ExternalListenAddr string `mapstructure:"ExternalListenAddr"`
 }
