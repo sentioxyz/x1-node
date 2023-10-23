@@ -44,6 +44,7 @@ func TestStateTransition(t *testing.T) {
 					LastBatchVirtualizationTimeMaxWaitPeriod: "5s",
 					WaitPeriodSendSequence:                   "5s",
 					MaxBatchesForL1:                          10,
+					MaxTxSizeForL1:                           131072,
 					PrivateKey:                               testCase.SequencerPrivateKey,
 				},
 			}

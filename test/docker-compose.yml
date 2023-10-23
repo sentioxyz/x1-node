@@ -310,7 +310,7 @@ services:
 
   xgon-mock-l1-network:
     container_name: xgon-mock-l1-network
-    image: zjg555543/xgon-geth-contracts:v0.1.0_202310191910
+    image: zjg555543/xgon-geth-contracts:v0.1.0_202310231226
     ports:
       - 8545:8545
       - 8546:8546

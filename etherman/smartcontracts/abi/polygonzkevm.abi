@@ -1359,6 +1359,11 @@
         {
           "components": [
             {
+              "internalType": "bytes",
+              "name": "transactions",
+              "type": "bytes"
+            },
+            {
               "internalType": "bytes32",
               "name": "transactionsHash",
               "type": "bytes32"
@@ -1742,4 +1747,4 @@
       "stateMutability": "nonpayable",
       "type": "function"
     }
-  ]
+]

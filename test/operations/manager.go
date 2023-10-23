@@ -55,6 +55,7 @@ const (
 	DefaultWaitPeriodSendSequence                          = "15s"
 	DefaultLastBatchVirtualizationTimeMaxWaitPeriod        = "10s"
 	MaxBatchesForL1                                 uint64 = 10
+	MaxTxSizeForL1                                  uint64 = 131072
 )
 
 var (
@@ -72,6 +73,7 @@ type SequenceSenderConfig struct {
 	WaitPeriodSendSequence                   string
 	LastBatchVirtualizationTimeMaxWaitPeriod string
 	MaxBatchesForL1                          uint64
+	MaxTxSizeForL1                           uint64
 	SenderAddress                            string
 	PrivateKey                               string
 }
@@ -626,6 +628,7 @@ func GetDefaultOperationsConfig() *Config {
 			WaitPeriodSendSequence:                   DefaultWaitPeriodSendSequence,
 			LastBatchVirtualizationTimeMaxWaitPeriod: DefaultWaitPeriodSendSequence,
 			MaxBatchesForL1:                          MaxBatchesForL1,
+			MaxTxSizeForL1:                           MaxTxSizeForL1,
 			SenderAddress:                            DefaultSequencerAddress,
 			PrivateKey:                               DefaultSequencerPrivateKey},
 	}

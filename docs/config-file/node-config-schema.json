@@ -364,6 +364,33 @@
 					"type": "boolean",
 					"description": "EnablePendingTransactionFilter enables pending transaction filter that can support query L2 pending transaction",
 					"default": false
+				},
+				"Nacos": {
+					"properties": {
+						"URLs": {
+							"type": "string",
+							"description": "URLs nacos server urls for discovery service of rest api, url is separated by \",\"",
+							"default": ""
+						},
+						"NamespaceId": {
+							"type": "string",
+							"description": "NamespaceId nacos namepace id for discovery service of rest api",
+							"default": ""
+						},
+						"ApplicationName": {
+							"type": "string",
+							"description": "ApplicationName rest application name in  nacos",
+							"default": ""
+						},
+						"ExternalListenAddr": {
+							"type": "string",
+							"description": "ExternalListenAddr Set the rest-server external ip and port, when it is launched by Docker",
+							"default": ""
+						}
+					},
+					"additionalProperties": false,
+					"type": "object",
+					"description": "Nacos configuration"
 				}
 			},
 			"additionalProperties": false,
@@ -685,6 +712,11 @@
 						"300ms"
 					]
 				},
+				"MaxTxSizeForL1": {
+					"type": "integer",
+					"description": "MaxTxSizeForL1 is the maximum size a single transaction can have. This field has\nnon-trivial consequences: larger transactions than 128KB are significantly harder and\nmore expensive to propagate; larger transactions also take more resources\nto validate whether they fit into the pool or not.",
+					"default": 0
+				},
 				"MaxBatchesForL1": {
 					"type": "integer",
 					"description": "MaxBatchesForL1 is the maximum amount of batches to be sequenced in a single L1 tx",
@@ -730,6 +762,11 @@
 					"type": "integer",
 					"description": "Batch number where there is a forkid change (fork upgrade)",
 					"default": 0
+				},
+				"UseValidium": {
+					"type": "boolean",
+					"description": "UseValidium is a flag to enable/disable the use of validium",
+					"default": true
 				}
 			},
 			"additionalProperties": false,

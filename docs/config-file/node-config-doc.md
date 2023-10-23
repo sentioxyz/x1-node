@@ -761,6 +761,7 @@ FreeGasAddress="0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
 | - [EnableL2SuggestedGasPricePolling](#RPC_EnableL2SuggestedGasPricePolling ) | No      | boolean | No         | -          | EnableL2SuggestedGasPricePolling enables polling of the L2 gas price to block tx in the RPC with lower gas price.                                                                          |
 | - [TraceBatchUseHTTPS](#RPC_TraceBatchUseHTTPS )                             | No      | boolean | No         | -          | TraceBatchUseHTTPS enables, in the debug_traceBatchByNum endpoint, the use of the HTTPS protocol (instead of HTTP)<br />to do the parallel requests to RPC.debug_traceTransaction endpoint |
 | - [EnablePendingTransactionFilter](#RPC_EnablePendingTransactionFilter )     | No      | boolean | No         | -          | EnablePendingTransactionFilter enables pending transaction filter that can support query L2 pending transaction                                                                            |
+| - [Nacos](#RPC_Nacos )                                                       | No      | object  | No         | -          | Nacos configuration                                                                                                                                                                        |
 
 ### <a name="RPC_Host"></a>8.1. `RPC.Host`
 
@@ -982,6 +983,74 @@ TraceBatchUseHTTPS=true
 ```
 [RPC]
 EnablePendingTransactionFilter=false
+```
+
+### <a name="RPC_Nacos"></a>8.12. `[RPC.Nacos]`
+
+**Type:** : `object`
+**Description:** Nacos configuration
+
+| Property                                               | Pattern | Type   | Deprecated | Definition | Title/Description                                                                          |
+| ------------------------------------------------------ | ------- | ------ | ---------- | ---------- | ------------------------------------------------------------------------------------------ |
+| - [URLs](#RPC_Nacos_URLs )                             | No      | string | No         | -          | URLs nacos server urls for discovery service of rest api, url is separated by ","          |
+| - [NamespaceId](#RPC_Nacos_NamespaceId )               | No      | string | No         | -          | NamespaceId nacos namepace id for discovery service of rest api                            |
+| - [ApplicationName](#RPC_Nacos_ApplicationName )       | No      | string | No         | -          | ApplicationName rest application name in  nacos                                            |
+| - [ExternalListenAddr](#RPC_Nacos_ExternalListenAddr ) | No      | string | No         | -          | ExternalListenAddr Set the rest-server external ip and port, when it is launched by Docker |
+
+#### <a name="RPC_Nacos_URLs"></a>8.12.1. `RPC.Nacos.URLs`
+
+**Type:** : `string`
+
+**Default:** `""`
+
+**Description:** URLs nacos server urls for discovery service of rest api, url is separated by ","
+
+**Example setting the default value** (""):
+```
+[RPC.Nacos]
+URLs=""
+```
+
+#### <a name="RPC_Nacos_NamespaceId"></a>8.12.2. `RPC.Nacos.NamespaceId`
+
+**Type:** : `string`
+
+**Default:** `""`
+
+**Description:** NamespaceId nacos namepace id for discovery service of rest api
+
+**Example setting the default value** (""):
+```
+[RPC.Nacos]
+NamespaceId=""
+```
+
+#### <a name="RPC_Nacos_ApplicationName"></a>8.12.3. `RPC.Nacos.ApplicationName`
+
+**Type:** : `string`
+
+**Default:** `""`
+
+**Description:** ApplicationName rest application name in  nacos
+
+**Example setting the default value** (""):
+```
+[RPC.Nacos]
+ApplicationName=""
+```
+
+#### <a name="RPC_Nacos_ExternalListenAddr"></a>8.12.4. `RPC.Nacos.ExternalListenAddr`
+
+**Type:** : `string`
+
+**Default:** `""`
+
+**Description:** ExternalListenAddr Set the rest-server external ip and port, when it is launched by Docker
+
+**Example setting the default value** (""):
+```
+[RPC.Nacos]
+ExternalListenAddr=""
 ```
 
 ## <a name="Synchronizer"></a>9. `[Synchronizer]`
@@ -1771,15 +1840,17 @@ DefaultMinGasPriceAllowed=0
 **Type:** : `object`
 **Description:** Configuration of the sequence sender service
 
-| Property                                                                                                | Pattern | Type             | Deprecated | Definition | Title/Description                                                                                                                 |
-| ------------------------------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| - [WaitPeriodSendSequence](#SequenceSender_WaitPeriodSendSequence )                                     | No      | string           | No         | -          | Duration                                                                                                                          |
-| - [LastBatchVirtualizationTimeMaxWaitPeriod](#SequenceSender_LastBatchVirtualizationTimeMaxWaitPeriod ) | No      | string           | No         | -          | Duration                                                                                                                          |
-| - [MaxBatchesForL1](#SequenceSender_MaxBatchesForL1 )                                                   | No      | integer          | No         | -          | MaxBatchesForL1 is the maximum amount of batches to be sequenced in a single L1 tx                                                |
-| - [SenderAddress](#SequenceSender_SenderAddress )                                                       | No      | array of integer | No         | -          | SenderAddress defines which private key the eth tx manager needs to use<br />to sign the L1 txs                                   |
-| - [L2Coinbase](#SequenceSender_L2Coinbase )                                                             | No      | array of integer | No         | -          | L2Coinbase defines which addess is going to receive the fees                                                                      |
-| - [PrivateKey](#SequenceSender_PrivateKey )                                                             | No      | object           | No         | -          | PrivateKey defines all the key store files that are going<br />to be read in order to provide the private keys to sign the L1 txs |
-| - [ForkUpgradeBatchNumber](#SequenceSender_ForkUpgradeBatchNumber )                                     | No      | integer          | No         | -          | Batch number where there is a forkid change (fork upgrade)                                                                        |
+| Property                                                                                                | Pattern | Type             | Deprecated | Definition | Title/Description                                                                                                                                                                                                                                                                                                  |
+| ------------------------------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| - [WaitPeriodSendSequence](#SequenceSender_WaitPeriodSendSequence )                                     | No      | string           | No         | -          | Duration                                                                                                                                                                                                                                                                                                           |
+| - [LastBatchVirtualizationTimeMaxWaitPeriod](#SequenceSender_LastBatchVirtualizationTimeMaxWaitPeriod ) | No      | string           | No         | -          | Duration                                                                                                                                                                                                                                                                                                           |
+| - [MaxTxSizeForL1](#SequenceSender_MaxTxSizeForL1 )                                                     | No      | integer          | No         | -          | MaxTxSizeForL1 is the maximum size a single transaction can have. This field has<br />non-trivial consequences: larger transactions than 128KB are significantly harder and<br />more expensive to propagate; larger transactions also take more resources<br />to validate whether they fit into the pool or not. |
+| - [MaxBatchesForL1](#SequenceSender_MaxBatchesForL1 )                                                   | No      | integer          | No         | -          | MaxBatchesForL1 is the maximum amount of batches to be sequenced in a single L1 tx                                                                                                                                                                                                                                 |
+| - [SenderAddress](#SequenceSender_SenderAddress )                                                       | No      | array of integer | No         | -          | SenderAddress defines which private key the eth tx manager needs to use<br />to sign the L1 txs                                                                                                                                                                                                                    |
+| - [L2Coinbase](#SequenceSender_L2Coinbase )                                                             | No      | array of integer | No         | -          | L2Coinbase defines which addess is going to receive the fees                                                                                                                                                                                                                                                       |
+| - [PrivateKey](#SequenceSender_PrivateKey )                                                             | No      | object           | No         | -          | PrivateKey defines all the key store files that are going<br />to be read in order to provide the private keys to sign the L1 txs                                                                                                                                                                                  |
+| - [ForkUpgradeBatchNumber](#SequenceSender_ForkUpgradeBatchNumber )                                     | No      | integer          | No         | -          | Batch number where there is a forkid change (fork upgrade)                                                                                                                                                                                                                                                         |
+| - [UseValidium](#SequenceSender_UseValidium )                                                           | No      | boolean          | No         | -          | UseValidium is a flag to enable/disable the use of validium                                                                                                                                                                                                                                                        |
 
 ### <a name="SequenceSender_WaitPeriodSendSequence"></a>11.1. `SequenceSender.WaitPeriodSendSequence`
 
@@ -1834,7 +1905,24 @@ WaitPeriodSendSequence="5s"
 LastBatchVirtualizationTimeMaxWaitPeriod="5s"
 ```
 
-### <a name="SequenceSender_MaxBatchesForL1"></a>11.3. `SequenceSender.MaxBatchesForL1`
+### <a name="SequenceSender_MaxTxSizeForL1"></a>11.3. `SequenceSender.MaxTxSizeForL1`
+
+**Type:** : `integer`
+
+**Default:** `0`
+
+**Description:** MaxTxSizeForL1 is the maximum size a single transaction can have. This field has
+non-trivial consequences: larger transactions than 128KB are significantly harder and
+more expensive to propagate; larger transactions also take more resources
+to validate whether they fit into the pool or not.
+
+**Example setting the default value** (0):
+```
+[SequenceSender]
+MaxTxSizeForL1=0
+```
+
+### <a name="SequenceSender_MaxBatchesForL1"></a>11.4. `SequenceSender.MaxBatchesForL1`
 
 **Type:** : `integer`
 
@@ -1848,13 +1936,13 @@ LastBatchVirtualizationTimeMaxWaitPeriod="5s"
 MaxBatchesForL1=10
 ```
 
-### <a name="SequenceSender_SenderAddress"></a>11.4. `SequenceSender.SenderAddress`
+### <a name="SequenceSender_SenderAddress"></a>11.5. `SequenceSender.SenderAddress`
 
 **Type:** : `array of integer`
 **Description:** SenderAddress defines which private key the eth tx manager needs to use
 to sign the L1 txs
 
-### <a name="SequenceSender_L2Coinbase"></a>11.5. `SequenceSender.L2Coinbase`
+### <a name="SequenceSender_L2Coinbase"></a>11.6. `SequenceSender.L2Coinbase`
 
 **Type:** : `array of integer`
 
@@ -1868,7 +1956,7 @@ to sign the L1 txs
 L2Coinbase="0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
 ```
 
-### <a name="SequenceSender_PrivateKey"></a>11.6. `[SequenceSender.PrivateKey]`
+### <a name="SequenceSender_PrivateKey"></a>11.7. `[SequenceSender.PrivateKey]`
 
 **Type:** : `object`
 **Description:** PrivateKey defines all the key store files that are going
@@ -1879,7 +1967,7 @@ to be read in order to provide the private keys to sign the L1 txs
 | - [Path](#SequenceSender_PrivateKey_Path )         | No      | string | No         | -          | Path is the file path for the key store file           |
 | - [Password](#SequenceSender_PrivateKey_Password ) | No      | string | No         | -          | Password is the password to decrypt the key store file |
 
-#### <a name="SequenceSender_PrivateKey_Path"></a>11.6.1. `SequenceSender.PrivateKey.Path`
+#### <a name="SequenceSender_PrivateKey_Path"></a>11.7.1. `SequenceSender.PrivateKey.Path`
 
 **Type:** : `string`
 
@@ -1893,7 +1981,7 @@ to be read in order to provide the private keys to sign the L1 txs
 Path="/pk/sequencer.keystore"
 ```
 
-#### <a name="SequenceSender_PrivateKey_Password"></a>11.6.2. `SequenceSender.PrivateKey.Password`
+#### <a name="SequenceSender_PrivateKey_Password"></a>11.7.2. `SequenceSender.PrivateKey.Password`
 
 **Type:** : `string`
 
@@ -1907,7 +1995,7 @@ Path="/pk/sequencer.keystore"
 Password="testonly"
 ```
 
-### <a name="SequenceSender_ForkUpgradeBatchNumber"></a>11.7. `SequenceSender.ForkUpgradeBatchNumber`
+### <a name="SequenceSender_ForkUpgradeBatchNumber"></a>11.8. `SequenceSender.ForkUpgradeBatchNumber`
 
 **Type:** : `integer`
 
@@ -1919,6 +2007,20 @@ Password="testonly"
 ```
 [SequenceSender]
 ForkUpgradeBatchNumber=0
+```
+
+### <a name="SequenceSender_UseValidium"></a>11.9. `SequenceSender.UseValidium`
+
+**Type:** : `boolean`
+
+**Default:** `true`
+
+**Description:** UseValidium is a flag to enable/disable the use of validium
+
+**Example setting the default value** (true):
+```
+[SequenceSender]
+UseValidium=true
 ```
 
 ## <a name="Aggregator"></a>12. `[Aggregator]`
