@@ -1,1 +1,1 @@
-package e2e_group_dac
+../../test/e2e/datacommittee_test.go
