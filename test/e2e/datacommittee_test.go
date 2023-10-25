@@ -112,8 +112,8 @@ func TestDataCommittee(t *testing.T) {
 		L1: config.L1Config{
 			RpcURL:               "http://xgon-mock-l1-network:8545",
 			WsURL:                "ws://xgon-mock-l1-network:8546",
-			CDKValidiumAddress:   "0x0D9088C72Cd4F08e9dDe474D8F5394147f64b22C",
-			DataCommitteeAddress: "0x6Ae5b0863dBF3477335c0102DBF432aFf04ceb22",
+			CDKValidiumAddress:   "0x3fBC3dAAF173Ce3185757C5c38622536Ae76fe59",
+			DataCommitteeAddress: "0x4eBfE2aC5eC9E2ac20e81aF97C726b8f1E07485a",
 			Timeout:              cTypes.NewDuration(time.Minute * 3),
 			RetryPeriod:          cTypes.NewDuration(time.Second * 5),
 		},
