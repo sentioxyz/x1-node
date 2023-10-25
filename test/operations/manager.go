@@ -158,7 +158,7 @@ func (m *Manager) SetGenesisAccountsBalance(genesisAccounts map[string]big.Int) 
 
 func (m *Manager) SetGenesis(genesisActions []*state.GenesisAction) error {
 	genesisBlock := state.Block{
-		BlockNumber: 102,
+		BlockNumber: 231,
 		BlockHash:   state.ZeroHash,
 		ParentHash:  state.ZeroHash,
 		ReceivedAt:  time.Now(),
@@ -195,7 +195,7 @@ func (m *Manager) SetForkID(forkID uint64) error {
 		ToBatchNumber:   math.MaxUint64,
 		ForkId:          forkID,
 		Version:         "forkID",
-		BlockNumber:     102,
+		BlockNumber:     231,
 	}
 	err = m.st.AddForkIDInterval(m.ctx, fID, dbTx)
 
