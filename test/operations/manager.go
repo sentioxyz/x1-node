@@ -37,8 +37,8 @@ const (
 	DefaultSequencerPrivateKey            = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
 	DefaultSequencerBalance               = 400000
 	DefaultMaxCumulativeGasUsed           = 800000
-	DefaultL1DataCommitteeContract        = "0x4eBfE2aC5eC9E2ac20e81aF97C726b8f1E07485a"
-	DefaultL1ZkEVMSmartContract           = "0x3fBC3dAAF173Ce3185757C5c38622536Ae76fe59"
+	DefaultL1DataCommitteeContract        = "0x6Ae5b0863dBF3477335c0102DBF432aFf04ceb22"
+	DefaultL1ZkEVMSmartContract           = "0x0D9088C72Cd4F08e9dDe474D8F5394147f64b22C"
 	DefaultL1NetworkURL                   = "http://localhost:8545"
 	DefaultL1NetworkWebSocketURL          = "ws://localhost:8546"
 	DefaultL1ChainID               uint64 = 1337
