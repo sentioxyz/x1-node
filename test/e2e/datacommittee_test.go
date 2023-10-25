@@ -39,7 +39,7 @@ func TestDataCommittee(t *testing.T) {
 		ksFile           = "/tmp/pkey"
 		cfgFile          = "/tmp/dacnodeconfigfile.json"
 		ksPass           = "pass"
-		dacNodeContainer = "okexchain/xgon-data-availability:origin_release_v0.1.0_20231017143653"
+		dacNodeContainer = "zjg555543/xgon-dac:v0.1.0"
 	)
 
 	// Setup
@@ -125,7 +125,7 @@ func TestDataCommittee(t *testing.T) {
 			Name:      "committee_db",
 			User:      "committee_user",
 			Password:  "committee_password",
-			Host:      "xgon-data-node-db",
+			Host:      "xgon-data-availability-db",
 			Port:      "5432",
 			EnableLog: false,
 			MaxConns:  10,
