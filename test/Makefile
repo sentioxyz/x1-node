@@ -9,12 +9,14 @@ DOCKERCOMPOSEAPPETHTXMANAGER := xgon-eth-tx-manager
 DOCKERCOMPOSESTATEDB := xgon-state-db
 DOCKERCOMPOSEPOOLDB := xgon-pool-db
 DOCKERCOMPOSEEVENTDB := xgon-event-db
+DOCKER_COMPOSE_DAC_DB := xgon-data-availability-db
 DOCKERCOMPOSENETWORK := xgon-mock-l1-network
 DOCKERCOMPOSEEXPLORERL1 := xgon-explorer-l1
 DOCKERCOMPOSEEXPLORERL1DB := xgon-explorer-l1-db
 DOCKERCOMPOSEEXPLORERL2 := xgon-explorer-l2
 DOCKERCOMPOSEEXPLORERL2DB := xgon-explorer-l2-db
 DOCKERCOMPOSEEXPLORERRPC := xgon-explorer-json-rpc
+DOCKER_COMPOSE_DAC_NODE := xgon-data-availability
 DOCKERCOMPOSEZKPROVER := xgon-prover
 DOCKERCOMPOSEPERMISSIONLESSDB := xgon-permissionless-db
 DOCKERCOMPOSEPERMISSIONLESSNODE := xgon-permissionless-node
@@ -27,6 +29,8 @@ DOCKERCOMPOSEGRAFANA := grafana
 RUNSTATEDB := $(DOCKERCOMPOSE) up -d $(DOCKERCOMPOSESTATEDB)
 RUNPOOLDB := $(DOCKERCOMPOSE) up -d $(DOCKERCOMPOSEPOOLDB)
 RUNEVENTDB := $(DOCKERCOMPOSE) up -d $(DOCKERCOMPOSEEVENTDB)
+RUN_DAC_DB := $(DOCKER_COMPOSE) up -d $(DOCKER_COMPOSE_DAC_DB)
+RUN_DAC_NODE := $(DOCKER_COMPOSE) up -d $(DOCKER_COMPOSE_DAC_NODE)
 RUNSEQUENCER := $(DOCKERCOMPOSE) up -d $(DOCKERCOMPOSEAPPSEQ)
 RUNSEQUENCESENDER := $(DOCKERCOMPOSE) up -d $(DOCKERCOMPOSEAPPSEQSENDER)
 RUNL2GASPRICER := $(DOCKERCOMPOSE) up -d $(DOCKERCOMPOSEAPPL2GASP)
@@ -58,6 +62,8 @@ RUN := $(DOCKERCOMPOSE) up -d
 STOPSTATEDB := $(DOCKERCOMPOSE) stop $(DOCKERCOMPOSESTATEDB) && $(DOCKERCOMPOSE) rm -f $(DOCKERCOMPOSESTATEDB)
 STOPPOOLDB := $(DOCKERCOMPOSE) stop $(DOCKERCOMPOSEPOOLDB) && $(DOCKERCOMPOSE) rm -f $(DOCKERCOMPOSEPOOLDB)
 STOPEVENTDB := $(DOCKERCOMPOSE) stop $(DOCKERCOMPOSEEVENTDB) && $(DOCKERCOMPOSE) rm -f $(DOCKERCOMPOSEEVENTDB)
+STOPDACDB := $(DOCKERCOMPOSE) stop $(DOCKER_COMPOSE_DAC_DB) && $(DOCKERCOMPOSE) rm -f $(DOCKER_COMPOSE_DAC_DB)
+STOPDACNODE := $(DOCKERCOMPOSE) stop $(DOCKER_COMPOSE_DAC_NODE) && $(DOCKERCOMPOSE) rm -f $(DOCKER_COMPOSE_DAC_NODE)
 STOPSEQUENCER := $(DOCKERCOMPOSE) stop $(DOCKERCOMPOSEAPPSEQ) && $(DOCKERCOMPOSE) rm -f $(DOCKERCOMPOSEAPPSEQ)
 STOPSEQUENCESENDER := $(DOCKERCOMPOSE) stop $(DOCKERCOMPOSEAPPSEQSENDER) && $(DOCKERCOMPOSE) rm -f $(DOCKERCOMPOSEAPPSEQSENDER)
 STOPL2GASPRICER := $(DOCKERCOMPOSE) stop $(DOCKERCOMPOSEAPPL2GASP) && $(DOCKERCOMPOSE) rm -f $(DOCKERCOMPOSEAPPL2GASP)
@@ -94,6 +100,7 @@ test-full-non-e2e: stop ## Runs non-e2e tests checking race conditions
 	$(RUNSTATEDB)
 	$(RUNPOOLDB)
 	$(RUNEVENTDB)
+	$(RUN_DAC_DB)
 	sleep 2
 	$(RUNZKPROVER)
 	sleep 7
@@ -107,6 +114,7 @@ test-e2e-group-1: stop ## Runs group 1 e2e tests checking race conditions
 	$(RUNSTATEDB)
 	$(RUNPOOLDB)
 	$(RUNEVENTDB)
+	$(RUN_DAC_DB)
 	sleep 5
 	$(RUNZKPROVER)
 	docker ps -a
@@ -118,6 +126,7 @@ test-e2e-group-2: stop ## Runs group 2 e2e tests checking race conditions
 	$(RUNSTATEDB)
 	$(RUNPOOLDB)
 	$(RUNEVENTDB)
+	$(RUN_DAC_DB)
 	sleep 5
 	$(RUNZKPROVER)
 	docker ps -a
@@ -129,6 +138,7 @@ test-e2e-group-3: stop ## Runs group 3 e2e tests checking race conditions
 	$(RUNSTATEDB)
 	$(RUNPOOLDB)
 	$(RUNEVENTDB)
+	$(RUN_DAC_DB)
 	sleep 5
 	$(RUNZKPROVER)
 	docker ps -a
@@ -140,6 +150,7 @@ test-e2e-group-4: stop ## Runs group 4 e2e tests checking race conditions
 	$(RUNSTATEDB)
 	$(RUNPOOLDB)
 	$(RUNEVENTDB)
+	$(RUN_DAC_DB)
 	sleep 5
 	$(RUNZKPROVER)
 	docker ps -a
@@ -151,6 +162,7 @@ test-e2e-group-5: stop ## Runs group 5 e2e tests checking race conditions
 	$(RUNSTATEDB)
 	$(RUNPOOLDB)
 	$(RUNEVENTDB)
+	$(RUN_DAC_DB)
 	sleep 5
 	$(RUNZKPROVER)
 	docker ps -a
@@ -162,6 +174,7 @@ test-e2e-group-6: stop ## Runs group 6 e2e tests checking race conditions
 	$(RUNSTATEDB)
 	$(RUNPOOLDB)
 	$(RUNEVENTDB)
+	$(RUN_DAC_DB)
 	sleep 5
 	$(RUNZKPROVER)
 	docker ps -a
@@ -173,6 +186,7 @@ test-e2e-group-7: stop ## Runs group 7 e2e tests checking race conditions
 	$(RUNSTATEDB)
 	$(RUNPOOLDB)
 	$(RUNEVENTDB)
+	$(RUN_DAC_DB)
 	sleep 5
 	$(RUNZKPROVER)
 	docker ps -a
@@ -184,6 +198,7 @@ test-e2e-group-8: stop ## Runs group 8 e2e tests checking race conditions
 	$(RUNSTATEDB)
 	$(RUNPOOLDB)
 	$(RUNEVENTDB)
+	$(RUN_DAC_DB)
 	sleep 5
 	$(RUNZKPROVER)
 	docker ps -a
@@ -196,6 +211,7 @@ test-e2e-group-9: stop ## Runs group 9 e2e tests checking race conditions
 	$(RUNSTATEDB)
 	$(RUNPOOLDB)
 	$(RUNEVENTDB)
+	$(RUN_DAC_DB)
 	sleep 5
 	$(RUNZKPROVER)
 	docker ps -a
@@ -208,6 +224,7 @@ test-e2e-group-10: stop ## Runs group 10 e2e tests checking race conditions
 	$(RUNSTATEDB)
 	$(RUNPOOLDB)
 	$(RUNEVENTDB)
+	$(RUN_DAC_DB)
 	sleep 5
 	$(RUNZKPROVER)
 	docker ps -a
@@ -220,6 +237,7 @@ test-e2e-group-11: stop ## Runs group 11 e2e tests checking race conditions
 	$(RUNSTATEDB)
 	$(RUNPOOLDB)
 	$(RUNEVENTDB)
+	$(RUN_DAC_DB)
 	sleep 5
 	$(RUNZKPROVER)
 	docker ps -a
@@ -232,6 +250,7 @@ test-e2e-group-dac-1: stop ## Runs xgon-validium-1 e2e tests checking race condi
 	$(RUNSTATEDB)
 	$(RUNPOOLDB)
 	$(RUNEVENTDB)
+	$(RUN_DAC_DB)
 	sleep 5
 	$(RUNZKPROVER)
 	docker ps -a
@@ -244,6 +263,7 @@ benchmark-sequencer-eth-transfers: stop
 	$(RUNSTATEDB)
 	$(RUNPOOLDB)
 	$(RUNEVENTDB)
+	$(RUN_DAC_DB)
 	sleep 5
 	$(RUNZKPROVER)
 	$(RUNSYNC)
@@ -263,6 +283,7 @@ benchmark-sequencer-erc20-transfers: stop
 	$(RUNSTATEDB)
 	$(RUNPOOLDB)
 	$(RUNEVENTDB)
+	$(RUN_DAC_DB)
 	sleep 5
 	$(RUNZKPROVER)
 	$(RUNSYNC)
@@ -281,18 +302,21 @@ run-db: ## Runs the node database
 	$(RUNSTATEDB)
 	$(RUNPOOLDB)
 	$(RUNEVENTDB)
+	$(RUN_DAC_DB)
 
 .PHONY: stop-db
 stop-db: ## Stops the node database
 	$(STOPEVENTDB)
 	$(STOPPOOLDB)
 	$(STOPSTATEDB)
+	$(STOPDACDB)
 
 .PHONY: run-node
 run-node: ## Runs the node
 	$(RUNETHTXMANAGER)
 	$(RUNSYNC)
 	sleep 2
+	$(RUN_DAC_NODE)
 	$(RUNSEQUENCER)
 	$(RUNSEQUENCESENDER)
 	$(RUNL2GASPRICER)
@@ -301,6 +325,7 @@ run-node: ## Runs the node
 
 .PHONY: stop-node
 stop-node: ## Stops the node
+	$(STOPDACNODE)
 	$(STOPSEQUENCER)
 	$(STOPSEQUENCESENDER)
 	$(STOPJSONRPC)
@@ -468,6 +493,7 @@ run: ## Runs a full node
 	$(RUNSTATEDB)
 	$(RUNPOOLDB)
 	$(RUNEVENTDB)
+	$(RUN_DAC_DB)
 	$(RUNL1NETWORK)
 	sleep 1
 	$(RUNZKPROVER)
@@ -475,6 +501,7 @@ run: ## Runs a full node
 	sleep 3
 	$(RUNSYNC)
 	sleep 2
+	$(RUN_DAC_NODE)
 	$(RUNETHTXMANAGER)
 	$(RUNSEQUENCER)
 	$(RUNSEQUENCESENDER)

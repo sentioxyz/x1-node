@@ -310,7 +310,7 @@ services:
 
   xgon-mock-l1-network:
     container_name: xgon-mock-l1-network
-    image: zjg555543/xgon-geth-contracts:v0.1.0_202310231226
+    image: zjg555543/geth-dac:v0.1.0
     ports:
       - 8545:8545
       - 8546:8546
@@ -510,3 +510,30 @@ services:
       - ./config/test.genesis.config.json:/app/genesis.json
     command:
       - "/bin/sh"
+
+  xgon-data-availability:
+    container_name: xgon-data-availability
+    image: zjg555543/xgon-dac:v0.1.0
+    ports:
+      - 8444:8444
+    volumes:
+      - ./test/config/test.da.toml:/app/config.toml
+      - ./test/config/test-member.keystore:/pk/test-member.keystore
+    command:
+      - "/bin/sh"
+      - "-c"
+      - "/app/xgon-data-availability run --cfg /app/config.toml"
+
+  xgon-data-availability-db:
+    container_name: xgon-data-availability-db
+    image: postgres
+    ports:
+      - 5438:5432
+    environment:
+      - POSTGRES_USER=committee_user
+      - POSTGRES_PASSWORD=committee_password
+      - POSTGRES_DB=committee_db
+    command:
+      - "postgres"
+      - "-N"
+      - "500"
