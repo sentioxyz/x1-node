@@ -39,7 +39,7 @@ func TestDataCommittee(t *testing.T) {
 		ksFile           = "/tmp/pkey"
 		cfgFile          = "/tmp/dacnodeconfigfile.json"
 		ksPass           = "pass"
-		dacNodeContainer = "zjg555543/xgon-dac:v0.1.0"
+		dacNodeContainer = "okexchain/xgon-data-availability:origin_release_v0.1.0_20231017143653"
 	)
 
 	// Setup
