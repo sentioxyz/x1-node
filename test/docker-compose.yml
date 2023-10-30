@@ -310,7 +310,7 @@ services:
 
   xgon-mock-l1-network:
     container_name: xgon-mock-l1-network
-    image: zjg555543/geth:v0.1.0_202310251853
+    image: okexchain/xgon-geth:e2e_v0.1.0_20231030
     ports:
       - 8545:8545
       - 8546:8546
@@ -493,7 +493,7 @@ services:
 
   xgon-data-availability:
     container_name: xgon-data-availability
-    image: zjg555543/xgon-dac:v0.1.0
+    image: okexchain/xgon-data-availability:e2e_v0.1.0_20231030
     ports:
       - 8444:8444
     volumes:
