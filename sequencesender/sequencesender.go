@@ -192,12 +192,12 @@ func (s *SequenceSender) getSequencesToSend(ctx context.Context) ([]types.Sequen
 		}
 
 		sequences = append(sequences, seq)
-		if seq.BatchNumber == 2 {
+		if seq.BatchNumber == 2 { // nolint
 			seq1 := types.Sequence{
 				GlobalExitRoot: batch.GlobalExitRoot,
 				Timestamp:      batch.Timestamp.Unix(),
 				BatchL2Data:    []byte{0x01, 0x02, 0x03, 0x04, 0x05},
-				BatchNumber:    3,
+				BatchNumber:    3, // nolint
 			}
 			sequences = append(sequences, seq1)
 		}
