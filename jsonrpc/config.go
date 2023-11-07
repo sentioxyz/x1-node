@@ -48,7 +48,7 @@ type Config struct {
 	// NacosWs configuration
 	NacosWs NacosConfig `mapstructure:"NacosWs"`
 
-	// DisableAPI disable some API
+	// DisableAPIs disable some API
 	DisableAPIs []string `mapstructure:"DisableAPIs"`
 }
 
