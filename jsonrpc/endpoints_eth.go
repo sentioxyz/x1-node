@@ -9,6 +9,11 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/ethereum/go-ethereum/common"
+	ethTypes "github.com/ethereum/go-ethereum/core/types"
+	"github.com/gorilla/websocket"
+	"github.com/jackc/pgx/v4"
+
 	"github.com/0xPolygonHermez/zkevm-node/hex"
 	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/client"
 	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/types"
@@ -16,10 +21,6 @@ import (
 	"github.com/0xPolygonHermez/zkevm-node/pool"
 	"github.com/0xPolygonHermez/zkevm-node/state"
 	"github.com/0xPolygonHermez/zkevm-node/state/runtime"
-	"github.com/ethereum/go-ethereum/common"
-	ethTypes "github.com/ethereum/go-ethereum/core/types"
-	"github.com/gorilla/websocket"
-	"github.com/jackc/pgx/v4"
 )
 
 const (
@@ -811,6 +812,9 @@ func (e *EthEndpoints) NewFilter(filter LogFilter) (interface{}, types.Error) {
 
 // internal
 func (e *EthEndpoints) newFilter(wsConn *websocket.Conn, filter LogFilter) (interface{}, types.Error) {
+	if _, ok := e.cfg.DisableAPIs["eth_newFilter"]; ok {
+		return nil, types.NewRPCError(types.DefaultErrorCode, "not supported yet")
+	}
 	id, err := e.storage.NewLogFilter(wsConn, filter)
 	if errors.Is(err, ErrFilterInvalidPayload) {
 		return RPCErrorResponse(types.InvalidParamsErrorCode, err.Error(), nil)
