@@ -812,7 +812,7 @@ func (e *EthEndpoints) NewFilter(filter LogFilter) (interface{}, types.Error) {
 
 // internal
 func (e *EthEndpoints) newFilter(wsConn *websocket.Conn, filter LogFilter) (interface{}, types.Error) {
-	if _, ok := e.cfg.DisableAPIs["eth_newFilter"]; ok {
+	if types.Contains(e.cfg.DisableAPIs, "eth_newFilter") {
 		return nil, types.NewRPCError(types.DefaultErrorCode, "not supported yet")
 	}
 	id, err := e.storage.NewLogFilter(wsConn, filter)

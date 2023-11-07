@@ -49,7 +49,7 @@ type Config struct {
 	NacosWs NacosConfig `mapstructure:"NacosWs"`
 
 	// DisableAPI disable some API
-	DisableAPIs map[string]struct{} `mapstructure:"DisableAPIs"`
+	DisableAPIs []string `mapstructure:"DisableAPIs"`
 }
 
 // WebSocketsConfig has parameters to config the rpc websocket support
