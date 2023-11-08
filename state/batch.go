@@ -431,9 +431,11 @@ func (s *State) ProcessAndStoreClosedBatch(ctx context.Context, processingCtx Pr
 		return common.Hash{}, noFlushID, noProverID, err
 	}
 
+	hasError := false
 	// Sanity check
 	if len(decodedTransactions) != len(processed.Responses) {
 		log.Errorf("number of decoded (%d) and processed (%d) transactions do not match", len(decodedTransactions), len(processed.Responses))
+		hasError = true
 	}
 
 	// Filter unprocessed txs and decode txs to store metadata
@@ -448,10 +450,15 @@ func (s *State) ProcessAndStoreClosedBatch(ctx context.Context, processingCtx Pr
 			// Remove unprocessed tx
 			if i == len(processed.Responses)-1 {
 				processed.Responses = processed.Responses[:i]
-				decodedTransactions = decodedTransactions[:i]
+				if !hasError {
+					decodedTransactions = decodedTransactions[:i]
+				}
+
 			} else {
 				processed.Responses = append(processed.Responses[:i], processed.Responses[i+1:]...)
-				decodedTransactions = append(decodedTransactions[:i], decodedTransactions[i+1:]...)
+				if !hasError {
+					decodedTransactions = append(decodedTransactions[:i], decodedTransactions[i+1:]...)
+				}
 			}
 			i--
 		}

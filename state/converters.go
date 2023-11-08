@@ -151,7 +151,9 @@ func (s *State) convertToProcessTransactionResponse(txs []types.Transaction, res
 		result.CallTrace = *callTrace
 		result.EffectiveGasPrice = response.EffectiveGasPrice
 		result.EffectivePercentage = response.EffectivePercentage
-		result.Tx = txs[i]
+		if len(txs) != 0 {
+			result.Tx = txs[i]
+		}
 
 		_, err = DecodeTx(common.Bytes2Hex(response.GetRlpTx()))
 		if err != nil {
@@ -175,7 +177,7 @@ func (s *State) convertToProcessTransactionResponse(txs []types.Transaction, res
 		results = append(results, result)
 
 		log.Debugf("ProcessTransactionResponse[TxHash]: %v", result.TxHash)
-		log.Debugf("ProcessTransactionResponse[Nonce]: %v", result.Tx.Nonce())
+		//log.Debugf("ProcessTransactionResponse[Nonce]: %v", result.Tx.Nonce())
 		log.Debugf("ProcessTransactionResponse[StateRoot]: %v", result.StateRoot.String())
 		log.Debugf("ProcessTransactionResponse[Error]: %v", result.RomError)
 		log.Debugf("ProcessTransactionResponse[GasUsed]: %v", result.GasUsed)

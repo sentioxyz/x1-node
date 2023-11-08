@@ -180,6 +180,11 @@ func (s *State) StoreTransactions(ctx context.Context, batchNumber uint64, proce
 		receipts := []*types.Receipt{receipt}
 
 		// Create block to be able to calculate its hash
+		if len(transactions) == 0 {
+			receipts = []*types.Receipt{}
+			log.Infof("batchNumber:%d", batchNumber)
+		}
+		log.Infof("batchNumber:%d", batchNumber)
 		block := types.NewBlock(header, transactions, []*types.Header{}, receipts, &trie.StackTrie{})
 		block.ReceivedAt = processingContext.Timestamp
 

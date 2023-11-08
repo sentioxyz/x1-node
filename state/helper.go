@@ -277,6 +277,22 @@ func DecodeTx(encodedTx string) (*types.Transaction, error) {
 }
 
 func generateReceipt(blockNumber *big.Int, processedTx *ProcessTransactionResponse) *types.Receipt {
+	var emptyTx types.Transaction
+	if processedTx.Tx == emptyTx {
+		receipt := &types.Receipt{
+			Type:              uint8(processedTx.Type),
+			PostState:         processedTx.StateRoot.Bytes(),
+			CumulativeGasUsed: processedTx.GasUsed,
+			BlockNumber:       blockNumber,
+			GasUsed:           processedTx.GasUsed,
+			TransactionIndex:  0,
+			ContractAddress:   processedTx.CreateAddress,
+			Logs:              processedTx.Logs,
+		}
+
+		return receipt
+	}
+
 	receipt := &types.Receipt{
 		Type:              uint8(processedTx.Type),
 		PostState:         processedTx.StateRoot.Bytes(),
