@@ -1,18 +1,18 @@
 # Component: Sequencer
 
-## Xgon Sequencer:
+## XGON Sequencer:
 
-The Xgon Sequencer is an optional but ancillary module that proposes new batches using transactions stored in the Pool Database.
+The XGON Sequencer is an optional but ancillary module that proposes new batches using transactions stored in the Pool Database.
 
 ## Running:
 
-The preferred way to run the Xgon Sequencer component is via Docker and Docker Compose.
+The preferred way to run the XGON Sequencer component is via Docker and Docker Compose.
 
 ```bash
 docker pull okx/xgon-node
 ```
 
-To orchestrate multiple deployments of the different Xgon Node components, a `docker-compose.yaml` file for Docker Compose can be used:
+To orchestrate multiple deployments of the different XGON Node components, a `docker-compose.yaml` file for Docker Compose can be used:
 
 ```yaml
   xgon-sequencer:

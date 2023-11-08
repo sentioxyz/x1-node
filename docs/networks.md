@@ -1,4 +1,4 @@
-# Xgon testnet networks
+# XGON testnet networks
 
 | Network Name | ChainID | RPC URL | Explorer | Bridge Info |
 |--------------|---------|---------|----------|------------------|

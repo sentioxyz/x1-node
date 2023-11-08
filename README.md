@@ -1,16 +1,16 @@
-# Xgon Node
+# XGON Node
 
-Xgon Node is a Go implementation of a node that operates the Xgon Network.
+XGON Node is a Go implementation of a node that operates the XGON Network.
 
-## About the Xgon network
+## About the XGON network
 
 Since this is an implementation of a protocol it's fundamental to understand it, [here]() you can find the specification of the protocol.
 
 Glossary:
 
 - L1: Base blockchain where the rollup smart contracts are deployed. It's Ethereum or a testnet of Ethereum, but it could be any EVM compatible blockchain.
-- L2: the rollup network aka the Xgon network.
-- Batch: a group of transactions that are executed/proved, using the [Xgon prover]() and sent to / synchronized from L1
+- L2: the rollup network aka the XGON network.
+- Batch: a group of transactions that are executed/proved, using the [XGON prover]() and sent to / synchronized from L1
 - Sequencer: the actor that is responsible for selecting transactions, putting them in a specific order, and sending them in batches to L1
 - Trusted sequencer: sequencer that has special privileges, there can only be one trusted sequencer. The privileges granted to the trusted sequencer allow it to forecast the batches that will be applied to L1. This way it can commit to a specific sequence before interacting with L1. This is done to achieve fast finality and reduce costs associated with using the network (lower gas fees)
 - Permissionless sequencer: sequencer role that can be performed by anyone. It has competitive disadvantages compared to the trusted sequencer (slow finality, MEV attacks). Its main purpose is to provide censorship resistance and unstoppability features to the network.
@@ -20,7 +20,7 @@ Glossary:
 - Trusted state: state reached through processing transactions that have been shared by the trusted sequencer. This state is considered trusted as the trusted sequencer could commit to a certain sequence, and then send a different one to L1
 - Virtual state: state reached through processing transactions that have already been submitted to L1. These transactions are sent in batches by either trusted or permissionless sequencers. Those batches are also called virtual batches. Note that this state is trustless as it relies on L1 security assumptions
 - Consolidated state: state that is proven on-chain by submitting a ZKP (Zero Knowledge Proof) that proves the execution of a sequence of the last virtual batch.
-- Invalid transaction: a transaction that can't be processed and doesn't affect the state. Note that such a transaction could be included in a virtual batch. The reason for a transaction to be invalid could be related to the Ethereum protocol (invalid nonce, not enough balance, ...) or due to limitations introduced by the Xgon (each batch can make use of a limited amount of resources such as the total amount of keccak hashes that can be computed)
+- Invalid transaction: a transaction that can't be processed and doesn't affect the state. Note that such a transaction could be included in a virtual batch. The reason for a transaction to be invalid could be related to the Ethereum protocol (invalid nonce, not enough balance, ...) or due to limitations introduced by the XGON (each batch can make use of a limited amount of resources such as the total amount of keccak hashes that can be computed)
 - Reverted transaction: a transaction that is executed, but is reverted (because of smart contract logic). The main difference with *invalid transaction* is that this transaction modifies the state, at least to increment nonce of the sender.
 - Proof of Efficiency (PoE): name of the protocol used by the network, it's enforced by the [smart contracts](https://github.com/okx/xgon-contracts)
 
@@ -63,8 +63,8 @@ Required services and components:
 
 There must be only one synchronizer, and it's recommended that it has exclusive access to an executor instance, although it's not necessary. This role can perfectly be run in a single instance, however, the JSON RPC and executor services can benefit from running in multiple instances, if the performance decreases due to the number of requests received
 
-- [`Xgon RPC endpoints`](./docs/json-rpc-endpoints.md)
-- [`Xgon RPC Custom endpoints documentation`](./docs/zkEVM-custom-endpoints.md)
+- [`XGON RPC endpoints`](./docs/json-rpc-endpoints.md)
+- [`XGON RPC Custom endpoints documentation`](./docs/zkEVM-custom-endpoints.md)
 
 ### Trusted sequencer
 

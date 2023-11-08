@@ -8,11 +8,11 @@
 
 This documentation will help you running the following components:
 
-- Xgon Node Databases
+- XGON Node Databases
 - Explorer Databases
 - L1 Network
 - Prover
-- Xgon Node components
+- XGON Node components
 - Explorers
 
 ## Requirements
@@ -93,7 +93,7 @@ make run-approve-matic
 ## Accessing the environment
 
 - **Databases**:
-  - Xgon Node *State* Database 
+  - XGON Node *State* Database 
     - `Type:` Postgres DB
     - `User:` state_user
     - `Password:` state_password
@@ -101,7 +101,7 @@ make run-approve-matic
     - `Host:` localhost
     - `Port:` 5432
     - `Url:` <postgres://state_user:srare_password@localhost:5432/state-db>
-  - Xgon Node *Pool* Database 
+  - XGON Node *Pool* Database 
     - `Type:` Postgres DB
     - `User:` pool_user
     - `Password:` pool_password
@@ -109,7 +109,7 @@ make run-approve-matic
     - `Host:` localhost
     - `Port:` 5433
     - `Url:` <postgres://pool_user:pool_password@localhost:5433/pool_db>
-  - Xgon Node *JSON-RPC* Database 
+  - XGON Node *JSON-RPC* Database 
     - `Type:` Postgres DB
     - `User:` rpc_user
     - `Password:` rpc_password
@@ -139,7 +139,7 @@ make run-approve-matic
     - `Host:` localhost
     - `Port:` 8545
     - `Url:` <http://localhost:8545>
-  - Xgon Node
+  - XGON Node
     - `Type:` JSON RPC
     - `Host:` localhost
     - `Port:` 8123
@@ -173,7 +173,7 @@ To configure your Metamask to use your local environment, follow these steps:
 3. On the left menu, click on Networks
 4. Click on `Add Network` button
 5. Fill up the L2 network information
-    1. `Network Name:` Xgon - Local
+    1. `Network Name:` XGON - Local
     2. `New RPC URL:` <http://localhost:8123>
     3. `ChainID:` 1001
     4. `Currency Symbol:` ETH
