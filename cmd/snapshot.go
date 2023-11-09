@@ -49,7 +49,7 @@ func snapshot(ctx *cli.Context) error {
 	dumpExec := dump.Exec(pg.ExecOptions{StreamPrint: false})
 	if dumpExec.Error != nil {
 		log.Error("error dumping statedb. Error: ", dumpExec.Error.Err)
-		log.Debug("dumpExec.Output: ", dumpExec.Output)
+		log.Error("dumpExec.Output: ", dumpExec.Output)
 		return err
 	}
 
@@ -78,7 +78,7 @@ func snapshot(ctx *cli.Context) error {
 	dumpExec = dump.Exec(pg.ExecOptions{StreamPrint: false})
 	if dumpExec.Error != nil {
 		log.Error("error dumping hashdb. Error: ", dumpExec.Error.Err)
-		log.Debug("dumpExec.Output: ", dumpExec.Output)
+		log.Error("dumpExec.Output: ", dumpExec.Output)
 		return err
 	}
 
