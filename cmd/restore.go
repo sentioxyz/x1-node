@@ -81,7 +81,7 @@ func restore(ctx *cli.Context) error {
 	restoreExec := execCommand(restore, inputFileStateDB, pg.ExecOptions{StreamPrint: false}, params)
 	if restoreExec.Error != nil {
 		log.Error("error restoring stateDB snapshot. Error: ", restoreExec.Error.Err)
-		log.Debug("restoreExec.Output: ", restoreExec.Output)
+		log.Error("restoreExec.Output: ", restoreExec.Output)
 		return err
 	}
 	log.Info("Restore stateDB snapshot success")
@@ -121,7 +121,7 @@ func restore(ctx *cli.Context) error {
 	restoreExec = execCommand(restore, inputFileHashDB, pg.ExecOptions{StreamPrint: false}, params)
 	if restoreExec.Error != nil {
 		log.Error("error restoring hashDB snapshot. Error: ", restoreExec.Error.Err)
-		log.Debug("restoreExec.Output: ", restoreExec.Output)
+		log.Error("restoreExec.Output: ", restoreExec.Output)
 		return err
 	}
 
