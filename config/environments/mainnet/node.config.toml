@@ -44,7 +44,7 @@ WriteTimeout = "60s"
 MaxRequestsPerIPAndSecond = 5000
 SequencerNodeURI = "https://xgon-rpc.com"
 EnableL2SuggestedGasPricePolling = false
-DisableAPIs = ["eth_newFilter"]
+DisableAPIs = ["eth_newFilter","eth_getInternalTransactions"]
 	[RPC.WebSockets]
 		Enabled = true
 		Port = 8546

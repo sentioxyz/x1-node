@@ -418,6 +418,17 @@
 					"additionalProperties": false,
 					"type": "object",
 					"description": "NacosWs configuration"
+				},
+				"DisableAPIs": {
+					"items": {
+						"type": "string"
+					},
+					"type": "array",
+					"description": "DisableAPIs disable some API",
+					"default": [
+						"eth_newFilters",
+						"eth_getInternalTransactions"
+					]
 				}
 			},
 			"additionalProperties": false,
