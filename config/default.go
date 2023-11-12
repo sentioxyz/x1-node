@@ -64,7 +64,7 @@ MaxRequestsPerIPAndSecond = 500
 SequencerNodeURI = ""
 EnableL2SuggestedGasPricePolling = true
 TraceBatchUseHTTPS = true
-DisableAPIs = ["eth_newFilters", "eth_getInternalTransactions"]
+DisableAPIs = []
 	[RPC.WebSockets]
 		Enabled = true
 		Host = "0.0.0.0"
