@@ -1127,14 +1127,14 @@ ExternalListenAddr=""
 
 **Type:** : `array of string`
 
-**Default:** `["eth_newFilters", "eth_getInternalTransactions"]`
+**Default:** `[]`
 
 **Description:** DisableAPIs disable some API
 
-**Example setting the default value** (["eth_newFilters", "eth_getInternalTransactions"]):
+**Example setting the default value** ([]):
 ```
 [RPC]
-DisableAPIs=["eth_newFilters", "eth_getInternalTransactions"]
+DisableAPIs=[]
 ```
 
 ## <a name="Synchronizer"></a>9. `[Synchronizer]`

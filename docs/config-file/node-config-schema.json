@@ -425,10 +425,7 @@
 					},
 					"type": "array",
 					"description": "DisableAPIs disable some API",
-					"default": [
-						"eth_newFilters",
-						"eth_getInternalTransactions"
-					]
+					"default": []
 				}
 			},
 			"additionalProperties": false,
