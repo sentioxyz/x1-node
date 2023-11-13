@@ -113,7 +113,7 @@ func TestDataCommittee(t *testing.T) {
 		L1: config.L1Config{
 			RpcURL:               "http://x1-mock-l1-network:8545",
 			WsURL:                "ws://x1-mock-l1-network:8546",
-			CDKValidiumAddress:   "0x0D9088C72Cd4F08e9dDe474D8F5394147f64b22C",
+			ZkEVMAddress:         "0x0D9088C72Cd4F08e9dDe474D8F5394147f64b22C",
 			DataCommitteeAddress: "0x6Ae5b0863dBF3477335c0102DBF432aFf04ceb22",
 			Timeout:              cTypes.NewDuration(time.Minute * 3),
 			RetryPeriod:          cTypes.NewDuration(time.Second * 5),
