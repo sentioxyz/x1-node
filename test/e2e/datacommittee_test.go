@@ -39,7 +39,7 @@ func TestDataCommittee(t *testing.T) {
 		ksFile           = "/tmp/pkey"
 		cfgFile          = "/tmp/dacnodeconfigfile.json"
 		ksPass           = "pass"
-		dacNodeContainer = "zjg555543/x1-dac:v0.1.0_20231113_01"
+		dacNodeContainer = "zjg555543/x1-data-availability:v0.1.0_2023111_02"
 	)
 
 	// Setup
@@ -60,9 +60,10 @@ func TestDataCommittee(t *testing.T) {
 	defer func() {
 		require.NoError(t, opsman.StopDACDB())
 	}()
+	require.NoError(t, opsman.StartDACDB())
 	err = opsman.Setup()
 	require.NoError(t, err)
-	require.NoError(t, opsman.StartDACDB())
+
 	time.Sleep(5 * time.Second)
 	authL2, err := operations.GetAuth(operations.DefaultSequencerPrivateKey, operations.DefaultL2ChainID)
 	require.NoError(t, err)
@@ -185,6 +186,7 @@ func TestDataCommittee(t *testing.T) {
 			"/bin/sh", "-c",
 			"/app/x1-data-availability run --cfg /app/config.json",
 		)
+		log.Infof("cmd:%v", cmd.String())
 		out, err := cmd.CombinedOutput()
 		require.NoError(t, err, string(out))
 		log.Infof("DAC node %d started", m.i)
