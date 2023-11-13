@@ -493,7 +493,7 @@ services:
 
   x1-data-availability:
     container_name: x1-data-availability
-    image: zjg555543/x1-dac:v0.1.0_20231113_02
+    image: zjg555543/x1-dac:v0.1.0_20231113_03
     ports:
       - 8444:8444
     volumes:
