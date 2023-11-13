@@ -310,7 +310,7 @@ services:
 
   x1-mock-l1-network:
     container_name: x1-mock-l1-network
-    image: zjg555543/geth:v0.1.0_20231113_01
+    image: okexchain/x1-geth:e2e_v0.1.0_20231113
     ports:
       - 8545:8545
       - 8546:8546
@@ -493,7 +493,7 @@ services:
 
   x1-data-availability:
     container_name: x1-data-availability
-    image: zjg555543/x1-dac:v0.1.0_20231113_03
+    image: okexchain/x1-dac:e2e_v0.1.0_20231113
     ports:
       - 8444:8444
     volumes:
