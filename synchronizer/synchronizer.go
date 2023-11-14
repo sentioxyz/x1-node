@@ -1424,6 +1424,7 @@ func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx
 
 	log.Debug("TrustedBatch.StateRoot ", trustedBatch.StateRoot)
 	isBatchClosed := trustedBatch.StateRoot.String() != state.ZeroHash.String()
+	fmt.Println("Process Batch", isBatchClosed, trustedBatch.Number, trustedBatch.LocalExitRoot.String())
 	if isBatchClosed {
 		//Sanity check
 		if trustedBatch.StateRoot != processBatchResp.NewStateRoot {
