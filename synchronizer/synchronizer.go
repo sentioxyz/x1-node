@@ -805,6 +805,7 @@ func isZeroByteArray(bytesArray [32]byte) bool {
 }
 
 func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.SequencedBatch, blockNumber uint64, dbTx pgx.Tx) error {
+
 	if len(sequencedBatches) == 0 {
 		log.Warn("Empty sequencedBatches array detected, ignoring...")
 		return nil
@@ -889,6 +890,7 @@ func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.
 
 		// First get trusted batch from db
 		tBatch, err := s.state.GetBatchByNumber(s.ctx, batch.BatchNumber, dbTx)
+		fmt.Println("GetBatchByNumber  trusted", batch.BatchNumber, tBatch.LocalExitRoot.String())
 		if err != nil {
 			if errors.Is(err, state.ErrNotFound) || errors.Is(err, state.ErrStateNotSynchronized) {
 				log.Debugf("BatchNumber: %d, not found in trusted state. Storing it...", batch.BatchNumber)
@@ -921,6 +923,7 @@ func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.
 		} else {
 			// Reprocess batch to compare the stateRoot with tBatch.StateRoot and get accInputHash
 			p, err := s.state.ExecuteBatch(s.ctx, batch, false, dbTx)
+			fmt.Println("Execute end", err, hex.EncodeToString(p.NewLocalExitRoot))
 			if err != nil {
 				log.Errorf("error executing L1 batch: %+v, error: %v", batch, err)
 				rollbackErr := dbTx.Rollback(s.ctx)
@@ -930,6 +933,7 @@ func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.
 				}
 				return err
 			}
+
 			newRoot = common.BytesToHash(p.NewStateRoot)
 			accumulatedInputHash := common.BytesToHash(p.NewAccInputHash)
 
