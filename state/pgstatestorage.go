@@ -995,6 +995,7 @@ func (p *PostgresStorage) openBatch(ctx context.Context, batchContext Processing
 }
 
 func (p *PostgresStorage) closeBatch(ctx context.Context, receipt ProcessingReceipt, dbTx pgx.Tx) error {
+	fmt.Println("ddddddddddd", receipt.BatchNumber, receipt.LocalExitRoot)
 	const closeBatchSQL = `UPDATE state.batch 
 		SET state_root = $1, local_exit_root = $2, acc_input_hash = $3, raw_txs_data = $4, batch_resources = $5, closing_reason = $6
 		  WHERE batch_num = $7`
