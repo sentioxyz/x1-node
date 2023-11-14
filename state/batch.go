@@ -355,6 +355,7 @@ func (s *State) sendBatchRequestToExecutor(ctx context.Context, processBatchRequ
 	}
 	now := time.Now()
 	res, err := s.executorClient.ProcessBatch(ctx, processBatchRequest)
+	fmt.Println("proceee batch 358", hex.EncodeToString(res.NewLocalExitRoot))
 	if err != nil {
 		log.Errorf("Error s.executorClient.ProcessBatch: %v", err)
 		log.Errorf("Error s.executorClient.ProcessBatch: %s", err.Error())
@@ -427,6 +428,7 @@ func (s *State) ProcessAndStoreClosedBatch(ctx context.Context, processingCtx Pr
 		return common.Hash{}, noFlushID, noProverID, err
 	}
 	processed, err := s.processBatch(ctx, processingCtx.BatchNumber, encodedTxs, caller, dbTx)
+	fmt.Println("processBatch end", processed.NewLocalExitRoot)
 	if err != nil {
 		return common.Hash{}, noFlushID, noProverID, err
 	}
