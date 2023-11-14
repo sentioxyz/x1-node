@@ -1652,8 +1652,8 @@ func (s *ClientSynchronizer) checkFlushID(dbTx pgx.Tx) error {
 		return err
 	}
 	if s.previousExecutorFlushID != storedFlushID || s.proverID != proverID {
-		log.Infof("executor vs local: flushid=%d/%d, proverID=%s/%s", storedFlushID,
-			s.latestFlushID, proverID, s.proverID)
+		//log.Infof("executor vs local: flushid=%d/%d, proverID=%s/%s", storedFlushID,
+		//	s.latestFlushID, proverID, s.proverID)
 	} else {
 		log.Debugf("executor vs local: flushid=%d/%d, proverID=%s/%s", storedFlushID,
 			s.latestFlushID, proverID, s.proverID)

@@ -470,7 +470,6 @@ func (s *State) ProcessAndStoreClosedBatch(ctx context.Context, processingCtx Pr
 		}
 	}
 
-	fmt.Println("close batch", processedBatch.NewBatchNumber, processedBatch.NewLocalExitRoot.String())
 	// Close batch
 	return common.BytesToHash(processed.NewStateRoot), processed.FlushId, processed.ProverId, s.closeBatch(ctx, ProcessingReceipt{
 		BatchNumber:   processingCtx.BatchNumber,
