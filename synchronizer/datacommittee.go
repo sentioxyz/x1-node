@@ -46,7 +46,7 @@ func (s *ClientSynchronizer) getBatchL2Data(batchNum uint64, expectedTransaction
 		}
 
 		if !s.isTrustedSequencer {
-			log.Info("trying to get data from trusted sequencer")
+			//log.Info("trying to get data from trusted sequencer")
 			data, err := s.getDataFromTrustedSequencer(batchNum, expectedTransactionsHash)
 			if err != nil {
 				log.Error(err)

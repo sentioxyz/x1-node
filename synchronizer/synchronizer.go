@@ -811,7 +811,7 @@ func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.
 	}
 	for _, sbatch := range sequencedBatches {
 		var batchL2Data []byte
-		log.Infof("sbatch.Transactions len:%d, txs hash:%s", len(sbatch.Transactions), hex.EncodeToString(sbatch.TransactionsHash[:]))
+		//log.Infof("sbatch.Transactions len:%d, txs hash:%s", len(sbatch.Transactions), hex.EncodeToString(sbatch.TransactionsHash[:]))
 		var err error
 		if len(sbatch.Transactions) > 0 || (len(sbatch.Transactions) == 0 && isZeroByteArray(sbatch.TransactionsHash)) {
 			batchL2Data = sbatch.Transactions
@@ -1607,7 +1607,7 @@ func (s *ClientSynchronizer) getCurrentBatches(batches []*state.Batch, trustedBa
 }
 
 func (s *ClientSynchronizer) pendingFlushID(flushID uint64, proverID string) {
-	log.Infof("pending flushID: %d", flushID)
+	//log.Infof("pending flushID: %d", flushID)
 	if flushID == 0 {
 		log.Fatal("flushID is 0. Please check that prover/executor config parameter dbReadOnly is false")
 	}
