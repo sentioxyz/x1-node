@@ -806,6 +806,8 @@ func isZeroByteArray(bytesArray [32]byte) bool {
 
 func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.SequencedBatch, blockNumber uint64, dbTx pgx.Tx) error {
 
+	log.Errorf("fuck------")
+	fmt.Println("fuck-00-----")
 	if len(sequencedBatches) == 0 {
 		log.Warn("Empty sequencedBatches array detected, ignoring...")
 		return nil
