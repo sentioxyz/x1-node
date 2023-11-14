@@ -889,7 +889,7 @@ func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.
 
 		// First get trusted batch from db
 		tBatch, err := s.state.GetBatchByNumber(s.ctx, batch.BatchNumber, dbTx)
-		fmt.Println("hhahahahahahhahahahahaha", blockNumber, tBatch.BatchNumber)
+		fmt.Println("hhahahahahahhahahahahaha", blockNumber, err)
 		if err != nil {
 			if errors.Is(err, state.ErrNotFound) || errors.Is(err, state.ErrStateNotSynchronized) {
 				log.Debugf("BatchNumber: %d, not found in trusted state. Storing it...", batch.BatchNumber)
@@ -920,6 +920,7 @@ func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.
 				return err
 			}
 		} else {
+			fmt.Println("begin to execute batch", batch.BatchNumber)
 			// Reprocess batch to compare the stateRoot with tBatch.StateRoot and get accInputHash
 			p, err := s.state.ExecuteBatch(s.ctx, batch, false, dbTx)
 			if err != nil {
