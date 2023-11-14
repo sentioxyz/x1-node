@@ -428,7 +428,7 @@ func (s *State) ProcessAndStoreClosedBatch(ctx context.Context, processingCtx Pr
 		return common.Hash{}, noFlushID, noProverID, err
 	}
 	processed, err := s.processBatch(ctx, processingCtx.BatchNumber, encodedTxs, caller, dbTx)
-	fmt.Println("processBatch end", processed.NewLocalExitRoot)
+	fmt.Println("processBatch end", hex.EncodeToString(processed.NewLocalExitRoot))
 	if err != nil {
 		return common.Hash{}, noFlushID, noProverID, err
 	}
