@@ -866,6 +866,47 @@ func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.
 	} else {
 		local := read()
 		fmt.Println("local", len(local), local[1646].BatchNumber, local[1646].LocalExitRoot.String())
+		for index := uint64(0); index < 1648; index++ {
+			if tt[index].BatchNumber != local[index].BatchNumber {
+				fmt.Println("fuck batchNumber", index)
+			}
+			if tt[index].Coinbase != local[index].Coinbase {
+				fmt.Println("fuck Coinbase", index)
+			}
+			if hex.EncodeToString(tt[index].BatchL2Data) != hex.EncodeToString(local[index].BatchL2Data) {
+				fmt.Println("fuck BatchL2Data", index)
+			}
+			if tt[index].StateRoot != local[index].StateRoot {
+				fmt.Println("fuck StateRoot", index)
+			}
+			if tt[index].LocalExitRoot != local[index].LocalExitRoot {
+				fmt.Println("fuck LocalExitRoot", index)
+			}
+			if tt[index].AccInputHash != local[index].AccInputHash {
+				fmt.Println("fuck AccInputHash", index)
+			}
+
+			if tt[index].Timestamp != local[index].Timestamp {
+				fmt.Println("fuck Timestamp", index)
+			}
+			if tt[index].GlobalExitRoot != local[index].GlobalExitRoot {
+				fmt.Println("fuck GlobalExitRoot", index)
+			}
+			if tt[index].ForcedBatchNum != local[index].ForcedBatchNum {
+				fmt.Println("fuck AccInputHash", index)
+			}
+			for k, v := range tt[index].Transactions {
+				if local[index].Transactions[k].Hash() != v.Hash() {
+					fmt.Println("fuck tx", index, k)
+				}
+			}
+
+			if index%100 == 0 {
+				fmt.Println("process index", index)
+			}
+
+		}
+
 	}
 
 	if len(sequencedBatches) == 0 {
