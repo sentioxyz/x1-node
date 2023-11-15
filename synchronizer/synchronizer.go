@@ -844,24 +844,24 @@ var (
 
 func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.SequencedBatch, blockNumber uint64, dbTx pgx.Tx) error {
 
-	if writeFLag {
-		fmt.Println("FFFFFFFFFFFFFFFFFFFFF")
-		lastBatchNumber, err := s.state.GetLastBatchNumber(s.ctx, dbTx)
+	fmt.Println("FFFFFFFFFFFFFFFFFFFFF")
+	lastBatchNumber, err := s.state.GetLastBatchNumber(s.ctx, dbTx)
+	if err != nil {
+		panic(err)
+	}
+	if lastBatchNumber >= 1648 {
+		lastBatchNumber = 1648
+	}
+	tt := make([]*state.Batch, 0)
+	for index := uint64(1); index <= lastBatchNumber; index++ {
+		b, err := s.state.GetBatchByNumber(s.ctx, index, dbTx)
 		if err != nil {
 			panic(err)
 		}
-		if lastBatchNumber >= 1648 {
-			lastBatchNumber = 1648
-		}
-		tt := make([]*state.Batch, 0)
-		for index := uint64(1); index <= lastBatchNumber; index++ {
-			b, err := s.state.GetBatchByNumber(s.ctx, index, dbTx)
-			if err != nil {
-				panic(err)
-			}
-			tt = append(tt, b)
-		}
-		fmt.Println("len(tt)", len(tt), lastBatchNumber)
+		tt = append(tt, b)
+	}
+	fmt.Println("len(tt)", len(tt), lastBatchNumber)
+	if writeFLag {
 		write(tt)
 	} else {
 		local := read()
