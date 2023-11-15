@@ -821,26 +821,52 @@ func write(info []*state.Batch) {
 	}
 }
 
-func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.SequencedBatch, blockNumber uint64, dbTx pgx.Tx) error {
-
-	fmt.Println("FFFFFFFFFFFFFFFFFFFFF")
-	lastBatchNumber, err := s.state.GetLastBatchNumber(s.ctx, dbTx)
+func read() []*state.Batch {
+	filePtr, err := os.Open("./info.json")
+	if err != nil {
+		fmt.Println("文件打开失败 [Err:%s]", err.Error())
+		panic("sb")
+	}
+	defer filePtr.Close()
+	var info []*state.Batch
+	// 创建json解码器
+	decoder := json.NewDecoder(filePtr)
+	err = decoder.Decode(&info)
 	if err != nil {
 		panic(err)
 	}
-	if lastBatchNumber >= 1648 {
-		lastBatchNumber = 1648
-	}
-	tt := make([]*state.Batch, 0)
-	for index := uint64(1); index <= lastBatchNumber; index++ {
-		b, err := s.state.GetBatchByNumber(s.ctx, index, dbTx)
+	return info
+}
+
+var (
+	writeFLag = false
+)
+
+func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.SequencedBatch, blockNumber uint64, dbTx pgx.Tx) error {
+
+	if writeFLag {
+		fmt.Println("FFFFFFFFFFFFFFFFFFFFF")
+		lastBatchNumber, err := s.state.GetLastBatchNumber(s.ctx, dbTx)
 		if err != nil {
 			panic(err)
 		}
-		tt = append(tt, b)
+		if lastBatchNumber >= 1648 {
+			lastBatchNumber = 1648
+		}
+		tt := make([]*state.Batch, 0)
+		for index := uint64(1); index <= lastBatchNumber; index++ {
+			b, err := s.state.GetBatchByNumber(s.ctx, index, dbTx)
+			if err != nil {
+				panic(err)
+			}
+			tt = append(tt, b)
+		}
+		fmt.Println("len(tt)", len(tt), lastBatchNumber)
+		write(tt)
+	} else {
+		local := read()
+		fmt.Println("local", len(local), local[1647].BatchNumber, local[1647].LocalExitRoot.String())
 	}
-	fmt.Println("len(tt)", len(tt), lastBatchNumber)
-	write(tt)
 
 	if len(sequencedBatches) == 0 {
 		log.Warn("Empty sequencedBatches array detected, ignoring...")
