@@ -845,9 +845,9 @@ var (
 func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.SequencedBatch, blockNumber uint64, dbTx pgx.Tx) error {
 
 	fmt.Println("FFFFFFFFFFFFFFFFFFFFF")
-	lastBatchNumber, err := s.state.GetLastBatchNumber(s.ctx, dbTx)
-	if err != nil {
-		panic(err)
+	lastBatchNumber, er1r := s.state.GetLastBatchNumber(s.ctx, dbTx)
+	if er1r != nil {
+		panic(er1r)
 	}
 	if lastBatchNumber >= 1648 {
 		lastBatchNumber = 1648
