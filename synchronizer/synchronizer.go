@@ -824,12 +824,13 @@ func write(info []*state.Batch) {
 func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.SequencedBatch, blockNumber uint64, dbTx pgx.Tx) error {
 
 	fmt.Println("FFFFFFFFFFFFFFFFFFFFF")
-
 	lastBatchNumber, err := s.state.GetLastBatchNumber(s.ctx, dbTx)
 	if err != nil {
 		panic(err)
 	}
-
+	if lastBatchNumber >= 1648 {
+		lastBatchNumber = 1648
+	}
 	tt := make([]*state.Batch, 0)
 	for index := uint64(1); index <= lastBatchNumber; index++ {
 		b, err := s.state.GetBatchByNumber(s.ctx, index, dbTx)
@@ -838,9 +839,8 @@ func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.
 		}
 		tt = append(tt, b)
 	}
-
 	fmt.Println("len(tt)", len(tt), lastBatchNumber)
-	write(tt[:5])
+	write(tt)
 
 	if len(sequencedBatches) == 0 {
 		log.Warn("Empty sequencedBatches array detected, ignoring...")
