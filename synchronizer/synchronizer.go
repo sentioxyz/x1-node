@@ -887,7 +887,7 @@ func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.
 			}
 
 			if tt[index].Timestamp != local[index].Timestamp {
-				fmt.Println("fuck Timestamp", index)
+				//fmt.Println("fuck Timestamp", index)
 			}
 			if tt[index].GlobalExitRoot != local[index].GlobalExitRoot {
 				fmt.Println("fuck GlobalExitRoot", index)
