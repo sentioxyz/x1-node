@@ -822,7 +822,7 @@ func write(info []*state.Batch) {
 }
 
 func read() []*state.Batch {
-	filePtr, err := os.Open("./info.json")
+	filePtr, err := os.Open("/data/info.json")
 	if err != nil {
 		fmt.Println("文件打开失败 [Err:%s]", err.Error())
 		panic("sb")
