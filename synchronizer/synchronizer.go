@@ -865,7 +865,7 @@ func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.
 		write(tt)
 	} else {
 		local := read()
-		fmt.Println("local", len(local), local[1647].BatchNumber, local[1647].LocalExitRoot.String())
+		fmt.Println("local", len(local), local[1646].BatchNumber, local[1646].LocalExitRoot.String())
 	}
 
 	if len(sequencedBatches) == 0 {
