@@ -3,10 +3,12 @@ package synchronizer
 import (
 	"bytes"
 	"context"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"math"
 	"math/big"
+	"os"
 	"strings"
 	"time"
 
@@ -804,7 +806,42 @@ func isZeroByteArray(bytesArray [32]byte) bool {
 	return bytes.Equal(bytesArray[:], zero[:])
 }
 
+func write(info []*state.Batch) {
+	filePtr, err := os.Create("info.json")
+	if err != nil {
+		fmt.Println("文件创建失败", err.Error())
+		panic("sb")
+	}
+	defer filePtr.Close()
+	// 创建Json编码器
+	encoder := json.NewEncoder(filePtr)
+	err = encoder.Encode(info)
+	if err != nil {
+		panic(err)
+	}
+}
+
 func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.SequencedBatch, blockNumber uint64, dbTx pgx.Tx) error {
+
+	fmt.Println("FFFFFFFFFFFFFFFFFFFFF")
+
+	lastBatchNumber, err := s.state.GetLastBatchNumber(s.ctx, dbTx)
+	if err != nil {
+		panic(err)
+	}
+
+	tt := make([]*state.Batch, 0)
+	for index := uint64(1); index <= lastBatchNumber; index++ {
+		b, err := s.state.GetBatchByNumber(s.ctx, index, dbTx)
+		if err != nil {
+			panic(err)
+		}
+		tt = append(tt, b)
+	}
+
+	fmt.Println("len(tt)", len(tt), lastBatchNumber)
+	write(tt[:5])
+
 	if len(sequencedBatches) == 0 {
 		log.Warn("Empty sequencedBatches array detected, ignoring...")
 		return nil
