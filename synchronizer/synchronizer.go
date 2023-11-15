@@ -1073,7 +1073,7 @@ func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.
 		FromBatchNumber: sequencedBatches[0].BatchNumber,
 		ToBatchNumber:   sequencedBatches[len(sequencedBatches)-1].BatchNumber,
 	}
-	err = s.state.AddSequence(s.ctx, seq, dbTx)
+	err := s.state.AddSequence(s.ctx, seq, dbTx)
 	if err != nil {
 		log.Errorf("error adding sequence. Sequence: %+v", seq)
 		rollbackErr := dbTx.Rollback(s.ctx)
