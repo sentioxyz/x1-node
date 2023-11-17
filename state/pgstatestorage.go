@@ -5,7 +5,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/0xPolygonHermez/zkevm-node/log"
 	"math/big"
+	"runtime/debug"
 	"time"
 
 	"github.com/0xPolygonHermez/zkevm-node/hex"
@@ -995,6 +997,8 @@ func (p *PostgresStorage) openBatch(ctx context.Context, batchContext Processing
 }
 
 func (p *PostgresStorage) closeBatch(ctx context.Context, receipt ProcessingReceipt, dbTx pgx.Tx) error {
+	log.Infof(" scf PostgresStorage close Batch  Number:%d ler:%s", receipt.BatchNumber, receipt.LocalExitRoot.String())
+	debug.PrintStack()
 	const closeBatchSQL = `UPDATE state.batch 
 		SET state_root = $1, local_exit_root = $2, acc_input_hash = $3, raw_txs_data = $4, batch_resources = $5, closing_reason = $6
 		  WHERE batch_num = $7`

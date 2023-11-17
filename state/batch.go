@@ -411,6 +411,7 @@ func (s *State) CloseBatch(ctx context.Context, receipt ProcessingReceipt, dbTx 
 // the flushID (incremental value returned by executor),
 // the ProverID (executor running ID) the result of closing the batch.
 func (s *State) ProcessAndStoreClosedBatch(ctx context.Context, processingCtx ProcessingContext, encodedTxs []byte, dbTx pgx.Tx, caller metrics.CallerLabel) (common.Hash, uint64, string, error) {
+	log.Infof("scf ProcessAndStoreClosedBatch %d", processingCtx.BatchNumber)
 	// Decode transactions
 	forkID := s.GetForkIDByBatchNumber(processingCtx.BatchNumber)
 	decodedTransactions, _, _, err := DecodeTxs(encodedTxs, forkID)
@@ -430,6 +431,8 @@ func (s *State) ProcessAndStoreClosedBatch(ctx context.Context, processingCtx Pr
 	if err != nil {
 		return common.Hash{}, noFlushID, noProverID, err
 	}
+
+	log.Infof("scf ProcessAndStoreClosedBatch %d %s", processingCtx.BatchNumber, hex.EncodeToString(processed.NewLocalExitRoot))
 
 	// Sanity check
 	if len(decodedTransactions) != len(processed.Responses) {
@@ -469,7 +472,7 @@ func (s *State) ProcessAndStoreClosedBatch(ctx context.Context, processingCtx Pr
 			return common.Hash{}, noFlushID, noProverID, err
 		}
 	}
-
+	log.Infof("scf Close batch %d %s", processingCtx.BatchNumber, processedBatch.NewLocalExitRoot.String())
 	// Close batch
 	return common.BytesToHash(processed.NewStateRoot), processed.FlushId, processed.ProverId, s.closeBatch(ctx, ProcessingReceipt{
 		BatchNumber:   processingCtx.BatchNumber,
