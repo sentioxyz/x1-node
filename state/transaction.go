@@ -596,7 +596,7 @@ func (s *State) TraceCall(ctx context.Context, blockNumber uint64, sender common
 		log.Debugf(tx.Hash().String())
 	}
 
-	convertedResponse, err := s.convertToProcessBatchResponse(processBatchResponse)
+	convertedResponse, err := s.convertToProcessBatchResponse(txs, processBatchResponse)
 	if err != nil {
 		return nil, err
 	}
