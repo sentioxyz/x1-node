@@ -4,6 +4,7 @@ go 1.21
 
 require (
 	github.com/0xPolygonHermez/zkevm-data-streamer v0.1.11
+	github.com/0xPolygon/cdk-data-availability v0.0.0-20230830141533-4064ada790a6
 	github.com/didip/tollbooth/v6 v6.1.2
 	github.com/dop251/goja v0.0.0-20230806174421-c933cf95e127
 	github.com/ethereum/go-ethereum v1.13.2
@@ -166,3 +167,6 @@ require (
 	github.com/prometheus/client_golang v1.17.0
 	golang.org/x/exp v0.0.0-20230905200255-921286631fa9
 )
+
+replace github.com/0xPolygon/cdk-data-availability => github.com/okx/x1-data-availability v0.0.0-20231113064732-3afebde141fc
+replace github.com/0xPolygonHermez/zkevm-node => ./
