@@ -18,7 +18,7 @@ func (d *DebugEndpoints) buildInnerTransaction(ctx context.Context, hash common.
 
 	// check tracer
 	if traceCfg.Tracer != nil && *traceCfg.Tracer != "" && !isBuiltInTracer(*traceCfg.Tracer) && !isJSCustomTracer(*traceCfg.Tracer) {
-		return RPCErrorResponse(types.DefaultErrorCode, "invalid tracer", nil)
+		return RPCErrorResponse(types.DefaultErrorCode, "invalid tracer", nil, true)
 	}
 
 	stateTraceConfig := state.TraceConfig{
@@ -31,7 +31,7 @@ func (d *DebugEndpoints) buildInnerTransaction(ctx context.Context, hash common.
 	}
 	result, err := d.state.DebugTransaction(ctx, hash, stateTraceConfig, dbTx)
 	if errors.Is(err, state.ErrNotFound) {
-		return RPCErrorResponse(types.DefaultErrorCode, "transaction not found", nil)
+		return RPCErrorResponse(types.DefaultErrorCode, "transaction not found", nil, true)
 	} else if err != nil {
 		const errorMessage = "failed to get trace"
 		log.Errorf("%v: %v", errorMessage, err)
