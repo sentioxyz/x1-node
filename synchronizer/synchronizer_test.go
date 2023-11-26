@@ -42,7 +42,7 @@ type mocks struct {
 func TestGivenPermissionlessNodeWhenSyncronizeAgainSameBatchThenUseTheOneInMemoryInstaeadOfGettingFromDb(t *testing.T) {
 	genesis, cfg, m := setupGenericTest(t)
 	ethermanForL1 := []EthermanInterface{m.Etherman}
-	syncInterface, err := NewSynchronizer(false, m.Etherman, ethermanForL1, m.State, m.Pool, m.EthTxManager, m.ZKEVMClient, nil, *genesis, *cfg, false)
+	syncInterface, err := NewSynchronizer(false, m.Etherman, ethermanForL1, m.State, m.Pool, m.EthTxManager, m.ZKEVMClient, nil, *genesis, *cfg, nil, false)
 	require.NoError(t, err)
 	sync, ok := syncInterface.(*ClientSynchronizer)
 	require.EqualValues(t, true, ok, "Can't convert to underlaying struct the interface of syncronizer")
@@ -69,7 +69,7 @@ func TestGivenPermissionlessNodeWhenSyncronizeAgainSameBatchThenUseTheOneInMemor
 func TestGivenPermissionlessNodeWhenSyncronizeFirstTimeABatchThenStoreItInALocalVar(t *testing.T) {
 	genesis, cfg, m := setupGenericTest(t)
 	ethermanForL1 := []EthermanInterface{m.Etherman}
-	syncInterface, err := NewSynchronizer(false, m.Etherman, ethermanForL1, m.State, m.Pool, m.EthTxManager, m.ZKEVMClient, nil, *genesis, *cfg, false)
+	syncInterface, err := NewSynchronizer(false, m.Etherman, ethermanForL1, m.State, m.Pool, m.EthTxManager, m.ZKEVMClient, nil, *genesis, *cfg, nil, false)
 	require.NoError(t, err)
 	sync, ok := syncInterface.(*ClientSynchronizer)
 	require.EqualValues(t, true, ok, "Can't convert to underlaying struct the interface of syncronizer")
@@ -106,7 +106,7 @@ func TestForcedBatch(t *testing.T) {
 		ZKEVMClient: newZkEVMClientMock(t),
 	}
 	ethermanForL1 := []EthermanInterface{m.Etherman}
-	sync, err := NewSynchronizer(false, m.Etherman, ethermanForL1, m.State, m.Pool, m.EthTxManager, m.ZKEVMClient, nil, genesis, cfg, false)
+	sync, err := NewSynchronizer(false, m.Etherman, ethermanForL1, m.State, m.Pool, m.EthTxManager, m.ZKEVMClient, nil, genesis, cfg, nil, false)
 	require.NoError(t, err)
 
 	// state preparation
@@ -353,7 +353,7 @@ func TestSequenceForcedBatch(t *testing.T) {
 		ZKEVMClient: newZkEVMClientMock(t),
 	}
 	ethermanForL1 := []EthermanInterface{m.Etherman}
-	sync, err := NewSynchronizer(true, m.Etherman, ethermanForL1, m.State, m.Pool, m.EthTxManager, m.ZKEVMClient, nil, genesis, cfg, false)
+	sync, err := NewSynchronizer(true, m.Etherman, ethermanForL1, m.State, m.Pool, m.EthTxManager, m.ZKEVMClient, nil, genesis, cfg, nil, false)
 	require.NoError(t, err)
 
 	// state preparation

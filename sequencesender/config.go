@@ -16,7 +16,7 @@ type Config struct {
 	// // non-trivial consequences: larger transactions than 128KB are significantly harder and
 	// // more expensive to propagate; larger transactions also take more resources
 	// // to validate whether they fit into the pool or not.
-	// MaxTxSizeForL1 uint64 `mapstructure:"MaxTxSizeForL1"`
+	MaxTxSizeForL1 uint64 `mapstructure:"MaxTxSizeForL1"`
 
 	// MaxBatchesForL1 is the maximum amount of batches to be sequenced in a single L1 tx
 	MaxBatchesForL1 uint64 `mapstructure:"MaxBatchesForL1"`
@@ -31,6 +31,10 @@ type Config struct {
 	PrivateKey types.KeystoreFileConfig `mapstructure:"PrivateKey"`
 	// Batch number where there is a forkid change (fork upgrade)
 	ForkUpgradeBatchNumber uint64
+
+	// UseValidium is a flag to enable/disable the use of validium
+	UseValidium bool `mapstructure:"UseValidium"`
+
 	// GasOffset is the amount of gas to be added to the gas estimation in order
 	// to provide an amount that is higher than the estimated one. This is used
 	// to avoid the TX getting reverted in case something has changed in the network

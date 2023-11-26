@@ -171,6 +171,6 @@ require (
 	golang.org/x/exp v0.0.0-20230905200255-921286631fa9
 )
 
-replace github.com/0xPolygon/cdk-data-availability => github.com/okx/cdk-data-availability v0.0.1-dac.0.20230913020111-2ec48291d6db
+replace github.com/0xPolygon/cdk-data-availability => github.com/okx/Xgon-data-availability v0.0.0-20231017042200-1e5db80e4477
 
 replace github.com/0xPolygonHermez/zkevm-node => ./
