@@ -13,7 +13,7 @@ Outputs = ["stderr"]
 	Name = "state_db"
 	Host = "zkevm-state-db"
 	Port = "5432"
-	EnableLog = false	
+	EnableLog = false
 	MaxConns = 200
 	[State.Batch]
 		[State.Batch.Constraints]
@@ -29,6 +29,7 @@ Outputs = ["stderr"]
 		MaxSteps = 7570538
 
 [Pool]
+FreeClaimGasLimit = 1500000
 IntervalToRefreshBlockedAddresses = "5m"
 IntervalToRefreshGasPrices = "5s"
 MaxTxBytesSize=100132
@@ -36,6 +37,7 @@ MaxTxDataBytesSize=100000
 DefaultMinGasPriceAllowed = 1000000000
 MinAllowedGasPriceInterval = "5m"
 PollMinAllowedGasPriceInterval = "15s"
+FreeGasAddress = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
 AccountQueue = 64
 GlobalQueue = 1024
 	[Pool.EffectiveGasPrice]
@@ -44,7 +46,7 @@ GlobalQueue = 1024
 		ByteGasCost = 16
 		ZeroByteGasCost = 4
 		NetProfit = 1
-	    BreakEvenFactor = 1.1			
+	    BreakEvenFactor = 1.1
 		FinalDeviationPct = 10
 		L2GasPriceSuggesterFactor = 0.5
 	[Pool.DB]

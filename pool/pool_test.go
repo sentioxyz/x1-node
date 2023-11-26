@@ -300,7 +300,7 @@ func Test_AddTx_OversizedData(t *testing.T) {
 	require.NoError(t, err)
 
 	const chainID = 2576980377
-	p := pool.NewPool(cfg, bc, s, st, chainID, eventLog)
+	p := pool.NewPool(cfg, bc, s, st, common.HexToAddress("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"), chainID, eventLog)
 
 	b := make([]byte, cfg.MaxTxBytesSize+1)
 	to := common.HexToAddress(operations.DefaultSequencerAddress)
@@ -749,7 +749,7 @@ func Test_SetAndGetGasPrice(t *testing.T) {
 	require.NoError(t, err)
 	eventLog := event.NewEventLog(event.Config{}, eventStorage)
 
-	p := pool.NewPool(cfg, bc, s, nil, chainID.Uint64(), eventLog)
+	p := pool.NewPool(cfg, bc, s, nil, common.HexToAddress("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"), chainID.Uint64(), eventLog)
 
 	nBig, err := rand.Int(rand.Reader, big.NewInt(0).SetUint64(math.MaxUint64))
 	require.NoError(t, err)
@@ -774,7 +774,7 @@ func TestDeleteGasPricesHistoryOlderThan(t *testing.T) {
 	require.NoError(t, err)
 	eventLog := event.NewEventLog(event.Config{}, eventStorage)
 
-	p := pool.NewPool(cfg, bc, s, nil, chainID.Uint64(), eventLog)
+	p := pool.NewPool(cfg, bc, s, nil, common.HexToAddress("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"), chainID.Uint64(), eventLog)
 
 	ctx := context.Background()
 
@@ -1959,7 +1959,7 @@ func Test_AddTx_IPValidation(t *testing.T) {
 func setupPool(t *testing.T, cfg pool.Config, constraintsCfg state.BatchConstraintsCfg, s *pgpoolstorage.PostgresPoolStorage, st *state.State, chainID uint64, ctx context.Context, eventLog *event.EventLog) *pool.Pool {
 	err := s.SetGasPrices(ctx, gasPrice.Uint64(), l1GasPrice.Uint64())
 	require.NoError(t, err)
-	p := pool.NewPool(cfg, constraintsCfg, s, st, chainID, eventLog)
+	p := pool.NewPool(cfg, constraintsCfg, s, st, common.HexToAddress("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"), chainID, eventLog)
 	p.StartPollingMinSuggestedGasPrice(ctx)
 	return p
 }
