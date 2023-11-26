@@ -3,7 +3,6 @@ package sequencer
 import (
 	"context"
 	"fmt"
-	"github.com/0xPolygonHermez/zkevm-node/pool"
 	"math/big"
 	"runtime"
 	"sync"
