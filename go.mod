@@ -1,8 +1,9 @@
 module github.com/0xPolygonHermez/zkevm-node
 
-go 1.21
+go 1.19
 
 require (
+	github.com/0xPolygon/cdk-data-availability v0.0.0-20230830141533-4064ada790a6
 	github.com/0xPolygonHermez/zkevm-data-streamer v0.1.11
 	github.com/didip/tollbooth/v6 v6.1.2
 	github.com/dop251/goja v0.0.0-20230806174421-c933cf95e127
@@ -24,7 +25,7 @@ require (
 	github.com/spf13/afero v1.10.0
 	github.com/spf13/viper v1.17.0
 	github.com/stretchr/testify v1.8.4
-	github.com/umbracle/ethgo v0.1.3
+	github.com/umbracle/ethgo v0.1.4-0.20230712173909-df37dddf16f0
 	github.com/urfave/cli/v2 v2.25.7
 	go.uber.org/zap v1.26.0
 	golang.org/x/crypto v0.14.0
@@ -111,6 +112,7 @@ require (
 	github.com/mattn/go-isatty v0.0.17 // indirect
 	github.com/mattn/go-runewidth v0.0.9 // indirect
 	github.com/matttproud/golang_protobuf_extensions/v2 v2.0.0 // indirect
+	github.com/miguelmota/go-solidity-sha3 v0.1.1 // indirect
 	github.com/mmcloughlin/addchain v0.4.0 // indirect
 	github.com/olekukonko/tablewriter v0.0.5 // indirect
 	github.com/pelletier/go-toml/v2 v2.1.0 // indirect
@@ -166,3 +168,7 @@ require (
 	github.com/prometheus/client_golang v1.17.0
 	golang.org/x/exp v0.0.0-20230905200255-921286631fa9
 )
+
+replace github.com/0xPolygon/cdk-data-availability => github.com/okx/cdk-data-availability v0.0.1-dac.0.20230913020111-2ec48291d6db
+
+replace github.com/0xPolygonHermez/zkevm-node => ./
