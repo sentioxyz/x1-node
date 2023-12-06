@@ -455,6 +455,8 @@ func (s *ClientSynchronizer) syncTrustedState(latestSyncedBatch uint64) error {
 		}
 		s.trustedState.lastTrustedBatches = cbatches
 		s.trustedState.lastStateRoot = lastStateRoot
+		log.Infof("SCF lastRoot -3 trustState.lastStateRoot=lastStateRoot (process) tru.lastStateRoot:%s tru.Batch[0].BatchNumber", s.trustedState.lastStateRoot.String(), s.trustedState.lastTrustedBatches[0].BatchNumber)
+
 		batchNumberToSync++
 	}
 
@@ -1283,9 +1285,12 @@ func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx
 		log.Debug("Setting stateRoot of previous batch. StateRoot: ", batches[1].StateRoot)
 		// Previous synchronization incomplete. Needs to reprocess all txs again
 		s.trustedState.lastStateRoot = &batches[1].StateRoot
+		log.Infof("SCF lastRoot -1 trustState.lastStateRoot=batches[1].StateRoot  tru.lastStateRoot:%s tru.Batch[1].BatchNumber", s.trustedState.lastStateRoot.String(), s.trustedState.lastTrustedBatches[0].BatchNumber)
 	} else if batches[0] != nil && (batches[0].StateRoot != common.Hash{}) {
 		// Previous synchronization completed
 		s.trustedState.lastStateRoot = &batches[0].StateRoot
+		log.Infof("SCF lastRoot -2 trustState.lastStateRoot=batches[0].StateRoot  tru.lastStateRoot:%s tru.Batch[0].BatchNumber", s.trustedState.lastStateRoot.String(), s.trustedState.lastTrustedBatches[0].BatchNumber)
+
 	}
 
 	request := state.ProcessRequest{
