@@ -963,7 +963,6 @@ func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.
 
 		// Call the check trusted state method to compare trusted and virtual state
 		status := s.checkTrustedState(batch, tBatch, newRoot, dbTx)
-		status = true
 		log.Info("reorg ", "batch info", batch.Log(), "tBatch info", tBatch.Log(), "trustState.lastTrustedBatches", Log(s.trustedState.lastTrustedBatches))
 		if status {
 			// Reorg Pool
@@ -1440,6 +1439,7 @@ func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx
 	log.Debugf("Processing sequencer for batch %v", trustedBatch.Number)
 
 	processBatchResp, err := s.processAndStoreTxs(trustedBatch, request, dbTx)
+	err = errors.New("scf test")
 	if err != nil {
 		log.Error("error procesingAndStoringTxs. Error: ", err)
 		return nil, nil, err
