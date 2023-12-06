@@ -456,9 +456,11 @@ func (s *ClientSynchronizer) syncTrustedState(latestSyncedBatch uint64) error {
 		s.trustedState.lastTrustedBatches = cbatches
 		s.trustedState.lastStateRoot = lastStateRoot
 		log.Info("SCF lastRoot -3 trustState.lastStateRoot=lastStateRoot (process)", "tru.lastStateRoot=", s.trustedState.lastStateRoot.String())
+		ss := ""
 		for _, v := range s.trustedState.lastTrustedBatches {
-			log.Info("SCF lastRoot -3 ", "batchNumber", v.BatchNumber, "len(tx)", len(v.Transactions), "stateRoot", v.StateRoot.String())
+			ss += fmt.Sprintf("batchNumber=%d len(txs)=%d stateRoot=%s ", v.BatchNumber, len(v.Transactions), v.StateRoot)
 		}
+		log.Info("SCF lastRoot -3 ", "info", ss)
 
 		batchNumberToSync++
 	}
@@ -1297,9 +1299,11 @@ func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx
 		log.Info("nothing to update", "s.trs.lastStateRoot", s.trustedState.lastStateRoot.String())
 	}
 
+	ss := ""
 	for _, v := range s.trustedState.lastTrustedBatches {
-		log.Info("SCF lastRoot -12 ", "batchNumber", v.BatchNumber, "len(tx)=", len(v.Transactions), "stateRoot=", v.StateRoot.String())
+		ss += fmt.Sprintf("batchNumber=%d len(txs)=%d stateRoot=%s ", v.BatchNumber, len(v.Transactions), v.StateRoot)
 	}
+	log.Info("SCF lastRoot -12 ", "info", ss)
 
 	request := state.ProcessRequest{
 		BatchNumber:     uint64(trustedBatch.Number),
