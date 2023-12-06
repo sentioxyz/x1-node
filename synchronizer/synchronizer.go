@@ -257,7 +257,7 @@ func (s *ClientSynchronizer) Sync() error {
 			// Sync trusted state
 			if latestSyncedBatch >= latestSequencedBatchNumber {
 				startTrusted := time.Now()
-				log.Info("Syncing trusted state")
+				//log.Info("Syncing trusted state")
 				err = s.syncTrustedState(latestSyncedBatch)
 				metrics.FullTrustedSyncTime(time.Since(startTrusted))
 				if err != nil {
@@ -281,7 +281,7 @@ func (s *ClientSynchronizer) Sync() error {
 				}
 			}
 			metrics.FullSyncIterationTime(time.Since(start))
-			log.Info("L1 state fully synchronized")
+			//log.Info("L1 state fully synchronized")
 		}
 	}
 }
@@ -317,8 +317,8 @@ func (s *ClientSynchronizer) syncBlocks(lastEthBlockSynced *state.Block) (*state
 
 	for {
 		toBlock := fromBlock + s.cfg.SyncChunkSize
-		log.Infof("Syncing block %d of %d", fromBlock, lastKnownBlock.Uint64())
-		log.Infof("Getting rollup info from block %d to block %d", fromBlock, toBlock)
+		//log.Infof("Syncing block %d of %d", fromBlock, lastKnownBlock.Uint64())
+		//log.Infof("Getting rollup info from block %d to block %d", fromBlock, toBlock)
 		// This function returns the rollup information contained in the ethereum blocks and an extra param called order.
 		// Order param is a map that contains the event order to allow the synchronizer store the info in the same order that is readed.
 		// Name can be different in the order struct. For instance: Batches or Name:NewSequencers. This name is an identifier to check
@@ -391,7 +391,7 @@ func (s *ClientSynchronizer) syncTrustedState(latestSyncedBatch uint64) error {
 		return nil
 	}
 
-	log.Info("Getting trusted state info", "latestSyncedBatch", latestSyncedBatch)
+	log.Info("Getting trusted state info", "latestSyncedBatch=", latestSyncedBatch)
 	start := time.Now()
 	lastTrustedStateBatchNumber, err := s.zkEVMClient.BatchNumber(s.ctx)
 	metrics.GetTrustedBatchNumberTime(time.Since(start))
@@ -1293,10 +1293,12 @@ func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx
 		// Previous synchronization completed
 		s.trustedState.lastStateRoot = &batches[0].StateRoot
 		log.Info("SCF lastRoot -2 trustState.lastStateRoot=batches[0].StateRoot", "tru.lastStateRoot=", s.trustedState.lastStateRoot.String(), "len(tru.lastTrustedBatches)", len(s.trustedState.lastTrustedBatches))
+	} else {
+		log.Info("nothing to update", "s.trs.lastStateRoot", s.trustedState.lastStateRoot.String())
 	}
 
 	for _, v := range s.trustedState.lastTrustedBatches {
-		log.Info("SCF lastRoot -12 ", "batchNumber", v.BatchNumber, "len(tx)", len(v.Transactions), "stateRoot", v.StateRoot.String())
+		log.Info("SCF lastRoot -12 ", "batchNumber", v.BatchNumber, "len(tx)=", len(v.Transactions), "stateRoot=", v.StateRoot.String())
 	}
 
 	request := state.ProcessRequest{
@@ -1660,8 +1662,8 @@ func (s *ClientSynchronizer) checkFlushID(dbTx pgx.Tx) error {
 		return err
 	}
 	if s.previousExecutorFlushID != storedFlushID || s.proverID != proverID {
-		log.Infof("executor vs local: flushid=%d/%d, proverID=%s/%s", storedFlushID,
-			s.latestFlushID, proverID, s.proverID)
+		//log.Infof("executor vs local: flushid=%d/%d, proverID=%s/%s", storedFlushID,
+		//	s.latestFlushID, proverID, s.proverID)
 	} else {
 		log.Debugf("executor vs local: flushid=%d/%d, proverID=%s/%s", storedFlushID,
 			s.latestFlushID, proverID, s.proverID)
