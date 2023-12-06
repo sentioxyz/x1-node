@@ -391,7 +391,7 @@ func (s *ClientSynchronizer) syncTrustedState(latestSyncedBatch uint64) error {
 		return nil
 	}
 
-	log.Info("Getting trusted state info")
+	log.Info("Getting trusted state info", "latestSyncedBatch", latestSyncedBatch)
 	start := time.Now()
 	lastTrustedStateBatchNumber, err := s.zkEVMClient.BatchNumber(s.ctx)
 	metrics.GetTrustedBatchNumberTime(time.Since(start))
@@ -455,7 +455,10 @@ func (s *ClientSynchronizer) syncTrustedState(latestSyncedBatch uint64) error {
 		}
 		s.trustedState.lastTrustedBatches = cbatches
 		s.trustedState.lastStateRoot = lastStateRoot
-		log.Info("SCF lastRoot -3 trustState.lastStateRoot=lastStateRoot (process)", "tru.lastStateRoot=", s.trustedState.lastStateRoot.String(), "len(tru.lastTrustedBatches)", len(s.trustedState.lastTrustedBatches))
+		log.Info("SCF lastRoot -3 trustState.lastStateRoot=lastStateRoot (process)", "tru.lastStateRoot=", s.trustedState.lastStateRoot.String())
+		for _, v := range s.trustedState.lastTrustedBatches {
+			log.Info("SCF lastRoot -3 ", "batchNumber", v.BatchNumber, "len(tx)", len(v.Transactions), "stateRoot", v.StateRoot.String())
+		}
 
 		batchNumberToSync++
 	}
@@ -1290,7 +1293,10 @@ func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx
 		// Previous synchronization completed
 		s.trustedState.lastStateRoot = &batches[0].StateRoot
 		log.Info("SCF lastRoot -2 trustState.lastStateRoot=batches[0].StateRoot", "tru.lastStateRoot=", s.trustedState.lastStateRoot.String(), "len(tru.lastTrustedBatches)", len(s.trustedState.lastTrustedBatches))
+	}
 
+	for _, v := range s.trustedState.lastTrustedBatches {
+		log.Info("SCF lastRoot -12 ", "batchNumber", v.BatchNumber, "len(tx)", len(v.Transactions), "stateRoot", v.StateRoot.String())
 	}
 
 	request := state.ProcessRequest{
@@ -1609,7 +1615,7 @@ func (s *ClientSynchronizer) getCurrentBatches(batches []*state.Batch, trustedBa
 }
 
 func (s *ClientSynchronizer) pendingFlushID(flushID uint64, proverID string) {
-	log.Infof("pending flushID: %d", flushID)
+	//log.Infof("pending flushID: %d", flushID)
 	if flushID == 0 {
 		log.Fatal("flushID is 0. Please check that prover/executor config parameter dbReadOnly is false")
 	}
@@ -1620,7 +1626,7 @@ func (s *ClientSynchronizer) pendingFlushID(flushID uint64, proverID string) {
 
 func (s *ClientSynchronizer) updateAndCheckProverID(proverID string) {
 	if s.proverID == "" {
-		log.Infof("Current proverID is %s", proverID)
+		//log.Infof("Current proverID is %s", proverID)
 		s.proverID = proverID
 		return
 	}
@@ -1663,7 +1669,7 @@ func (s *ClientSynchronizer) checkFlushID(dbTx pgx.Tx) error {
 	s.updateAndCheckProverID(proverID)
 	log.Debugf("storedFlushID (executor reported): %d, latestFlushID (pending): %d", storedFlushID, s.latestFlushID)
 	if storedFlushID < s.latestFlushID {
-		log.Infof("Synchronized BLOCKED!: Wating for the flushID to be stored. FlushID to be stored: %d. Latest flushID stored: %d", s.latestFlushID, storedFlushID)
+		//log.Infof("Synchronized BLOCKED!: Wating for the flushID to be stored. FlushID to be stored: %d. Latest flushID stored: %d", s.latestFlushID, storedFlushID)
 		iteration := 0
 		start := time.Now()
 		for storedFlushID < s.latestFlushID {
@@ -1677,9 +1683,9 @@ func (s *ClientSynchronizer) checkFlushID(dbTx pgx.Tx) error {
 			}
 			iteration++
 		}
-		log.Infof("Synchronizer resumed, flushID stored: %d", s.latestFlushID)
+		//log.Infof("Synchronizer resumed, flushID stored: %d", s.latestFlushID)
 	}
-	log.Infof("Pending Flushid fullfiled: %d, executor have write %d", s.latestFlushID, storedFlushID)
+	//log.Infof("Pending Flushid fullfiled: %d, executor have write %d", s.latestFlushID, storedFlushID)
 	s.latestFlushIDIsFulfilled = true
 	s.previousExecutorFlushID = storedFlushID
 	return nil
