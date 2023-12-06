@@ -1445,8 +1445,8 @@ func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx
 	processBatchResp, err := s.processAndStoreTxs(trustedBatch, request, dbTx)
 	if cnt%2 == 0 {
 		err = errors.New("scf test")
-		cnt++
 	}
+	cnt++
 	if err != nil {
 		log.Error("error procesingAndStoringTxs. Error: ", err)
 		return nil, nil, err
