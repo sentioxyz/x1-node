@@ -75,6 +75,7 @@ func Log(input []*state.Batch) string {
 			ss += fmt.Sprintf("batchNumber=%d len(txs)=%d stateRoot=%s", v.BatchNumber, len(v.Transactions), v.StateRoot.String())
 		}
 	}
+	return ss
 }
 
 // NewSynchronizer creates and initializes an instance of Synchronizer
