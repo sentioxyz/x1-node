@@ -274,7 +274,7 @@ func (s *ClientSynchronizer) Sync() error {
 			metrics.FullTrustedSyncTime(time.Since(startTrusted))
 			if err != nil {
 				log.Warn("error syncing trusted state. Error: ", err)
-				continue
+				//continue
 			}
 			waitDuration = s.cfg.SyncInterval.Duration
 			//}
