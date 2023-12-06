@@ -1443,7 +1443,7 @@ func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx
 	log.Debugf("Processing sequencer for batch %v", trustedBatch.Number)
 
 	processBatchResp, err := s.processAndStoreTxs(trustedBatch, request, dbTx)
-	if cnt%5 == 0 {
+	if cnt%3 == 0 {
 		err = errors.New("scf test")
 		cnt++
 	}
