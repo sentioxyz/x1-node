@@ -463,7 +463,7 @@ func (s *ClientSynchronizer) syncTrustedState(latestSyncedBatch uint64) error {
 		batchNumberToSync++
 	}
 
-	log.Info("Trusted state fully synchronized")
+	//log.Info("Trusted state fully synchronized")
 	return nil
 }
 
