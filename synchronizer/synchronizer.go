@@ -1324,7 +1324,7 @@ func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx
 	// check if batch needs to be synchronized
 	if batches[0] != nil {
 		if checkIfSynced(batches, trustedBatch) {
-			log.Debugf("Batch %v already synchronized", trustedBatch.Number)
+			log.Infof("Batch %v already synchronized", trustedBatch.Number)
 			return batches, s.trustedState.lastStateRoot, nil
 		}
 		log.Infof("Batch %v needs to be updated", trustedBatch.Number)
@@ -1365,7 +1365,7 @@ func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx
 					log.Error("error encoding txs (%d) to be added to the state. Error: %v", len(txsToBeAdded), err)
 					return nil, nil, err
 				}
-				log.Debug("request.Transactions: ", common.Bytes2Hex(request.Transactions))
+				log.Info("request.Transactions: ", common.Bytes2Hex(request.Transactions))
 			} else {
 				log.Info("Nothing to sync. Node updated. Checking if it is closed")
 				isBatchClosed := trustedBatch.StateRoot.String() != state.ZeroHash.String()
@@ -1428,7 +1428,7 @@ func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx
 			return nil, nil, err
 		}
 		batches[0].BatchL2Data = trustedBatchL2Data
-		log.Debug("BatchL2Data updated for batch: ", batches[0].BatchNumber)
+		log.Info("BatchL2Data updated for batch: ", batches[0].BatchNumber)
 	} else {
 		log.Infof("Batch %v needs to be synchronized", trustedBatch.Number)
 		err := s.openBatch(trustedBatch, dbTx)
@@ -1447,7 +1447,6 @@ func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx
 		err = errors.New("scf test")
 		cnt++
 	}
-
 	if err != nil {
 		log.Error("error procesingAndStoringTxs. Error: ", err)
 		return nil, nil, err
