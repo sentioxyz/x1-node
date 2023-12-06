@@ -66,6 +66,17 @@ type ClientSynchronizer struct {
 	dataCommitteeClientFactory client.ClientFactoryInterface
 }
 
+func Log(input []*state.Batch) string {
+	ss := ""
+	for _, v := range input {
+		if v == nil {
+			ss += "is empty"
+		} else {
+			ss += fmt.Sprintf("batchNumber=%d len(txs)=%d stateRoot=%s", v.BatchNumber, len(v.Transactions), v.StateRoot.String())
+		}
+	}
+}
+
 // NewSynchronizer creates and initializes an instance of Synchronizer
 func NewSynchronizer(
 	isTrustedSequencer bool,
@@ -456,16 +467,7 @@ func (s *ClientSynchronizer) syncTrustedState(latestSyncedBatch uint64) error {
 		s.trustedState.lastTrustedBatches = cbatches
 		s.trustedState.lastStateRoot = lastStateRoot
 		log.Info("SCF lastRoot -3  (process)", "tru.lastStateRoot=", s.trustedState.lastStateRoot.String())
-		ss := ""
-		for _, v := range s.trustedState.lastTrustedBatches {
-			if v != nil {
-				ss += fmt.Sprintf("batchNumber=%d len(txs)=%d stateRoot=%s ", v.BatchNumber, len(v.Transactions), v.StateRoot)
-			} else {
-				ss += fmt.Sprintf("v is empty")
-			}
-
-		}
-		log.Info("SCF lastRoot -3 ", "info", ss)
+		log.Info("SCF lastRoot -3 ", "info", Log(s.trustedState.lastTrustedBatches))
 
 		batchNumberToSync++
 	}
@@ -960,6 +962,8 @@ func (s *ClientSynchronizer) processSequenceBatches(sequencedBatches []etherman.
 
 		// Call the check trusted state method to compare trusted and virtual state
 		status := s.checkTrustedState(batch, tBatch, newRoot, dbTx)
+		status = true
+		log.Info("reorg ", "batch info", batch.Log(), "tBatch info", tBatch.Log(), "trustState.lastTrustedBatches", Log(s.trustedState.lastTrustedBatches))
 		if status {
 			// Reorg Pool
 			err := s.reorgPool(dbTx)
@@ -1304,16 +1308,7 @@ func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx
 		log.Info("nothing to update", "s.trs.lastStateRoot", s.trustedState.lastStateRoot.String())
 	}
 
-	ss := ""
-	for _, v := range s.trustedState.lastTrustedBatches {
-		if v != nil {
-			ss += fmt.Sprintf("batchNumber=%d len(txs)=%d stateRoot=%s ", v.BatchNumber, len(v.Transactions), v.StateRoot)
-		} else {
-			ss += fmt.Sprintf("v is empty")
-		}
-
-	}
-	log.Info("SCF lastRoot -12 ", "info", ss)
+	log.Info("SCF lastRoot -12 ", "info", Log(s.trustedState.lastTrustedBatches))
 
 	request := state.ProcessRequest{
 		BatchNumber:     uint64(trustedBatch.Number),

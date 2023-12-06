@@ -36,6 +36,10 @@ type Batch struct {
 	ForcedBatchNum *uint64
 }
 
+func (b *Batch) Log() string {
+	return fmt.Sprintf("batchNumber=%d len(txs)=%d stateRoot=%s", b.BatchNumber, len(b.Transactions), b.StateRoot.String())
+}
+
 // ProcessingContext is the necessary data that a batch needs to provide to the runtime,
 // without the historical state data (processing receipt from previous batch)
 type ProcessingContext struct {
