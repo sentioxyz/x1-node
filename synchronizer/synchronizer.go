@@ -1271,10 +1271,6 @@ func (s *ClientSynchronizer) processTrustedVerifyBatches(lastVerifiedBatch ether
 	return nil
 }
 
-var (
-	cnt = 0
-)
-
 func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx pgx.Tx) ([]*state.Batch, *common.Hash, error) {
 	log.Debugf("Processing trusted batch: %v", trustedBatch.Number)
 	trustedBatchL2Data := trustedBatch.BatchL2Data
@@ -1443,10 +1439,10 @@ func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx
 	log.Debugf("Processing sequencer for batch %v", trustedBatch.Number)
 
 	processBatchResp, err := s.processAndStoreTxs(trustedBatch, request, dbTx)
-	if cnt%2 == 0 {
+	if len(processBatchResp.Responses) != 0 {
 		err = errors.New("scf test")
 	}
-	cnt++
+
 	if err != nil {
 		log.Error("error procesingAndStoringTxs. Error: ", err)
 		return nil, nil, err
