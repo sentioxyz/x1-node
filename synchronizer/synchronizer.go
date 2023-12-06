@@ -267,17 +267,17 @@ func (s *ClientSynchronizer) Sync() error {
 			}
 			log.Infof("latestSequencedBatchNumber: %d, latestSyncedBatch: %d, lastVerifiedBatchNumber: %d", latestSequencedBatchNumber, latestSyncedBatch, lastVerifiedBatchNumber)
 			// Sync trusted state
-			if latestSyncedBatch >= latestSequencedBatchNumber {
-				startTrusted := time.Now()
-				//log.Info("Syncing trusted state")
-				err = s.syncTrustedState(latestSyncedBatch)
-				metrics.FullTrustedSyncTime(time.Since(startTrusted))
-				if err != nil {
-					log.Warn("error syncing trusted state. Error: ", err)
-					continue
-				}
-				waitDuration = s.cfg.SyncInterval.Duration
+			//if latestSyncedBatch >= latestSequencedBatchNumber {
+			startTrusted := time.Now()
+			//log.Info("Syncing trusted state")
+			err = s.syncTrustedState(latestSyncedBatch)
+			metrics.FullTrustedSyncTime(time.Since(startTrusted))
+			if err != nil {
+				log.Warn("error syncing trusted state. Error: ", err)
+				continue
 			}
+			waitDuration = s.cfg.SyncInterval.Duration
+			//}
 			//Sync L1Blocks
 			startL1 := time.Now()
 			lastEthBlockSynced, err = s.syncBlocks(lastEthBlockSynced)
