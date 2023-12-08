@@ -72,7 +72,7 @@ func Log(input []*state.Batch) string {
 		if v == nil {
 			ss += "is empty"
 		} else {
-			ss += fmt.Sprintf("batchNumber=%d len(txs)=%d stateRoot=%s", v.BatchNumber, len(v.Transactions), v.StateRoot.String())
+			ss += fmt.Sprintf("batchNumber=%d len(txs)=%d stateRoot=%s batchL2Data=%d", v.BatchNumber, len(v.Transactions), v.StateRoot.String(), len(v.BatchL2Data))
 		}
 	}
 	return ss
@@ -467,7 +467,7 @@ func (s *ClientSynchronizer) syncTrustedState(latestSyncedBatch uint64) error {
 		}
 		s.trustedState.lastTrustedBatches = cbatches
 		s.trustedState.lastStateRoot = lastStateRoot
-		log.Info("SCF lastRoot -3  (process)", "tru.lastStateRoot=", s.trustedState.lastStateRoot.String())
+		log.Infof("SCF lastRoot -3  (process)", "tru.lastStateRoot=%s l", s.trustedState.lastStateRoot.String())
 		log.Info("SCF lastRoot -3 ", "info", Log(s.trustedState.lastTrustedBatches))
 
 		batchNumberToSync++

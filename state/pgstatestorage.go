@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/0xPolygonHermez/zkevm-node/log"
 	"math/big"
 	"time"
 
@@ -1006,7 +1007,7 @@ func (p *PostgresStorage) closeBatch(ctx context.Context, receipt ProcessingRece
 	}
 	_, err = e.Exec(ctx, closeBatchSQL, receipt.StateRoot.String(), receipt.LocalExitRoot.String(),
 		receipt.AccInputHash.String(), receipt.BatchL2Data, string(batchResourcesJsonBytes), receipt.ClosingReason, receipt.BatchNumber)
-
+	log.Infof("SCF close batch batchNumber=%d BatchL2Data=%d stateRoot=%s", receipt.BatchNumber, len(receipt.BatchL2Data), receipt.StateRoot.String())
 	return err
 }
 
