@@ -1430,7 +1430,7 @@ func scanLogs(rows pgx.Rows) ([]*types.Log, error) {
 	ts := time.Now()
 	defer func() {
 		rows.Close()
-		log.Infof("SCF scanLogs", time.Now().Sub(ts).Milliseconds())
+		log.Infof("SCF scanLogs=%d", time.Now().Sub(ts).Milliseconds())
 	}()
 
 	logs := make([]*types.Log, 0, len(rows.RawValues()))

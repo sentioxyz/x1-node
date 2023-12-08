@@ -480,20 +480,20 @@ func (e *EthEndpoints) internalGetLogs(ctx context.Context, dbTx pgx.Tx, filter 
 	if rpcErr != nil {
 		return nil, rpcErr
 	}
-	log.Infof("SCF internalGetLogs before GetLogs", time.Now().Sub(ts).Milliseconds())
+	log.Infof("SCF internalGetLogs before GetLogs=%d", time.Now().Sub(ts).Milliseconds())
 
 	logs, err := e.state.GetLogs(ctx, fromBlock, toBlock, filter.Addresses, filter.Topics, filter.BlockHash, filter.Since, dbTx)
 	if err != nil {
 		return RPCErrorResponse(types.DefaultErrorCode, "failed to get logs from state", err)
 	}
-	log.Infof("SCF internalGetLogs end GetLogs ", time.Now().Sub(ts).Milliseconds())
+	log.Infof("SCF internalGetLogs end GetLogs=%d ", time.Now().Sub(ts).Milliseconds())
 
 	result := make([]types.Log, 0, len(logs))
 	for _, l := range logs {
 		result = append(result, types.NewLog(*l))
 	}
 
-	log.Infof("SCF internalGetLogs make Result ", time.Now().Sub(ts).Milliseconds())
+	log.Infof("SCF internalGetLogs make Result=%d", time.Now().Sub(ts).Milliseconds())
 	return result, nil
 }
 
