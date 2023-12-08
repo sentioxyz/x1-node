@@ -457,11 +457,11 @@ func (e *EthEndpoints) GetFilterLogs(filterID string) (interface{}, types.Error)
 func (e *EthEndpoints) GetLogs(filter LogFilter) (interface{}, types.Error) {
 	ts := time.Now()
 	defer func() {
-		log.Infof("SCF GetLogs allTime=%d", time.Now().Sub(ts).Milliseconds())
+		log.Infof("SCF GetLogs allTime=%d str=%s", time.Now().Sub(ts).Milliseconds(), filter.FromBlock.StringOrHex())
 	}()
-	return e.txMan.NewDbTxScope(e.state, func(ctx context.Context, dbTx pgx.Tx) (interface{}, types.Error) {
+	return e.txMan.NewDbTxScopeSCF(e.state, func(ctx context.Context, dbTx pgx.Tx) (interface{}, types.Error) {
 		return e.internalGetLogs(ctx, dbTx, filter)
-	})
+	}, true)
 }
 
 func (e *EthEndpoints) internalGetLogs(ctx context.Context, dbTx pgx.Tx, filter LogFilter) (interface{}, types.Error) {
@@ -480,20 +480,30 @@ func (e *EthEndpoints) internalGetLogs(ctx context.Context, dbTx pgx.Tx, filter 
 	if rpcErr != nil {
 		return nil, rpcErr
 	}
-	log.Infof("SCF internalGetLogs before GetLogs=%d", time.Now().Sub(ts).Milliseconds())
+	inputLog := false
+	if fromBlock == 687167 {
+		inputLog = true
+	}
+	if inputLog {
+		log.Infof("SCF internalGetLogs before GetLogs=%d", time.Now().Sub(ts).Milliseconds())
+	}
 
 	logs, err := e.state.GetLogs(ctx, fromBlock, toBlock, filter.Addresses, filter.Topics, filter.BlockHash, filter.Since, dbTx)
 	if err != nil {
 		return RPCErrorResponse(types.DefaultErrorCode, "failed to get logs from state", err)
 	}
-	log.Infof("SCF internalGetLogs end GetLogs=%d ", time.Now().Sub(ts).Milliseconds())
+	if inputLog {
+		log.Infof("SCF internalGetLogs end GetLogs=%d ", time.Now().Sub(ts).Milliseconds())
+	}
 
 	result := make([]types.Log, 0, len(logs))
 	for _, l := range logs {
 		result = append(result, types.NewLog(*l))
 	}
+	if inputLog {
+		log.Infof("SCF internalGetLogs make Result=%d", time.Now().Sub(ts).Milliseconds())
+	}
 
-	log.Infof("SCF internalGetLogs make Result=%d", time.Now().Sub(ts).Milliseconds())
 	return result, nil
 }
 

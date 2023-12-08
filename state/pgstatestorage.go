@@ -1423,14 +1423,16 @@ func (p *PostgresStorage) getTransactionLogs(ctx context.Context, transactionHas
 	if !errors.Is(err, pgx.ErrNoRows) && err != nil {
 		return nil, err
 	}
-	return scanLogs(rows)
+	return scanLogs(rows, false)
 }
 
-func scanLogs(rows pgx.Rows) ([]*types.Log, error) {
+func scanLogs(rows pgx.Rows, inputLog bool) ([]*types.Log, error) {
 	ts := time.Now()
 	defer func() {
 		rows.Close()
-		log.Infof("SCF scanLogs=%d", time.Now().Sub(ts).Milliseconds())
+		if inputLog {
+			log.Infof("SCF scanLogs=%d", time.Now().Sub(ts).Milliseconds())
+		}
 	}()
 
 	logs := make([]*types.Log, 0, len(rows.RawValues()))
@@ -2012,18 +2014,30 @@ func (p *PostgresStorage) GetLogs(ctx context.Context, fromBlock uint64, toBlock
 			args = append(args, nil)
 		}
 	}
+	inputLog := false
+	if fromBlock == 687167 {
+		inputLog = true
+	}
 
 	args = append(args, since)
-	log.Infof("SCF GetLogsFromState getExecQuerier %d", time.Now().Sub(ts).Milliseconds())
+	if inputLog {
+		log.Infof("SCF GetLogsFromState getExecQuerier %d", time.Now().Sub(ts).Milliseconds())
+	}
+
 	q := p.getExecQuerier(dbTx)
-	log.Infof("SCF GetLogsFromState before query %d", time.Now().Sub(ts).Milliseconds())
+	if inputLog {
+		log.Infof("SCF GetLogsFromState before query %d", time.Now().Sub(ts).Milliseconds())
+	}
+
 	rows, err := q.Query(ctx, query, args...)
-	log.Infof("SCF GetLogsFromState end query %d", time.Now().Sub(ts).Milliseconds())
+	if inputLog {
+		log.Infof("SCF GetLogsFromState end query %d", time.Now().Sub(ts).Milliseconds())
+	}
 
 	if err != nil {
 		return nil, err
 	}
-	return scanLogs(rows)
+	return scanLogs(rows, inputLog)
 }
 
 // GetSyncingInfo returns information regarding the syncing status of the node
