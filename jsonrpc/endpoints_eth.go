@@ -462,7 +462,7 @@ func (e *EthEndpoints) GetLogs(filter LogFilter) (interface{}, types.Error) {
 	ts := time.Now()
 	defer func() {
 		if inputLog {
-			log.Infof("SCF GetLogs allTime=%d str=%s", time.Now().Sub(ts).Milliseconds())
+			log.Infof("SCF GetLogs allTime=%d", time.Now().Sub(ts).Milliseconds())
 		}
 	}()
 	return e.txMan.NewDbTxScopeSCF(e.state, func(ctx context.Context, dbTx pgx.Tx) (interface{}, types.Error) {
