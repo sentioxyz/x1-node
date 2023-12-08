@@ -467,7 +467,7 @@ func (s *ClientSynchronizer) syncTrustedState(latestSyncedBatch uint64) error {
 		}
 		s.trustedState.lastTrustedBatches = cbatches
 		s.trustedState.lastStateRoot = lastStateRoot
-		log.Infof("SCF lastRoot -3  (process)", "tru.lastStateRoot=%s l", s.trustedState.lastStateRoot.String())
+		log.Info("SCF lastRoot -3  (process)", "tru.lastStateRoot=", s.trustedState.lastStateRoot.String())
 		log.Info("SCF lastRoot -3 ", "info", Log(s.trustedState.lastTrustedBatches))
 
 		batchNumberToSync++
