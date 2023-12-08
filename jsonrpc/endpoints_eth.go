@@ -455,13 +455,19 @@ func (e *EthEndpoints) GetFilterLogs(filterID string) (interface{}, types.Error)
 
 // GetLogs returns a list of logs accordingly to the provided filter
 func (e *EthEndpoints) GetLogs(filter LogFilter) (interface{}, types.Error) {
+	inputLog := false
+	if filter.FromBlock != nil && filter.FromBlock.StringOrHex() == "0xa7c3f" {
+		inputLog = true
+	}
 	ts := time.Now()
 	defer func() {
-		log.Infof("SCF GetLogs allTime=%d str=%s", time.Now().Sub(ts).Milliseconds(), filter.FromBlock.StringOrHex())
+		if inputLog {
+			log.Infof("SCF GetLogs allTime=%d str=%s", time.Now().Sub(ts).Milliseconds())
+		}
 	}()
 	return e.txMan.NewDbTxScopeSCF(e.state, func(ctx context.Context, dbTx pgx.Tx) (interface{}, types.Error) {
 		return e.internalGetLogs(ctx, dbTx, filter)
-	}, true)
+	}, inputLog)
 }
 
 func (e *EthEndpoints) internalGetLogs(ctx context.Context, dbTx pgx.Tx, filter LogFilter) (interface{}, types.Error) {
