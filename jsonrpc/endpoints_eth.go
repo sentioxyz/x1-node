@@ -8,6 +8,7 @@ import (
 	"math/big"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/0xPolygonHermez/zkevm-node/hex"
 	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/client"
@@ -454,12 +455,17 @@ func (e *EthEndpoints) GetFilterLogs(filterID string) (interface{}, types.Error)
 
 // GetLogs returns a list of logs accordingly to the provided filter
 func (e *EthEndpoints) GetLogs(filter LogFilter) (interface{}, types.Error) {
+	ts := time.Now()
+	defer func() {
+		log.Infof("SCF GetLogs allTime=%d", time.Now().Sub(ts).Milliseconds())
+	}()
 	return e.txMan.NewDbTxScope(e.state, func(ctx context.Context, dbTx pgx.Tx) (interface{}, types.Error) {
 		return e.internalGetLogs(ctx, dbTx, filter)
 	})
 }
 
 func (e *EthEndpoints) internalGetLogs(ctx context.Context, dbTx pgx.Tx, filter LogFilter) (interface{}, types.Error) {
+	ts := time.Now()
 	var err error
 	var fromBlock uint64 = 0
 	if filter.FromBlock != nil {
@@ -474,17 +480,20 @@ func (e *EthEndpoints) internalGetLogs(ctx context.Context, dbTx pgx.Tx, filter 
 	if rpcErr != nil {
 		return nil, rpcErr
 	}
+	log.Infof("SCF internalGetLogs before GetLogs", time.Now().Sub(ts).Milliseconds())
 
 	logs, err := e.state.GetLogs(ctx, fromBlock, toBlock, filter.Addresses, filter.Topics, filter.BlockHash, filter.Since, dbTx)
 	if err != nil {
 		return RPCErrorResponse(types.DefaultErrorCode, "failed to get logs from state", err)
 	}
+	log.Infof("SCF internalGetLogs end GetLogs ", time.Now().Sub(ts).Milliseconds())
 
 	result := make([]types.Log, 0, len(logs))
 	for _, l := range logs {
 		result = append(result, types.NewLog(*l))
 	}
 
+	log.Infof("SCF internalGetLogs make Result ", time.Now().Sub(ts).Milliseconds())
 	return result, nil
 }
 
