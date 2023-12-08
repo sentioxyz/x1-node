@@ -1423,16 +1423,12 @@ func (p *PostgresStorage) getTransactionLogs(ctx context.Context, transactionHas
 	if !errors.Is(err, pgx.ErrNoRows) && err != nil {
 		return nil, err
 	}
-	return scanLogs(rows, false)
+	return scanLogs(rows)
 }
 
-func scanLogs(rows pgx.Rows, inputLog bool) ([]*types.Log, error) {
-	ts := time.Now()
+func scanLogs(rows pgx.Rows) ([]*types.Log, error) {
 	defer func() {
 		rows.Close()
-		if inputLog {
-			log.Infof("SCF scanLogs=%d", time.Now().Sub(ts).Milliseconds())
-		}
 	}()
 
 	logs := make([]*types.Log, 0, len(rows.RawValues()))
@@ -2018,6 +2014,11 @@ func (p *PostgresStorage) GetLogs(ctx context.Context, fromBlock uint64, toBlock
 	if fromBlock == 687167 {
 		inputLog = true
 	}
+	defer func() {
+		if inputLog {
+			log.Infof("SCF GetLogsFromState EndAllTime=%d", time.Now().Sub(ts).Milliseconds())
+		}
+	}()
 
 	args = append(args, since)
 	if inputLog {
@@ -2037,7 +2038,7 @@ func (p *PostgresStorage) GetLogs(ctx context.Context, fromBlock uint64, toBlock
 	if err != nil {
 		return nil, err
 	}
-	return scanLogs(rows, inputLog)
+	return scanLogs(rows)
 }
 
 // GetSyncingInfo returns information regarding the syncing status of the node
