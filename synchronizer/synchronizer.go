@@ -1276,7 +1276,7 @@ var (
 )
 
 func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx pgx.Tx) ([]*state.Batch, *common.Hash, error) {
-	log.Infof("Processing trusted batch: %v L2ByteData", trustedBatch.Number, len(trustedBatch.BatchL2Data.Hex()))
+	log.Infof("Processing trusted batch: %v L2ByteData=%d", trustedBatch.Number, len(trustedBatch.BatchL2Data))
 	trustedBatchL2Data := trustedBatch.BatchL2Data
 	batches := s.trustedState.lastTrustedBatches
 	log.Debug("len(batches): ", len(batches))
