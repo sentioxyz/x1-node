@@ -1279,6 +1279,7 @@ func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx
 	log.Infof("Processing trusted batch: %v L2ByteData=%d", trustedBatch.Number, len(trustedBatch.BatchL2Data))
 	trustedBatchL2Data := trustedBatch.BatchL2Data
 	batches := s.trustedState.lastTrustedBatches
+	needUpdate := false
 	log.Debug("len(batches): ", len(batches))
 	batches, err := s.getCurrentBatches(batches, trustedBatch, dbTx)
 	if err != nil {
@@ -1427,7 +1428,8 @@ func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx
 			log.Errorf("error opening batch %d", trustedBatch.Number)
 			return nil, nil, err
 		}
-		batches[0].BatchL2Data = trustedBatchL2Data
+		//batches[0].BatchL2Data = trustedBatchL2Data
+		needUpdate = true
 		log.Info("BatchL2Data updated for batch: ", batches[0].BatchNumber)
 	} else {
 		log.Infof("Batch %v needs to be synchronized", trustedBatch.Number)
@@ -1450,6 +1452,9 @@ func (s *ClientSynchronizer) processTrustedBatch(trustedBatch *types.Batch, dbTx
 	if err != nil {
 		log.Error("error procesingAndStoringTxs. Error: ", err)
 		return nil, nil, err
+	}
+	if needUpdate {
+		batches[0].BatchL2Data = trustedBatchL2Data
 	}
 
 	log.Debug("TrustedBatch.StateRoot ", trustedBatch.StateRoot)
