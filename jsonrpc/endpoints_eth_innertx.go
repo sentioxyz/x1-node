@@ -73,7 +73,7 @@ type okFrame struct {
 }
 
 func internalTxTraceToInnerTxs(tx okFrame) []*InnerTx {
-	dfs := Dfs{}
+	dfs := dfs{}
 	indexMap := make(map[int]int)
 	indexMap[0] = 1
 	var level = 0
@@ -83,7 +83,7 @@ func internalTxTraceToInnerTxs(tx okFrame) []*InnerTx {
 	return dfs.innerTxs
 }
 
-type Dfs struct {
+type dfs struct {
 	innerTxs []*InnerTx
 }
 
@@ -96,7 +96,7 @@ func inArray(dst string, src []string) bool {
 	return false
 }
 
-func (d *Dfs) dfs(tx okFrame, level int, index int, indexMap map[int]int, isError bool) {
+func (d *dfs) dfs(tx okFrame, level int, index int, indexMap map[int]int, isError bool) {
 	if !inArray(strings.ToLower(tx.Type), []string{"call", "create", "create2",
 		"callcode", "delegatecall", "staticcall", "selfdestruct"}) {
 		return
@@ -126,6 +126,7 @@ func (d *Dfs) dfs(tx okFrame, level int, index int, indexMap map[int]int, isErro
 	}
 }
 
+// InnerTx represents a struct type for internal transactions.
 type InnerTx struct {
 	Dept          big.Int `json:"dept"`
 	InternalIndex big.Int `json:"internal_index"`

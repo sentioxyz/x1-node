@@ -63,6 +63,7 @@ func StartNacosClient(urls string, namespace string, name string, externalAddr s
 	log.Info("register application instance in nacos successfully")
 }
 
+// ResolveIPAndPort resolve ip and port from addr
 func ResolveIPAndPort(addr string) (string, int, error) {
 	laddr := strings.Split(addr, ":")
 	ip := laddr[0]
