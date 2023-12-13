@@ -13,6 +13,13 @@ import (
 	"github.com/nacos-group/nacos-sdk-go/vo"
 )
 
+var (
+	defaultPort           = 26659
+	defaultTimeoutMs      = uint64(5000)
+	defaultListenInterval = uint64(10000)
+	defaultWeight         = float64(10)
+)
+
 // StartNacosClient start nacos client and register rest service in nacos
 func StartNacosClient(urls string, namespace string, name string, externalAddr string) {
 	ip, port, err := ResolveIPAndPort(externalAddr)
@@ -29,8 +36,8 @@ func StartNacosClient(urls string, namespace string, name string, externalAddr s
 	client, err := clients.CreateNamingClient(map[string]interface{}{
 		"serverConfigs": serverConfigs,
 		"clientConfig": constant.ClientConfig{
-			TimeoutMs:           5000,
-			ListenInterval:      10000,
+			TimeoutMs:           defaultTimeoutMs,
+			ListenInterval:      defaultListenInterval,
 			NotLoadCacheAtStart: true,
 			NamespaceId:         namespace,
 			LogDir:              "/dev/null",
@@ -46,7 +53,7 @@ func StartNacosClient(urls string, namespace string, name string, externalAddr s
 		Ip:          ip,
 		Port:        uint64(port),
 		ServiceName: name,
-		Weight:      10,
+		Weight:      defaultWeight,
 		ClusterName: "DEFAULT",
 		Enable:      true,
 		Healthy:     true,
@@ -68,7 +75,7 @@ func ResolveIPAndPort(addr string) (string, int, error) {
 	laddr := strings.Split(addr, ":")
 	ip := laddr[0]
 	if ip == "127.0.0.1" {
-		return GetLocalIP(), 26659, nil
+		return GetLocalIP(), defaultPort, nil
 	}
 	port, err := strconv.Atoi(laddr[1])
 	if err != nil {

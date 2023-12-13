@@ -22,7 +22,7 @@ func GetOneInstance(urls string, nameSpace string, param vo.SelectOneHealthInsta
 		"serverConfigs": serverConfigs,
 		"clientConfig": constant.ClientConfig{
 			NamespaceId:         nameSpace,
-			TimeoutMs:           5000,
+			TimeoutMs:           defaultTimeoutMs,
 			NotLoadCacheAtStart: true,
 			LogDir:              "/dev/null",
 		},

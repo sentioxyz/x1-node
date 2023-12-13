@@ -9,6 +9,7 @@ import (
 var instance *logStatisticsInstance
 var once sync.Once
 
+// GetLogStatistics is get log instance for statistic
 func GetLogStatistics() logStatistics {
 	once.Do(func() {
 		instance = &logStatisticsInstance{}
