@@ -5,8 +5,6 @@ import (
 	"fmt"
 
 	"github.com/0xPolygonHermez/zkevm-node/log"
-	"github.com/gobuffalo/packr/v2"
-	"github.com/jackc/pgx/v4"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/jackc/pgx/v4/stdlib"
 	migrate "github.com/rubenv/sql-migrate"
@@ -14,9 +12,9 @@ import (
 
 const (
 	// StateMigrationName is the name of the migration used by packr to pack the migration file
-	StateMigrationName = "xgon-state-db"
+	StateMigrationName = "x1-state-db"
 	// PoolMigrationName is the name of the migration used by packr to pack the migration file
-	PoolMigrationName = "xgon-pool-db"
+	PoolMigrationName = "x1-pool-db"
 )
 
 var packrMigrations = map[string]*packr.Box{

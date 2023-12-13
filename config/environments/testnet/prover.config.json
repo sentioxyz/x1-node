@@ -113,9 +113,5 @@
     "ECRecoverPrecalc": false,
     "ECRecoverPrecalcNThreads": 4,
     "stateManager": true,
-<<<<<<<< HEAD:config/environments/testnet/prover.config.json
     "useAssociativeCache" : false
-========
-    "useAssociativeCache" : false    
->>>>>>>> release/v0.1.1:config/environments/mainnet/prover.config.json
 }
