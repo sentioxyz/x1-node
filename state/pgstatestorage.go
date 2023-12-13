@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/0xPolygonHermez/zkevm-node/log"
 	"math/big"
 	"time"
 
@@ -2015,7 +2016,9 @@ func (p *PostgresStorage) GetLogs(ctx context.Context, fromBlock uint64, toBlock
 	if err != nil {
 		return nil, err
 	}
-	return scanLogs(rows)
+	res, err := scanLogs(rows)
+	log.Infof("GetLogs", "count", len(res))
+	return res, err
 }
 
 // GetSyncingInfo returns information regarding the syncing status of the node
