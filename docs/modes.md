@@ -45,8 +45,8 @@ Additionally, the [`production-setup.md`](./production-setup.md) goes through th
 
 ### Docker services:
 
-- `zkevm-sync`
-- `zkevm-prover` (`Merkle Tree`, `Executor`)
+- `x1-sync`
+- `x1-prover` (`Merkle Tree`, `Executor`)
 - `zkevm-rpc` 
 - Databases
 
@@ -96,7 +96,7 @@ For *only* Prover Config (`only-prover-config.json`):
 
 ### Docker services:
 
-- `zkevm-sync`
-- `zkevm-prover` (`Prover`, `Merkle Tree`, `Executor`)
-- `zkevm-aggregator` 
+- `x1-sync`
+- `x1-prover` (`Prover`, `Merkle Tree`, `Executor`)
+- `x1-aggregator` 
 - Databases
