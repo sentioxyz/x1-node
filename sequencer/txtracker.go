@@ -1,11 +1,12 @@
 package sequencer
 
 import (
+	"math/big"
+	"time"
+
 	"github.com/0xPolygonHermez/zkevm-node/pool"
 	"github.com/0xPolygonHermez/zkevm-node/state"
 	"github.com/ethereum/go-ethereum/common"
-	"math/big"
-	"time"
 )
 
 // TxTracker is a struct that contains all the tx data needed to be managed by the worker
