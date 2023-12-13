@@ -2,6 +2,7 @@ package sequencer
 
 import (
 	"context"
+	ethmanTypes "github.com/0xPolygonHermez/zkevm-node/etherman/types"
 	"math/big"
 	"time"
 
@@ -33,11 +34,13 @@ type txPool interface {
 
 // etherman contains the methods required to interact with ethereum.
 type etherman interface {
+	EstimateGasSequenceBatches(sender common.Address, sequences []ethmanTypes.Sequence, l2CoinBase common.Address, committeeSignaturesAndAddrs []byte) (*types.Transaction, error)
 	GetSendSequenceFee(numBatches uint64) (*big.Int, error)
 	TrustedSequencer() (common.Address, error)
 	GetLatestBatchNumber() (uint64, error)
 	GetLastBatchTimestamp() (uint64, error)
 	GetLatestBlockTimestamp(ctx context.Context) (uint64, error)
+	BuildSequenceBatchesTxData(sender common.Address, sequences []ethmanTypes.Sequence, l2CoinBase common.Address, committeeSignaturesAndAddrs []byte) (to *common.Address, data []byte, err error)
 	GetLatestBlockNumber(ctx context.Context) (uint64, error)
 }
 

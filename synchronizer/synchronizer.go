@@ -120,8 +120,8 @@ func NewSynchronizer(
 	default:
 		log.Fatalf("L1SynchronizationMode is not valid. Valid values are: %s, %s", ParallelMode, SequentialMode)
 	}
-
-	return res, nil
+	err := res.loadCommittee()
+	return res, err
 }
 
 var waitDuration = time.Duration(0)
