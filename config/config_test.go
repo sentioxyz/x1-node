@@ -2,13 +2,6 @@ package config_test
 
 import (
 	"flag"
-	"math/big"
-	"os"
-	"reflect"
-	"strings"
-	"testing"
-	"time"
-
 	"github.com/0xPolygonHermez/zkevm-node/aggregator"
 	"github.com/0xPolygonHermez/zkevm-node/config"
 	"github.com/0xPolygonHermez/zkevm-node/config/types"
@@ -16,6 +9,13 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/urfave/cli/v2"
+	"math/big"
+	"os"
+	"reflect"
+	"strings"
+	"testing"
+	"time"
 )
 
 func Test_Defaults(t *testing.T) {

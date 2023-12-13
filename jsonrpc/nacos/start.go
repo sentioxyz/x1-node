@@ -2,16 +2,14 @@ package nacos
 
 import (
 	"fmt"
+	"github.com/0xPolygonHermez/zkevm-node/log"
+	"github.com/nacos-group/nacos-sdk-go/clients"
+	"github.com/nacos-group/nacos-sdk-go/common/constant"
+	"github.com/nacos-group/nacos-sdk-go/vo"
 	"net"
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/nacos-group/nacos-sdk-go/clients"
-	"github.com/nacos-group/nacos-sdk-go/common/constant"
-	"github.com/nacos-group/nacos-sdk-go/vo"
-
-	"github.com/0xPolygonHermez/zkevm-node/log"
 )
 
 // StartNacosClient start nacos client and register rest service in nacos

@@ -2,8 +2,6 @@ package synchronizer
 
 import (
 	"context"
-	"math/big"
-
 	"github.com/0xPolygonHermez/zkevm-node/etherman"
 	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/types"
 	"github.com/0xPolygonHermez/zkevm-node/state"
@@ -12,6 +10,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	ethTypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/jackc/pgx/v4"
+	"math/big"
 )
 
 // EthermanInterface contains the methods required to interact with ethereum.

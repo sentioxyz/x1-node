@@ -2,6 +2,7 @@ package synchronizer
 
 import (
 	context "context"
+	"github.com/ethereum/go-ethereum/crypto"
 	"math/big"
 	"testing"
 	"time"
@@ -15,6 +16,7 @@ import (
 	"github.com/0xPolygonHermez/zkevm-node/state/runtime/executor"
 	"github.com/ethereum/go-ethereum/common"
 	ethTypes "github.com/ethereum/go-ethereum/core/types"
+	"github.com/jackc/pgx/v4"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
