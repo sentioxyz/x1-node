@@ -505,6 +505,7 @@ func (p *Pool) validateTx(ctx context.Context, poolTx Transaction) error {
 		gasPriceCmp := poolTx.GasPrice().Cmp(p.minSuggestedGasPrice)
 		p.minSuggestedGasPriceMux.RUnlock()
 		if gasPriceCmp == -1 {
+			log.Debugf("low gas price: minSuggestedGasPrice %v got %v", p.minSuggestedGasPrice, poolTx.GasPrice())
 			return ErrGasPrice
 		}
 	}
