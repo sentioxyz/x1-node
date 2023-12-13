@@ -13,7 +13,7 @@ import (
 	"github.com/nacos-group/nacos-sdk-go/vo"
 )
 
-var (
+const (
 	defaultPort           = 26659
 	defaultTimeoutMs      = uint64(5000)
 	defaultListenInterval = uint64(10000)
