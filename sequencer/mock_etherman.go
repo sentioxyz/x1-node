@@ -4,9 +4,10 @@ package sequencer
 
 import (
 	context "context"
+	big "math/big"
+
 	"github.com/0xPolygonHermez/zkevm-node/etherman/types"
 	coretypes "github.com/ethereum/go-ethereum/core/types"
-	big "math/big"
 
 	common "github.com/ethereum/go-ethereum/common"
 

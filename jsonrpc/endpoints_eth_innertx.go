@@ -3,14 +3,15 @@ package jsonrpc
 import (
 	"context"
 	"encoding/json"
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/types"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/jackc/pgx/v4"
 	"math/big"
 	"strconv"
 	"strings"
 	"sync"
+
+	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/types"
+	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/common/hexutil"
+	"github.com/jackc/pgx/v4"
 )
 
 var debugEndPoints *DebugEndpoints

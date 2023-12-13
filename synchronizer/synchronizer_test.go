@@ -2,10 +2,11 @@ package synchronizer
 
 import (
 	context "context"
-	"github.com/ethereum/go-ethereum/crypto"
 	"math/big"
 	"testing"
 	"time"
+
+	"github.com/ethereum/go-ethereum/crypto"
 
 	cfgTypes "github.com/0xPolygonHermez/zkevm-node/config/types"
 	"github.com/0xPolygonHermez/zkevm-node/etherman"
