@@ -268,7 +268,7 @@
 				},
 				"GlobalQueue": {
 					"type": "integer",
-					"descripti\"description\": \"TraceBatchUseHTTPS enables, in the debug_traceBatchByNum endpoint, the use of the HTTPS protoon": "GlobalQueue represents the maximum number of non-executable transaction slots for all accounts",
+					"description": "GlobalQueue represents the maximum number of non-executable transaction slots for all accounts",
 					"default": 1024
 				},
 				"FreeGasAddress": {
@@ -904,8 +904,8 @@
 				},
 				"MaxTxSizeForL1": {
 					"type": "integer",
-					"description": "MaxTxSizeForL1 is the maximum size a single transaction can have. This field has\nnon-trivial consequences: larger transactions than 128KB are significantly harder and\nmore expensive to propagate; larger transactions also take more resources\nto validate whether they fit into the pool or not.",
-					"default": 131072
+					"description": "// MaxTxSizeForL1 is the maximum size a single transaction can have. This field has\n// non-trivial consequences: larger transactions than 128KB are significantly harder and\n// more expensive to propagate; larger transactions also take more resources\n// to validate whether they fit into the pool or not.",
+					"default": 0
 				},
 				"MaxBatchesForL1": {
 					"type": "integer",
@@ -953,15 +953,15 @@
 					"description": "Batch number where there is a forkid change (fork upgrade)",
 					"default": 0
 				},
-				"GasOffset": {
-					"type": "integer",
-					"description": "GasOffset is the amount of gas to be added to the gas estimation in order\nto provide an amount that is higher than the estimated one. This is used\nto avoid the TX getting reverted in case something has changed in the network\nstate after the estimation which can cause the TX to require more gas to be\nexecuted.\n\nex:\ngas estimation: 1000\ngas offset: 100\nfinal gas: 1100",
-					"default": 80000
-				},
 				"UseValidium": {
 					"type": "boolean",
 					"description": "UseValidium is a flag to enable/disable the use of validium",
 					"default": true
+				},
+				"GasOffset": {
+					"type": "integer",
+					"description": "GasOffset is the amount of gas to be added to the gas estimation in order\nto provide an amount that is higher than the estimated one. This is used\nto avoid the TX getting reverted in case something has changed in the network\nstate after the estimation which can cause the TX to require more gas to be\nexecuted.\n\nex:\ngas estimation: 1000\ngas offset: 100\nfinal gas: 1100",
+					"default": 80000
 				}
 			},
 			"additionalProperties": false,
@@ -1309,7 +1309,6 @@
 					"description": "EnableFollowerAdjustByL2L1Price is dynamic adjust the factor through the L1 and L2 coins price in follower strategy",
 					"default": false
 				},
-
 				"Factor": {
 					"type": "number",
 					"default": 0.15
