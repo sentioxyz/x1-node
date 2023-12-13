@@ -2,11 +2,7 @@ package sequencer
 
 import (
 	"context"
-	"math/big"
-	"time"
-
 	ethmanTypes "github.com/0xPolygonHermez/zkevm-node/etherman/types"
-
 	"github.com/0xPolygonHermez/zkevm-node/pool"
 	"github.com/0xPolygonHermez/zkevm-node/state"
 	"github.com/0xPolygonHermez/zkevm-node/state/metrics"
@@ -14,6 +10,8 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/jackc/pgx/v4"
+	"math/big"
+	"time"
 )
 
 // Consumer interfaces required by the package.

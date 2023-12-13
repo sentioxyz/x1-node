@@ -6,6 +6,12 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/metrics"
+	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/nacos"
+	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/types"
+	"github.com/0xPolygonHermez/zkevm-node/log"
+	"github.com/didip/tollbooth/v6"
+	"github.com/gorilla/websocket"
 	"io"
 	"mime"
 	"net"
@@ -13,14 +19,6 @@ import (
 	"sync"
 	"syscall"
 	"time"
-
-	"github.com/didip/tollbooth/v6"
-	"github.com/gorilla/websocket"
-
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/metrics"
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/nacos"
-	"github.com/0xPolygonHermez/zkevm-node/jsonrpc/types"
-	"github.com/0xPolygonHermez/zkevm-node/log"
 )
 
 const (
