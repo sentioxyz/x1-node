@@ -324,14 +324,14 @@ stop-db: ## Stops the node database
 	$(STOPEVENTDB)
 	$(STOPPOOLDB)
 	$(STOPSTATEDB)
-	$(RUNDACDB)
+	$(STOPDACDB)
 
 .PHONY: run-node
 run-node: ## Runs the node
 	$(RUNSYNC)
 	sleep 4
 	$(RUNETHTXMANAGER)
-	$(RUNDACDB)
+	$(RUNDACNODE)
 	$(RUNSEQUENCER)
 	$(RUNSEQUENCESENDER)
 	$(RUNL2GASPRICER)
