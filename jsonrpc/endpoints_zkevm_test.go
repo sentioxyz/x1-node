@@ -22,7 +22,7 @@ import (
 )
 
 const (
-	forkID6 = 6
+	forkID6 = 5 //TODO need rebuild fork6 e2e image
 )
 
 func TestConsolidatedBlockNumber(t *testing.T) {
