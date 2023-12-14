@@ -2017,7 +2017,7 @@ func (p *PostgresStorage) GetLogs(ctx context.Context, fromBlock uint64, toBlock
 		return nil, err
 	}
 	res, err := scanLogs(rows)
-	log.Infof("GetLogs", "count", len(res))
+	log.Infof("GetLogs", "count=%d", len(res))
 	return res, err
 }
 
