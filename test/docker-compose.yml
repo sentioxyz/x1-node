@@ -340,6 +340,8 @@ services:
       - "--ws.addr"
       - "0.0.0.0"
       - "--dev"
+      - "--dev.period"
+      - "1"
       - "--datadir"
       - "/geth_data"
       - "--syncmode"
@@ -348,14 +350,27 @@ services:
 
   x1-prover:
     container_name: x1-prover
-    image: hermeznetwork/zkevm-prover:v3.0.2
+    image: hermeznetwork/zkevm-prover:v2.2.0
     ports:
+      # - 50051:50051 # Prover
+      - 50052:50052 # Mock prover
       - 50061:50061 # MT
       - 50071:50071 # Executor
     volumes:
       - ./config/test.prover.config.json:/usr/src/app/config.json
     command: >
       zkProver -c /usr/src/app/config.json
+
+  zkprover-mock:
+    container_name: zkprover-mock
+    image: hermeznetwork/zkprover-mock:latest
+    ports:
+      - 43061:43061 # MT
+      - 43071:43071 # Executor
+    volumes:
+      - ./vectors/src:/app/testvectors
+    command: >
+      /app/zkprover-mock server --statedb-port 43061 --executor-port 43071 --test-vector-path /app/testvectors
 
   x1-approve:
     container_name: x1-approve
@@ -381,7 +396,7 @@ services:
         reservations:
           memory: 1G
     ports:
-      - 5434:5432
+      - 5444:5432
     volumes:
       - ../db/scripts/single_db_server.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
@@ -393,8 +408,8 @@ services:
       - "-N"
       - "500"
 
-  x1-permissionless-node:
-    container_name: x1-permissionless-node
+  x1-permissionless-node-forced-DAC:
+    container_name: x1-permissionless-node-forced-DAC
     image: x1-node
     ports:
       - 8125:8125
@@ -424,7 +439,7 @@ services:
 
   x1-permissionless-prover:
     container_name: x1-permissionless-prover
-    image: hermeznetwork/zkevm-prover:v3.0.2
+    image: hermeznetwork/zkevm-prover:v2.2.0
     ports:
       # - 50058:50058 # Prover
       - 50059:50052 # Mock prover
@@ -450,7 +465,7 @@ services:
   x1-sh:
     container_name: x1-sh
     image: x1-node
-    stdin_open: true
+    stdin_open: true 
     tty: true
     environment:
       - ZKEVM_NODE_STATE_DB_HOST=x1-state-db

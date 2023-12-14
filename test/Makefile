@@ -328,9 +328,9 @@ stop-db: ## Stops the node database
 
 .PHONY: run-node
 run-node: ## Runs the node
-	$(RUNSYNC)
-	sleep 4
 	$(RUNETHTXMANAGER)
+	$(RUNSYNC)
+	sleep 2
 	$(RUNDACNODE)
 	$(RUNSEQUENCER)
 	$(RUNSEQUENCESENDER)
