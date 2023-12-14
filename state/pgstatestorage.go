@@ -2057,7 +2057,7 @@ func (p *PostgresStorage) GetLogs(ctx context.Context, fromBlock uint64, toBlock
 	if count > MaxLogsCount {
 		return nil, errors.New("ErrMaxLogsCountLimitExceeded")
 	}
-	log.Infof("LogCount", "count", count)
+	log.Infof("LogCount count=%d from=%d to=%d", count, fromBlock, toBlock)
 
 	rows, err := q.Query(ctx, queryToSelect, args...)
 	if err != nil {
