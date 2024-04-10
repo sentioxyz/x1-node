@@ -669,7 +669,12 @@ func TestCounterAndBlock(t *testing.T) {
 	for _, network := range networks {
 		log.Debugf(network.Name)
 		client := operations.MustGetClient(network.URL)
-		auth := operations.MustGetAuth(network.PrivateKey, network.ChainID)
+		priKey := network.PrivateKey
+		if network.Name == "Local L2" {
+			priKey = "0xde3ca643a52f5543e84ba984c4419ff40dbabd0e483c31c1d09fee8168d68e38"
+		}
+		auth := operations.MustGetAuth(priKey, network.ChainID)
+		log.Infof("auth:%v, chainID:%v", auth.From.String(), network.ChainID)
 
 		_, scTx, sc, err := CounterAndBlock.DeployCounterAndBlock(auth, client)
 		require.NoError(t, err)
