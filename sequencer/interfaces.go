@@ -29,6 +29,7 @@ type txPool interface {
 	GetL1AndL2GasPrice() (uint64, uint64)
 	GetEarliestProcessedTx(ctx context.Context) (common.Hash, error)
 	CountPendingTransactions(ctx context.Context) (uint64, error)
+	UpdateReadyTxCount(ctx context.Context, count uint64) error
 }
 
 // etherman contains the methods required to interact with ethereum.
@@ -93,4 +94,5 @@ type workerInterface interface {
 	NewTxTracker(tx pool.Transaction, usedZKcounters state.ZKCounters, reservedZKCouners state.ZKCounters, ip string) (*TxTracker, error)
 	AddForcedTx(txHash common.Hash, addr common.Address)
 	DeleteForcedTx(txHash common.Hash, addr common.Address)
+	CountReadyTx() uint64
 }

@@ -478,6 +478,8 @@ func (f *finalizer) closeWIPL2Block(ctx context.Context) {
 		f.addPendingL2BlockToProcess(ctx, f.wipL2Block)
 	}
 
+	getPoolReadyTxCounter().setReadyTxCount(f.workerIntf.CountReadyTx())
+
 	f.wipL2Block = nil
 }
 
