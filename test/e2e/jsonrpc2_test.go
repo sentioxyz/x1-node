@@ -457,7 +457,7 @@ func TestCallMissingParameters(t *testing.T) {
 		},
 		{
 			name:   "params has only first parameter",
-			params: []interface{}{map[string]interface{}{"value": "0x1", "from": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266", "to": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92267"}},
+			params: []interface{}{map[string]interface{}{"value": "0x1", "from": fromAddressHex, "to": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92267"}},
 		},
 	}
 

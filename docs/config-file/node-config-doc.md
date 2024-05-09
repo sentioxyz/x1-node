@@ -3199,8 +3199,7 @@ in the processPendingL2Blocks go func
 SequentialProcessL2Block=false
 ```
 
-#### <a name="Sequencer_Finalizer_Metrics"></a>10.7.14. `[Sequencer.Finalizer.Metrics]`
-#### <a name="Sequencer_Finalizer_FullBatchSleepDuration"></a>10.7.13. `Sequencer.Finalizer.FullBatchSleepDuration`
+#### <a name="Sequencer_Finalizer_FullBatchSleepDuration"></a>10.7.14. `Sequencer.Finalizer.FullBatchSleepDuration`
 
 **Title:** Duration
 
@@ -3227,7 +3226,7 @@ FullBatchSleepDuration is the time the finalizer sleeps between each full batch 
 FullBatchSleepDuration="0s"
 ```
 
-#### <a name="Sequencer_Finalizer_Metrics"></a>10.7.14. `[Sequencer.Finalizer.Metrics]`
+#### <a name="Sequencer_Finalizer_Metrics"></a>10.7.15. `[Sequencer.Finalizer.Metrics]`
 
 **Type:** : `object`
 **Description:** Metrics is the config for the sequencer metrics
@@ -3237,7 +3236,7 @@ FullBatchSleepDuration="0s"
 | - [Interval](#Sequencer_Finalizer_Metrics_Interval )   | No      | string  | No         | -          | Duration                                           |
 | - [EnableLog](#Sequencer_Finalizer_Metrics_EnableLog ) | No      | boolean | No         | -          | EnableLog is a flag to enable/disable metrics logs |
 
-##### <a name="Sequencer_Finalizer_Metrics_Interval"></a>10.7.14.1. `Sequencer.Finalizer.Metrics.Interval`
+##### <a name="Sequencer_Finalizer_Metrics_Interval"></a>10.7.15.1. `Sequencer.Finalizer.Metrics.Interval`
 
 **Title:** Duration
 
@@ -3263,7 +3262,7 @@ FullBatchSleepDuration="0s"
 Interval="1h0m0s"
 ```
 
-##### <a name="Sequencer_Finalizer_Metrics_EnableLog"></a>10.7.14.2. `Sequencer.Finalizer.Metrics.EnableLog`
+##### <a name="Sequencer_Finalizer_Metrics_EnableLog"></a>10.7.15.2. `Sequencer.Finalizer.Metrics.EnableLog`
 
 **Type:** : `boolean`
 
